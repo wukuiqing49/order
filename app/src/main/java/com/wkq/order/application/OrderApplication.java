@@ -1,6 +1,7 @@
 package com.wkq.order.application;
 
-import android.support.multidex.MultiDexApplication;
+
+import androidx.multidex.MultiDexApplication;
 
 /**
  * 作者: 吴奎庆

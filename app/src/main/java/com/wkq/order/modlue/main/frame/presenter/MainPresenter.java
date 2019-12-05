@@ -3,17 +3,19 @@ package com.wkq.order.modlue.main.frame.presenter;
 import android.util.Log;
 
 import com.wkq.base.frame.mosby.MvpBasePresenter;
-import com.wkq.lib_net.ApiRequest;
-import com.wkq.lib_net.BaseInfo;
-import com.wkq.lib_net.api.ApiDemo;
-import com.wkq.lib_net.logic.Logic;
-import com.wkq.lib_net.logic.callback.DataCallback;
-import com.wkq.lib_net.logic.callback.FailureCallback;
-import com.wkq.lib_net.logic.callback.SuccessCallback;
+import com.wkq.net.ApiRequest;
+import com.wkq.net.BaseInfo;
+import com.wkq.net.api.ApiDemo;
+import com.wkq.net.logic.Logic;
+import com.wkq.net.logic.callback.DataCallback;
+import com.wkq.net.logic.callback.FailureCallback;
+import com.wkq.net.logic.callback.SuccessCallback;
 import com.wkq.order.MainActivity;
 import com.wkq.order.modlue.main.frame.view.MainView;
 
 import java.util.HashMap;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * 作者: 吴奎庆
@@ -29,7 +31,7 @@ public class MainPresenter  extends MvpBasePresenter<MainView> {
 
         Logic.create().action(new Logic.Action<HashMap<String,String>, BaseInfo>() {
             @Override
-            public io.reactivex.disposables.Disposable action(HashMap<String, String> data, DataCallback<BaseInfo> callback) {
+            public Disposable action(HashMap<String, String> data, DataCallback<BaseInfo> callback) {
                 return ApiRequest.service(ApiDemo.class, apiDemo -> apiDemo.test()).subscribe(activity,callback);
             }
         }).<BaseInfo>event().setFailureCallback(new FailureCallback() {

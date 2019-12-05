@@ -10,7 +10,6 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -31,7 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
 //Android support libs
-    implementation "com.android.support:appcompat-v7:$rootProject.appcompatV7"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     //Retrofit
     api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
     api "com.squareup.retrofit2:converter-gson:$rootProject.converterGson"
@@ -42,9 +41,10 @@ dependencies {
     api "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
     api "com.squareup.okhttp3:logging-interceptor:$rootProject.loggingInterceptor"
 
-    //RxJava
-    api 'io.reactivex.rxjava2:rxjava:2.1.8'
-    api('io.reactivex.rxjava2:rxandroid:2.0.1') {
-        exclude module: 'rxjava'// rxJava
-    }
+//    //RxJava
+//    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
+//    implementation('io.reactivex.rxjava2:rxandroid:2.0.1') {
+//        exclude module: 'rxjava'// rxJava
+//    }
+    implementation project(path: ':lib_base')
 }

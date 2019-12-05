@@ -12,10 +12,12 @@ import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.media.ImagePicker;
 import com.wkq.media.PickerConfig;
 import com.wkq.order.databinding.ActivityMainBinding;
+import com.wkq.order.databinding.ActivityMainTestBinding;
 import com.wkq.order.modlue.main.frame.presenter.MainPresenter;
 import com.wkq.order.modlue.main.frame.view.MainView;
+import com.wkq.qr.ui.activity.ScanActivity;
 
-public class MainActivity extends MvpBindingActivity<MainView, MainPresenter, ActivityMainBinding> {
+public class MainActivity extends MvpBindingActivity<MainView, MainPresenter, ActivityMainTestBinding> {
 
 
     //发布文件最大值
@@ -56,19 +58,24 @@ public class MainActivity extends MvpBindingActivity<MainView, MainPresenter, Ac
                     .showTime(true)
                     .maxTime(media_item_select_max_time)
                     .selectMode(PickerConfig.PICKER_IMAGE_VIDEO)
-                    .cachePath((Build.VERSION.SDK_INT == Build.VERSION_CODES.Q ? getExternalFilesDir("") :                 Environment.getExternalStorageDirectory()) + "/strike/file/")
+                    .cachePath((Build.VERSION.SDK_INT == Build.VERSION_CODES.Q ? getExternalFilesDir("") : Environment.getExternalStorageDirectory()) + "/strike/file/")
                     .videoTrimPath((Build.VERSION.SDK_INT == Build.VERSION_CODES.Q ? getExternalFilesDir("") : Environment.getExternalStorageDirectory()) + "/strike/file/")
                     .isFriendCircle(true)
                     .builder()
                     //跳转到图片选择页面 activity    请求码            结果码
                     .start(MainActivity.this, 200, PickerConfig.DEFAULT_RESULT_CODE);
-//            getPresenter().getData(this);
-
+            getPresenter().getData(this);
         });
+
+        binding.tvScan.setOnClickListener(v -> {
+
+            ScanActivity.startScanActivity(this);
+        });
+
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_main_test;
     }
 }

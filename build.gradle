@@ -66,5 +66,12 @@ ext {
     constraintLayout = '1.1.3'
 
 
+    //阿里路由框架
+    arouterApiVersion = '1.4.0'
+    arouterCompilerVersion = '1.2.1'
+
+    //rxJava
+    rxJava = "2.1.8"
+    rxAndroid = "2.0.1"
 
 }
