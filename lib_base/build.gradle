@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -28,6 +28,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.0.0'
 
-    api "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
-    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+    implementation 'androidx.cardview:cardview:1.0.0'
 }

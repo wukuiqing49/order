@@ -10,7 +10,7 @@ import com.wkq.net.logic.Logic;
 import com.wkq.net.logic.callback.DataCallback;
 import com.wkq.net.logic.callback.FailureCallback;
 import com.wkq.net.logic.callback.SuccessCallback;
-import com.wkq.order.MainActivity;
+import com.wkq.order.modlue.main.ui.MainActivity;
 import com.wkq.order.modlue.main.frame.view.MainView;
 
 import java.util.HashMap;

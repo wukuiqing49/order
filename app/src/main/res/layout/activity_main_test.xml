@@ -1,20 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onClicker"
+            type="OnClickListener" />
+
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <TextView
-            android:id="@+id/tv"
+            android:id="@+id/tv_cam"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="80dp"
+            android:background="#122344"
             android:gravity="center"
-            android:text="相册" />
+            android:onClick="@{onClicker}"
+            android:text="相册"
+            android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/tv_scan"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="80dp"
             android:gravity="center"
-            android:text="Hello World!" />
+            android:onClick="@{onClicker}"
+            android:text="二维码识别" />
+
+
+        <TextView
+            android:id="@+id/tv_web"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#122344"
+            android:gravity="center"
+            android:onClick="@{onClicker}"
+            android:text="web"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_data"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:onClick="@{onClicker}"
+            android:text="其他"
+            android:textColor="@color/app_color_blue" />
+
 
     </LinearLayout>
 
