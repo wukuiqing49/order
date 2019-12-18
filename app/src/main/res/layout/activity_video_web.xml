@@ -16,49 +16,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <ImageView
+            android:layout_marginTop="1dp"
+            android:id="@+id/iv_loading"
             android:layout_width="match_parent"
-            android:layout_height="?android:actionBarSize"
-            android:background="?attr/colorPrimary">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <TextView
-                    android:id="@+id/toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:singleLine="true"
-                    android:text="标题"
-                    android:layout_centerInParent="true"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-
-                <TextView
-                    android:onClick="@{onClicker}"
-                    android:padding="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/tv_get_url"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:singleLine="true"
-                    android:text="获取"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-
-
-        </androidx.appcompat.widget.Toolbar>
-
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/web_def_img_mjz" />
 
 
 

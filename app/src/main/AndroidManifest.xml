@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:overrideLibrary="org.adblockplus.libadblockplus.android.webview"
-    package="com.wkq.order">
+    package="com.wkq.order"
+    tools:overrideLibrary="org.adblockplus.libadblockplus.android.webview">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
@@ -46,8 +45,8 @@
 
 
         <activity
-            android:theme="@style/BaseAppTheme"
-            android:name=".modlue.main.ui.MainActivity">
+            android:name=".modlue.main.ui.MainActivity"
+            android:theme="@style/BaseAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,14 +54,17 @@
             </intent-filter>
         </activity>
         <!-- WebView -->
-        <activity android:name=".modlue.web.ui.VideoWebviewActivity"
-            android:hardwareAccelerated="true"
+        <activity
+            android:name=".modlue.web.ui.VideoWebviewActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/BaseAppTheme"/>
-        <activity android:name=".modlue.web.ui.FullVideoActivity"
-            android:theme="@style/BaseAppTheme"/>
-        <activity android:name=".modlue.web.ui.AdbWebActivity"
-            android:theme="@style/BaseAppTheme"/>
+            android:hardwareAccelerated="true"
+            android:theme="@style/ThemePlay" />
+        <activity
+            android:name=".modlue.web.ui.FullVideoActivity"
+            android:theme="@style/BaseAppTheme" />
+        <activity
+            android:name=".modlue.web.ui.AdbWebActivity"
+            android:theme="@style/BaseAppTheme" />
 
     </application>
 
