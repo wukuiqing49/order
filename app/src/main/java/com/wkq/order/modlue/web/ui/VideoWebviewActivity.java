@@ -31,6 +31,23 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
 //	<option value="http://jx.drgxj.com/?url=" selected=""><span style="color:red;">无广告超速解析</span>【通用】</option>
 //      <option value="http://jx.598110.com/?url=" selected="">①号通用vip引擎系统【稳定通用】</option>
 
+
+//    https://cdn.yangju.vip/k/?url=
+//    https://jx.lache.me/cc/?url=
+//    https://api.653520.top/vip/?url=
+//    https://jx.ab33.top/vip/?url=
+//    https://vip.mpos.ren/v/?url=
+//    https://jx.000180.top/jx/?url=
+//    https://jx.km58.top/jx/?url=
+//    https://api.smq1.com/?url=
+//    https://jx.hezeshi.net/ce/jlexi.php?url=
+//    https://www.kkflv.com/?url=		    //Btjson智能解析
+//    https://jx.618g.com/?url=
+
+//知乎帖子
+//    https://zhuanlan.zhihu.com/p/34401379
+
+
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, VideoWebviewActivity.class);
         context.startActivity(intent);

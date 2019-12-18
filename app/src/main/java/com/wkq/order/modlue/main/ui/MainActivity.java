@@ -30,8 +30,7 @@ public class MainActivity extends MvpBindingActivity<MainView, MainPresenter, Ac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding.setOnClicker(this);
-
-
+        if (getMvpView()!=null)getMvpView().initData();
     }
 
     @Override

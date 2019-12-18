@@ -6,7 +6,11 @@ import android.os.Environment;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.media.ImagePicker;
 import com.wkq.media.PickerConfig;
+import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.main.ui.MainActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 作者: 吴奎庆
@@ -17,7 +21,7 @@ import com.wkq.order.modlue.main.ui.MainActivity;
  */
 public class MainView implements MvpView {
     MainActivity mActivity;
-
+    List<VideoWebInfo> videoList = new ArrayList<>();
 
     //发布文件最大值
     private static final int media_item_max_size = 30 * 1024 * 1024;
@@ -60,4 +64,20 @@ public class MainView implements MvpView {
                 .start(mActivity, 200, PickerConfig.DEFAULT_RESULT_CODE);
 
     }
+
+
+    public void initData() {
+        videoList.add(new VideoWebInfo("http://www.le.com/", "进入乐视视频"));
+        videoList.add(new VideoWebInfo("https://www.iqiyi.com/", "进入奇艺视频"));
+
+        videoList.add(new VideoWebInfo("http://www.mgtv.com/", "进入芒果视频"));
+        videoList.add(new VideoWebInfo("https://v.qq.com/", "进入腾讯视频"));
+        videoList.add(new VideoWebInfo("https://www.youku.com/", "进入优酷视频"));
+        videoList.add(new VideoWebInfo("https://tv.sohu.com/", "进入搜狐视频"));
+        videoList.add(new VideoWebInfo("http://www.pptv.com/", "进入pptv视频"));
+
+    }
+
+
+
 }
