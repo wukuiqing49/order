@@ -23,6 +23,9 @@ import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.order.modlue.web.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +60,7 @@ public class VideoWebView implements MvpView {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 //do you work
+
             }
         };
 
@@ -103,6 +107,17 @@ public class VideoWebView implements MvpView {
                 return ad ? AdBlocker.createEmptyResource() :
                         super.shouldInterceptRequest(view, url);
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                mAgentWeb.getJsAccessEntrace().callJs("var a=document.getElementById(\"player\").parentNode;var b=a.children;\n" +
+                        " for(var i =b.length-1; i>=0;i--){\n" +
+                        "    if(b[i].id!=\"player\"){a.removeChild(b[i]);}\n" +
+                        " }");
+
+            }
         };
 
 
@@ -116,7 +131,14 @@ public class VideoWebView implements MvpView {
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .createAgentWeb()
                 .ready()
-                .go("https://www.iqiyi.com/");
+//                .go("https://www.iqiyi.com/");
+//                .go("https://jx.000180.top/jx/?url=https://v.qq.com/x/cover/cqqoh6bdcwn0oyu.html");
+//                .go("https://jiexi.bm6ig.cn/?url=https://m.iqiyi.com/v_19ruwhdp98.html");
+                .go("https://jiexi.bm6ig.cn/?url=https://v.qq.com/x/cover/cqqoh6bdcwn0oyu.html");
+
+        mAgentWeb.getJsAccessEntrace().callJs("document.getElementsByTagName(\"iframe\")[0].src");
+
+
     }
 
 
@@ -127,6 +149,10 @@ public class VideoWebView implements MvpView {
     public String getWebUrl() {
         return mAgentWeb.getWebCreator().getWebView().getUrl();
     }
+
+
+
+
 
 
 }

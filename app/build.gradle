@@ -105,6 +105,8 @@ dependencies {
     implementation 'org.adblockplus:adblock-android:3.9.2'
     implementation 'org.adblockplus:adblock-android-webview:3.9.2'
     implementation 'org.adblockplus:adblock-android-settings:3.9.2'
+
+    implementation 'org.jsoup:jsoup:1.12.1'
 //    implementation 'com.just.agentwebX5:agentwebX5:2.0.0'
 //    implementation files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
 }

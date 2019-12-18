@@ -24,7 +24,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 
 public class FullVideoActivity extends MvpBindingActivity<FullVideoView, FullVideoPresenter, ActivityFullVideoBinding> {
-    String s3 = "http://v.yongjiujiexi.com/20180304/B0cYHQvY/index.m3u8";
+    String s3 = "https://youku.cdn7-okzy.com/20191217/16233_aa3b7d73/index.m3u8";
     private String url;
 
 
@@ -39,7 +39,7 @@ public class FullVideoActivity extends MvpBindingActivity<FullVideoView, FullVid
     }
 
     private void getdata() {
-        binding.jiecaoPlayer.setUp(url,binding.jiecaoPlayer.SCREEN_LAYOUT_NORMAL,"视频标题");
+        binding.jiecaoPlayer.setUp(s3,binding.jiecaoPlayer.SCREEN_LAYOUT_NORMAL,"视频标题");
     }
 
     @Override

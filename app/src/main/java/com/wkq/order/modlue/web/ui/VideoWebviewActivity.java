@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.amnix.adblockwebview.ui.AdBlocksWebViewActivity;
 import com.wkq.base.adutlis.AdBlocker;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
@@ -17,7 +16,7 @@ import com.wkq.order.modlue.web.view.VideoWebView;
 public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, VideoWebPresenter, ActivityVideoWebBinding> implements View.OnClickListener {
 
 //    String baseUrl= "http://jx.aeidu.cn/index.php?url=";
-    String baseUrl= "https://api.spjx.live/?url=";
+    String baseUrl= "http://jx.618ge.com/?url=";
 //    https://www.iqiyi.com/v_19rrk406qo.html
 
 //     <select class="form-control input-lg" id="jk">
@@ -55,9 +54,11 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
             case R.id.tv_get_url:
 
                 if (getMvpView() != null)
-//                    getMvpView().loadUrl(baseUrl.concat(getMvpView().getWebUrl()));
+                    getMvpView().loadUrl(baseUrl.concat(getMvpView().getWebUrl()));
 
-                AdBlocksWebViewActivity.startWebView(VideoWebviewActivity.this,baseUrl.concat(getMvpView().getWebUrl()),getResources().getColor(R.color.colorPrimary));
+//                FullVideoActivity.startActivity(this,"");
+
+//                AdBlocksWebViewActivity.startWebView(VideoWebviewActivity.this,baseUrl.concat(getMvpView().getWebUrl()),getResources().getColor(R.color.colorPrimary));
 
 
                 break;
