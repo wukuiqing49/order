@@ -31,6 +31,7 @@ public class MainActivity extends MvpBindingActivity<MainView, MainPresenter, Ac
         super.onCreate(savedInstanceState);
         binding.setOnClicker(this);
         if (getMvpView()!=null)getMvpView().initData();
+        if (getMvpView()!=null)getMvpView().initView();
     }
 
     @Override
@@ -42,24 +43,24 @@ public class MainActivity extends MvpBindingActivity<MainView, MainPresenter, Ac
     public void onClick(View view) {
 
         switch (view.getId()) {
-
-            case R.id.tv_cam:
-
-                if (getMvpView() != null) getMvpView().openCam();
-                break;
-            case R.id.tv_scan:
-                ScanActivity.startScanActivity(this);
-
-                break;
-
-            case R.id.tv_web:
-                VideoWebviewActivity.startActivity(this);
-                break;
-
-            case R.id.tv_data:
-//                if (getPresenter() != null) getPresenter().getData(this);
-                AdbWebActivity.startActivity(this,"");
-                break;
+//
+//            case R.id.tv_cam:
+//
+//                if (getMvpView() != null) getMvpView().openCam();
+//                break;
+//            case R.id.tv_scan:
+//                ScanActivity.startScanActivity(this);
+//
+//                break;
+//
+//            case R.id.tv_web:
+//                VideoWebviewActivity.startActivity(this);
+//                break;
+//
+//            case R.id.tv_data:
+////                if (getPresenter() != null) getPresenter().getData(this);
+//                AdbWebActivity.startActivity(this,"");
+//                break;
 
         }
 

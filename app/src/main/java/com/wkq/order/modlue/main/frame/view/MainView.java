@@ -3,11 +3,16 @@ package com.wkq.order.modlue.main.frame.view;
 import android.os.Build;
 import android.os.Environment;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.media.ImagePicker;
 import com.wkq.media.PickerConfig;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.main.ui.MainActivity;
+import com.wkq.order.modlue.main.ui.adapter.VideoWebAddressAdapter;
+import com.wkq.order.modlue.web.ui.VideoSiteActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,5 +84,17 @@ public class MainView implements MvpView {
     }
 
 
+    public void initView() {
+        mActivity.binding.rvWeb.setLayoutManager(new GridLayoutManager(mActivity, 3));
+        VideoWebAddressAdapter myVideoAdapter = new VideoWebAddressAdapter(mActivity);
+        mActivity.binding.rvWeb.setAdapter(myVideoAdapter);
+        myVideoAdapter.addItems(videoList);
+        myVideoAdapter.setItemClickListener(new VideoWebAddressAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(VideoWebInfo info) {
+                VideoSiteActivity.startActivity(mActivity,info.getVideoWebAddress());
+            }
+        });
 
+    }
 }

@@ -66,6 +66,12 @@
             android:name=".modlue.web.ui.AdbWebActivity"
             android:theme="@style/BaseAppTheme" />
 
+        <activity
+            android:name=".modlue.web.ui.VideoSiteActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:theme="@style/BaseAppTheme" />
+
     </application>
 
 </manifest>

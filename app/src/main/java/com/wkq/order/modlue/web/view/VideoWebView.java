@@ -25,10 +25,7 @@ import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
-import com.wkq.order.modlue.web.ui.widget.WebLayout;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,9 +47,7 @@ public class VideoWebView implements MvpView {
 
 
     public void initView() {
-//        mActivity.binding.toolbar.setTitleTextColor(Color.WHITE);
-//        mActivity.binding.toolbar.setTitle("");
-        mActivity.binding.setOnClicker(mActivity);
+
         initWebView();
     }
 
@@ -63,8 +58,6 @@ public class VideoWebView implements MvpView {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-
-                //do you work
 
             }
         };
@@ -143,7 +136,7 @@ public class VideoWebView implements MvpView {
 //                .go("https://www.iqiyi.com/");
 //                .go("https://jx.000180.top/jx/?url=https://v.qq.com/x/cover/cqqoh6bdcwn0oyu.html");
 //                .go("https://jiexi.bm6ig.cn/?url=https://m.iqiyi.com/v_19ruwhdp98.html");
-                .go("https://jiexi.bm6ig.cn/?url=https://v.qq.com/x/cover/cqqoh6bdcwn0oyu.html");
+                .go(mActivity.url);
 
         mActivity.mAgentWeb.getJsAccessEntrace().callJs("document.getElementsByTagName(\"iframe\")[0].src");
     }
