@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -67,7 +68,7 @@ public class VideoWebView implements MvpView {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
+                Log.e("kid","onPageStartedsss="+url);
                 if (url.endsWith(".mp4")) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setDataAndType(Uri.parse(url), "video/*");
@@ -86,20 +87,15 @@ public class VideoWebView implements MvpView {
                     return super.shouldOverrideUrlLoading(view, url);
                 }
             }
-
-
-            private Map<String, Boolean> loadedUrls = new HashMap<>();
-
-            @SuppressWarnings("deprecation")
-            @Override
+//
+//
+//            private Map<String, Boolean> loadedUrls = new HashMap<>();
+//
+//            @SuppressWarnings("deprecation")
+//            @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                boolean ad;
-                if (!loadedUrls.containsKey(url)) {
-                    ad = AdBlocker.isAd(url);
-                    loadedUrls.put(url, ad);
-                } else {
-                    ad = loadedUrls.get(url);
-                }
+                boolean ad=false;
+
                 return ad ? AdBlocker.createEmptyResource() :
                         super.shouldInterceptRequest(view, url);
             }
@@ -108,6 +104,7 @@ public class VideoWebView implements MvpView {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 mActivity.binding.ivLoading.setVisibility(View.VISIBLE);
+                Log.e("kid","onPageStarted="+url);
             }
 
             @Override

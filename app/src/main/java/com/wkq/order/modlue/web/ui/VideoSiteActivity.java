@@ -35,7 +35,14 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
 //    String baseUrl = "http://jx.618ge.com/?url=";
 //    String baseUrl = "http://jx.du2.cc/?url=";
     //处理广告
-    String baseUrl = "http://jx.du2.cc/?url";
+    String baseUrl = "http://jx.du2.cc/?url=";
+//String baseUrl = "http://demo.hao0606.com/?url=";
+//String baseUrl = "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=";
+
+
+
+
+
 //
 //     	<option value="http://jx.du2.cc/?url=" selected="">⑤号通用vip引擎系统【全网解析】</option>
 //      	<option value="http://jx.drgxj.com/?url=" selected="">④号通用vip引擎系统【超级稳定通用】</option>
@@ -72,7 +79,11 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
         switch (view.getId()){
 
             case R.id.cd_play:
-                VideoWebviewActivity.startActivity(this,baseUrl.concat(getMvpView().getWebUrl()));
+//                VideoWebviewActivity.startActivity(this,baseUrl.concat(getMvpView().getWebUrl()));
+                VideoWebviewActivity.startActivity(this,"http://jx.du2.cc/?url=https://www.iqiyi.com/v_19rrk406qo.html");
+//                VideoWebviewActivity.startActivity(this,"http://jx.598110.com/?url=url=https://www.iqiyi.com/v_19rrk406qo.html");
+
+//                VideoWebviewActivity.startActivity(this,"http://demo.hao0606.com/?url=url=https://www.iqiyi.com/v_19rrk406qo.html");
                 break;
 
         }
