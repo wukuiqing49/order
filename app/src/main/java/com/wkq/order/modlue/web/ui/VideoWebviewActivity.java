@@ -3,6 +3,7 @@ package com.wkq.order.modlue.web.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -64,5 +65,17 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
     protected void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        if (!mAgentWeb.back()){
+            this.finish();
+        }else {
+            mAgentWeb.getWebCreator().getWebView().goBack();
+        }
+
     }
 }

@@ -61,6 +61,8 @@ public class VideoWebView implements MvpView {
                 super.onProgressChanged(view, newProgress);
 
             }
+
+
         };
 
         WebViewClient webChromeClient = new WebViewClient() {
@@ -68,52 +70,29 @@ public class VideoWebView implements MvpView {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Log.e("kid","onPageStartedsss="+url);
-                if (url.endsWith(".mp4")) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.parse(url), "video/*");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    view.getContext().startActivity(intent);
-
-                    return true;
-                } else if (url.startsWith("tel:") || url.startsWith("sms:") || url.startsWith("smsto:")
-                        || url.startsWith("mms:") || url.startsWith("mmsto:")) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    view.getContext().startActivity(intent);
-
-                    return true;
-                } else {
-                    return super.shouldOverrideUrlLoading(view, url);
-                }
+                view.loadUrl(url);
+                return false;
             }
-//
-//
-//            private Map<String, Boolean> loadedUrls = new HashMap<>();
-//
-//            @SuppressWarnings("deprecation")
-//            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                boolean ad=false;
 
-                return ad ? AdBlocker.createEmptyResource() :
-                        super.shouldInterceptRequest(view, url);
-            }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 mActivity.binding.ivLoading.setVisibility(View.VISIBLE);
-                Log.e("kid","onPageStarted="+url);
+                Log.e("kid", "onPageStarted=" + url);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+
+
                 mActivity.mAgentWeb.getJsAccessEntrace().callJs("var a=document.getElementById(\"player\").parentNode;var b=a.children;\n" +
                         " for(var i =b.length-1; i>=0;i--){\n" +
                         "    if(b[i].id!=\"player\"){a.removeChild(b[i]);}\n" +
                         " }");
+                mActivity.mAgentWeb.getJsAccessEntrace().callJs("var a=document.getElementsByTagName(\"__if_\");for(var i= a.length-1;i>=0;i--){a.removeChild[i]})");
+
                 mActivity.binding.ivLoading.setVisibility(View.GONE);
             }
         };

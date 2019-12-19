@@ -3,7 +3,9 @@ package com.wkq.order.modlue.web;
 
 import android.app.Activity;
 import android.os.Build;
+import android.view.View;
 import android.webkit.DownloadListener;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.just.agentweb.AbsAgentWebSettings;
@@ -56,6 +58,35 @@ public class CustomSettings extends AbsAgentWebSettings {
         getWebSettings().setBuiltInZoomControls(true);
         getWebSettings().setSupportZoom(true);
         getWebSettings().setDomStorageEnabled(true);
+
+        getWebSettings().setJavaScriptEnabled(true);
+        getWebSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        getWebSettings().setSupportZoom(false); //支持缩放
+        getWebSettings().setBuiltInZoomControls(false); //支持手势缩放
+        getWebSettings().setDisplayZoomControls(false); //是否显示缩放按钮
+        getWebSettings().setDefaultTextEncodingName("utf-8"); //设置文本编码
+        getWebSettings().setUseWideViewPort(false); //将图片调整到适合WebView的大小
+        getWebSettings().setLoadWithOverviewMode(true); //自适应屏幕
+        getWebSettings().setDomStorageEnabled(true);
+        getWebSettings().setSaveFormData(true);
+        getWebSettings().setSupportMultipleWindows(true);
+        getWebSettings().setAppCacheEnabled(true);
+        getWebSettings().setPluginState(WebSettings.PluginState.ON);//支持插件
+        getWebSettings().setCacheMode(WebSettings.LOAD_NO_CACHE); //不适用缓存
+        getWebSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//支持内容重新布局
+        webView.setOverScrollMode(View.OVER_SCROLL_NEVER); // 取消WebView中滚动或拖动到顶部、底部时的阴影
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY); // 取消滚动条白边效果
+        // >= 19(SDK4.4)启动硬件加速，否则启动软件加速
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            getWebSettings().setLoadsImagesAutomatically(true); //支持自动加载图片
+        } else {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            getWebSettings().setLoadsImagesAutomatically(false);
+        }
+
+
+
 //        getWebSettings().setUserAgentString(getWebSettings().getUserAgentString().concat("agentweb/3.1.0"));
 
 
