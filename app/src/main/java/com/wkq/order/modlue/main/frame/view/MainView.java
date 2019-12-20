@@ -14,8 +14,11 @@ import com.wkq.order.modlue.main.ui.MainActivity;
 import com.wkq.order.modlue.main.ui.adapter.VideoWebAddressAdapter;
 import com.wkq.order.modlue.web.ui.VideoSiteActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 作者: 吴奎庆
@@ -95,6 +98,9 @@ public class MainView implements MvpView {
                 VideoSiteActivity.startActivity(mActivity,info.getVideoWebAddress());
             }
         });
+
+
+
 
     }
 }

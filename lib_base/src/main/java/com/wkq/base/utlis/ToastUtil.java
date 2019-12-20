@@ -1,5 +1,6 @@
 package com.wkq.base.utlis;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -31,6 +32,8 @@ public class ToastUtil {
 
     public void showToast(String str, int duration) {
         if (this.context != null && !TextUtils.isEmpty(str)) {
+
+            if (context instanceof Activity && ((Activity) context).isFinishing()) return;
             if (show_time + 2000L < System.currentTimeMillis() || !show_msg.equals(str)) {
                 show_msg = str;
                 View view = this.getView(str);

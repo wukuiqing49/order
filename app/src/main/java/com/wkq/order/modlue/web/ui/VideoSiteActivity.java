@@ -15,6 +15,10 @@ import com.wkq.order.databinding.ActivityVideoSiteBinding;
 import com.wkq.order.modlue.web.presenter.VideoSitePresenter;
 import com.wkq.order.modlue.web.view.VideoSiteView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * 作者:吴奎庆
  * <p>
@@ -32,7 +36,7 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
     //待确认
 //    String baseUrl = "http://jx.618ge.com/?url=";
 
-    String baseUrl = "http://jx.drgxj.com/?url=";
+//    String baseUrl = "http://jx.drgxj.com/?url=";
 
 
     //处理广告(广告)  能看
@@ -43,14 +47,10 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
 
     //成功去除
 //String baseUrl = "http://demo.hao0606.com/?url=";
-// String baseUrl = "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=url=";
+    //流畅
+ String baseUrl = "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=url=";
 //String baseUrl = "https://jiexi.bm6ig.cn/?url=";
     //广告
-
-
-
-
-//String baseUrl = "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=https://www.iqiyi.com/v_19rrk406qo.html";
 
 
 
@@ -85,6 +85,11 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
         binding.cdPlay.setOnClickListener(this);
 
         if (getMvpView()!=null)getMvpView().initView();
+
+//        Date date = new Date(System.currentTimeMillis());
+//        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm", Locale.getDefault());
+//        String time= format.format(date);
+//        String time2= format.format(date);
     }
 
     @Override
@@ -93,6 +98,9 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
 
             case R.id.cd_play:
                 VideoWebviewActivity.startActivity(this,baseUrl.concat(getMvpView().getWebUrl()));
+
+                CheckLineActivity.startActivity(this,baseUrl.concat(getMvpView().getWebUrl()));
+
 //                VideoWebviewActivity.startActivity(this,"http://jx.du2.cc/?url=https://www.iqiyi.com/v_19rrk406qo.html");
 //                VideoWebviewActivity.startActivity(this,"http://jx.598110.com/?url=url=https://www.iqiyi.com/v_19rrk406qo.html");
 

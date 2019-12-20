@@ -56,6 +56,7 @@
         <!-- WebView -->
         <activity
             android:name=".modlue.web.ui.VideoWebviewActivity"
+            android:launchMode="singleTop"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:theme="@style/ThemePlay" />
@@ -67,10 +68,17 @@
             android:theme="@style/BaseAppTheme" />
 
         <activity
+            android:launchMode="singleTop"
             android:name=".modlue.web.ui.VideoSiteActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:theme="@style/BaseAppTheme" />
+        <activity
+            android:launchMode="singleTop"
+            android:name=".modlue.web.ui.CheckLineActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:theme="@style/ThemeCheckLine" />
 
     </application>
 

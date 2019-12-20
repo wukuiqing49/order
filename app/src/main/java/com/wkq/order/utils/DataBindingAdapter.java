@@ -20,7 +20,7 @@ public class DataBindingAdapter<T> extends BaseRecyclerAdapter<T> {
     private int layoutId;
     protected int itemBRId;
 
-    protected OnAdapterViewClickListener<T> l;
+    protected OnAdapterViewClickListener<T> viewClickListener;
     protected OnAdapterViewLoadMoreListener loadMoreListener;
 
     public DataBindingAdapter(Context context) {
@@ -34,7 +34,7 @@ public class DataBindingAdapter<T> extends BaseRecyclerAdapter<T> {
     }
 
     public void setOnViewClickListener(OnAdapterViewClickListener listener) {
-        l = listener;
+        viewClickListener = listener;
     }
 
     public void setOnLoadMoreListener(OnAdapterViewLoadMoreListener listener) {

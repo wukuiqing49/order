@@ -55,7 +55,6 @@ public class VideoSiteView implements MvpView {
         mActivity.mAgentWeb = AgentWeb.with(mActivity)
                 .setAgentWebParent(mActivity.binding.llRoot, new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator(mActivity.getResources().getColor(R.color.color_23d41e))
-                .closeWebViewClientHelper()
                 .setAgentWebWebSettings(new CustomSettings())
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(webChromeClient)
