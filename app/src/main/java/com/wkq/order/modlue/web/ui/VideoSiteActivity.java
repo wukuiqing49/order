@@ -7,7 +7,6 @@ import android.view.KeyEvent;
 import android.view.View;
 
 
-
 import com.just.agentweb.AgentWeb;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
@@ -48,12 +47,8 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
     //成功去除
 //String baseUrl = "http://demo.hao0606.com/?url=";
     //流畅
- String baseUrl = "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=url=";
+    String baseUrl = "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=url=";
 //String baseUrl = "https://jiexi.bm6ig.cn/?url=";
-    //广告
-
-
-
 
 
 //
@@ -66,9 +61,9 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
 
     public String url;
 
-    public static void startActivity(Context context ,String url) {
+    public static void startActivity(Context context, String url) {
         Intent intent = new Intent(context, VideoSiteActivity.class);
-        intent.putExtra("url",url);
+        intent.putExtra("url", url);
         context.startActivity(intent);
     }
 
@@ -84,7 +79,7 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
         binding.setListener(this);
         binding.cdPlay.setOnClickListener(this);
 
-        if (getMvpView()!=null)getMvpView().initView();
+        if (getMvpView() != null) getMvpView().initView();
 
 //        Date date = new Date(System.currentTimeMillis());
 //        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm", Locale.getDefault());
@@ -94,17 +89,12 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.cd_play:
-                VideoWebviewActivity.startActivity(this,baseUrl.concat(getMvpView().getWebUrl()));
 
-                CheckLineActivity.startActivity(this,baseUrl.concat(getMvpView().getWebUrl()));
+                CheckLineActivity.startActivity(this, getMvpView().getWebUrl());
 
-//                VideoWebviewActivity.startActivity(this,"http://jx.du2.cc/?url=https://www.iqiyi.com/v_19rrk406qo.html");
-//                VideoWebviewActivity.startActivity(this,"http://jx.598110.com/?url=url=https://www.iqiyi.com/v_19rrk406qo.html");
-
-//                VideoWebviewActivity.startActivity(this,"http://demo.hao0606.com/?url=url=https://www.iqiyi.com/v_19rrk406qo.html");
                 break;
 
         }
@@ -130,21 +120,13 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
         super.onDestroy();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (mAgentWeb.handleKeyEvent(keyCode, event)) {
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
     @Override
     public void onBackPressed() {
 
-        if (!mAgentWeb.back()){
+        if (!mAgentWeb.back()) {
             this.finish();
-        }else {
+        } else {
             mAgentWeb.getWebCreator().getWebView().goBack();
         }
 

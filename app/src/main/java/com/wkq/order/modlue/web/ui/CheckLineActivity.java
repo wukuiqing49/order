@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.databinding.ViewDataBinding;
 
@@ -22,6 +24,8 @@ import com.wkq.order.modlue.web.view.CheckLineView;
  */
 public class CheckLineActivity extends MvpBindingActivity<CheckLineView, CheckLinePresenter, ActivityCheckLineBinding> {
 
+    public String videoUrl;
+
     public static void startActivity(Context context, String videoUrl) {
         Intent intent = new Intent(context, CheckLineActivity.class);
         intent.putExtra("url", videoUrl);
@@ -38,6 +42,11 @@ public class CheckLineActivity extends MvpBindingActivity<CheckLineView, CheckLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        videoUrl = getIntent().getStringExtra("url");
 
         if (getMvpView() != null) getMvpView().initView();
 

@@ -15,6 +15,11 @@ public class CheckLineInfo extends BaseObservable {
     //线路地址
     String lineUrl;
 
+    public CheckLineInfo(String lineName, String lineUrl) {
+        this.lineName = lineName;
+        this.lineUrl = lineUrl;
+    }
+
     public String getLineName() {
         return lineName;
     }

@@ -109,9 +109,6 @@ public class VideoWebView implements MvpView {
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .createAgentWeb()
                 .ready()
-//                .go("https://www.iqiyi.com/");
-//                .go("https://jx.000180.top/jx/?url=https://v.qq.com/x/cover/cqqoh6bdcwn0oyu.html");
-//                .go("https://jiexi.bm6ig.cn/?url=https://m.iqiyi.com/v_19ruwhdp98.html");
                 .go(mActivity.url);
 
         mActivity.mAgentWeb.getJsAccessEntrace().callJs("document.getElementsByTagName(\"iframe\")[0].src");
