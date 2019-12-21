@@ -35,5 +35,6 @@ public class CheckLineAdapter extends DataBindingAdapter<CheckLineInfo> {
             viewClickListener.onViewClick(binding.llRoot, getItem(position));
         });
 
+
     }
 }

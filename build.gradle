@@ -74,4 +74,10 @@ ext {
     rxJava = "2.1.8"
     rxAndroid = "2.0.1"
 
+    //glide
+    glide = '4.5.0'
+    glideTransformations = '3.0.1'
+    compiler = '4.5.0'
+
+
 }

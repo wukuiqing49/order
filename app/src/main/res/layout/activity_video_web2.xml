@@ -10,7 +10,7 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,10 +22,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            />
+            android:src="@mipmap/web_def_img_mjz" />
 
 
-    </LinearLayout>
+        <Button
+            android:text="去除广告"
+            android:id="@+id/bt_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </RelativeLayout>
 
 </layout>
 

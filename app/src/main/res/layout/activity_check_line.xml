@@ -3,30 +3,34 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="match_parent"
+        android:background="@color/transparent"
         android:orientation="vertical">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_line"
             android:layout_above="@+id/line"
+            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
         <View
             android:id="@+id/line"
-            android:layout_above="@+id/bt_cancel"
+            android:layout_above="@+id/tv_cancel"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray_line_color"/>
+            android:layout_height="10dp"
+            android:background="#f2f3f4" />
 
-        <Button
+        <TextView
             android:layout_alignParentBottom="true"
-            android:id="@+id/bt_cancel"
             android:background="@color/white"
-            android:text="取消"
+            android:textColor="@color/color_333"
+            android:id="@+id/tv_cancel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="取消" />
 
     </RelativeLayout>
 
