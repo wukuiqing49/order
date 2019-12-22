@@ -1,22 +1,9 @@
 package com.wkq.order.application;
 
-
-import android.content.Context;
-import android.util.Log;
-
 import androidx.multidex.MultiDexApplication;
 
-import com.tencent.smtt.sdk.QbSdk;
-import com.wkq.order.R;
+import com.lzy.okgo.OkGo;
 
-
-import org.adblockplus.libadblockplus.android.AdblockEngine;
-import org.adblockplus.libadblockplus.android.AndroidHttpClientResourceWrapper;
-import org.adblockplus.libadblockplus.android.SingleInstanceEngineProvider;
-import org.adblockplus.libadblockplus.android.settings.AdblockHelper;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 作者: 吴奎庆
@@ -30,6 +17,9 @@ public class OrderApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        OkGo.getInstance().init(this);
+
+
     }
 }
 

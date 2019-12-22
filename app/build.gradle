@@ -83,8 +83,8 @@ dependencies {
     //    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayout"
     //
     //    implementation "com.android.support:multidex:$rootProject.multidex"
-    implementation 'com.github.wukuiqing49:wkq_mvvm_mvp_base:1.0.4.0'
-    implementation 'com.github.wukuiqing49:LibMediaPicker:1.0.19'
+    implementation 'com.github.wukuiqing49:wkq_mvvm_mvp_base:1.0.42'
+//    implementation 'com.github.wukuiqing49:LibMediaPicker:1.0.19'
     implementation project(path: ':lib_net')
     implementation project(path: ':lib_qr')
     implementation project(path: ':lib_base')
@@ -100,14 +100,10 @@ dependencies {
     implementation 'fm.jiecao:jiecaovideoplayer:5.5'
 
 
-    implementation project(path: ':adblockwebview')
 
-    implementation 'org.adblockplus:adblock-android:3.9.2'
-    implementation 'org.adblockplus:adblock-android-webview:3.9.2'
-    implementation 'org.adblockplus:adblock-android-settings:3.9.2'
 
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+//    implementation 'com.github.bumptech.glide:glide:4.8.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
 //    implementation ('com.github.bumptech.glide:glide:$rootProject.glide') {
 //        exclude group: "com.android.support"
@@ -117,4 +113,9 @@ dependencies {
 
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    implementation 'com.qmuiteam:qmui:2.0.0-alpha02'
+
+    //必须使用
+    implementation 'com.lzy.net:okgo:3.0.4'
 }

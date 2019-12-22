@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.media.ImagePicker;
-import com.wkq.media.PickerConfig;
+//import com.wkq.media.ImagePicker;
+//import com.wkq.media.PickerConfig;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.main.ui.MainActivity;
 import com.wkq.order.modlue.main.ui.adapter.VideoWebAddressAdapter;
@@ -54,22 +54,22 @@ public class MainView implements MvpView {
     }
 
     public void openCam() {
-
-        new ImagePicker.Builder()
-                .setSelectGif(true)
-                .maxNum(9)
-                .needCamera(true)
-                .maxVideoSize(media_item_max_size)
-                .maxImageSize(image_item_max_size)
-                .showTime(true)
-                .maxTime(media_item_select_max_time)
-                .selectMode(PickerConfig.PICKER_IMAGE_VIDEO)
-                .cachePath((Build.VERSION.SDK_INT == Build.VERSION_CODES.Q ? mActivity.getExternalFilesDir("") : Environment.getExternalStorageDirectory()) + "/strike/file/")
-                .videoTrimPath((Build.VERSION.SDK_INT == Build.VERSION_CODES.Q ? mActivity.getExternalFilesDir("") : Environment.getExternalStorageDirectory()) + "/strike/file/")
-                .isFriendCircle(true)
-                .builder()
-                //跳转到图片选择页面 activity    请求码            结果码
-                .start(mActivity, 200, PickerConfig.DEFAULT_RESULT_CODE);
+//
+//        new ImagePicker.Builder()
+//                .setSelectGif(true)
+//                .maxNum(9)
+//                .needCamera(true)
+//                .maxVideoSize(media_item_max_size)
+//                .maxImageSize(image_item_max_size)
+//                .showTime(true)
+//                .maxTime(media_item_select_max_time)
+//                .selectMode(PickerConfig.PICKER_IMAGE_VIDEO)
+//                .cachePath((Build.VERSION.SDK_INT == Build.VERSION_CODES.Q ? mActivity.getExternalFilesDir("") : Environment.getExternalStorageDirectory()) + "/strike/file/")
+//                .videoTrimPath((Build.VERSION.SDK_INT == Build.VERSION_CODES.Q ? mActivity.getExternalFilesDir("") : Environment.getExternalStorageDirectory()) + "/strike/file/")
+//                .isFriendCircle(true)
+//                .builder()
+//                //跳转到图片选择页面 activity    请求码            结果码
+//                .start(mActivity, 200, PickerConfig.DEFAULT_RESULT_CODE);
 
     }
 

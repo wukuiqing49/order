@@ -6,6 +6,7 @@ import android.util.Log;
 import com.wkq.net.api.ApiDemo;
 import com.wkq.net.interceptor.DESEncryptInterceptor;
 import com.wkq.net.interceptor.DefaultEncryptInterceptor;
+import com.wkq.net.interceptor.HandleLoginInterceptor;
 import com.wkq.net.interceptor.NetPPEncryptInterceptor;
 import com.wkq.net.interceptor.NetPPPayEncryptInterceptor;
 import com.wkq.net.interceptor.SignEncrypt2Interceptor;
@@ -33,24 +34,24 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
     private static final int OKHTTP_KEEP_ALIVE_DURATION_SECONDS = 10;
 
     //网++ 接口域名
-    public static final String BASE_URL = "https://apiwjj.cnlive.com/";
+    public static final String BASE_URL = "https://douban-api.uieee.com/v2/movie/";
     //网++ 测试环境 接口域名
-    public static final String DEBUG_URL = "http://apiwjjtest.cnlive.com/";
+    public static final String DEBUG_URL = "https://douban-api.uieee.com/v2/movie/";
     //IM 接口域名
-    private static final String IM_URL = "https://wjjim.cnlive.com/";
-    //IM 测试环境 接口域名
-    public static final String IM_DEBUG_URL = "http://imtest.cnlive.com/";
-    //OPEN API 接口域名
-    private static final String OPEN_URL = "https://api.cnlive.com/";
-    //WJJ JSON
-    private static final String JSON_URL = "https://wjj.ys1.cnliveimg.com/";
-
-    private static final String DEBUG_CMS_URL = "http://cmstest.cnlive.com:8768/";
-    // TODO: 2018/11/27 cms正式地址
-    private static final String CMS_URL = "http://cms.cnlive.com:8768/";
-
-//    测试数据
- private  static final String  TESTHOST= "http://cmstest.cnlive.com/";
+//    private static final String IM_URL = "https://wjjim.cnlive.com/";
+//    //IM 测试环境 接口域名
+//    public static final String IM_DEBUG_URL = "http://imtest.cnlive.com/";
+//    //OPEN API 接口域名
+//    private static final String OPEN_URL = "https://api.cnlive.com/";
+//    //WJJ JSON
+//    private static final String JSON_URL = "https://wjj.ys1.cnliveimg.com/";
+//
+//    private static final String DEBUG_CMS_URL = "http://cmstest.cnlive.com:8768/";
+//    // TODO: 2018/11/27 cms正式地址
+//    private static final String CMS_URL = "http://cms.cnlive.com:8768/";
+//
+////    测试数据
+// private  static final String  TESTHOST= "http://cmstest.cnlive.com/";
 
 
 
@@ -59,18 +60,19 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
         return true ? DEBUG_URL : BASE_URL;
     }
 
-    public static <T> String baseIMEndpoint() {
-        return true ? IM_DEBUG_URL : IM_URL;
-    }
-
-    public static <T> String baseCMSEndpoint() {
-        return true ? DEBUG_CMS_URL : CMS_URL;
-    }
+//    public static <T> String baseIMEndpoint() {
+//        return true ? IM_DEBUG_URL : IM_URL;
+//    }
+//
+//    public static <T> String baseCMSEndpoint() {
+//        return true ? DEBUG_CMS_URL : CMS_URL;
+//    }
 
     private static <T> String serviceEndpoint(Class<T> clazz) {
-        if (clazz == ApiDemo.class) return TESTHOST;
-        else if (clazz == ApiDemo.class) return baseIMEndpoint();
-        else return baseEndpoint();
+//        if (clazz == ApiDemo.class) return TESTHOST;
+//        else if (clazz == ApiDemo.class) return baseIMEndpoint();
+//        else
+            return baseEndpoint();
     }
 
     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
@@ -136,7 +138,7 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
 
      public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
      ApiRequest<Observable, BaseData> service(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return service(clazz, api, new SignEncryptInterceptor());
+        return service(clazz, api, new HandleLoginInterceptor());
     }
     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
     ApiRequest<Observable, BaseData> serviceNewVersion(Class<Service> clazz, long connectTimeout , long readTimeout, ApiBuild.Api<Service, Observable, BaseData> api) {

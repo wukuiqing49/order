@@ -77,7 +77,8 @@ public class CheckLineView implements MvpView {
                 if (v.getId() == R.id.ll_root) {
                     CheckLineInfo info = (CheckLineInfo) program;
                    if (info!=null&& !TextUtils.isEmpty(mActivity.videoUrl)&&!TextUtils.isEmpty(info.getLineUrl())){
-                       VideoWebviewActivity.startActivity(mActivity,info.getLineUrl().concat(mActivity.videoUrl));
+//                       VideoWebviewActivity.startActivity(mActivity,info.getLineUrl().concat(mActivity.videoUrl));
+                       VideoWebviewActivity.startActivity(mActivity,info.getLineUrl().concat("http://v.qq.com/x/cover/uzuqdig87eggmiw.html?ptag=douban.movie"));
 
 //                       WebDemoActivity.startActivity(mActivity,info.getLineUrl().concat(mActivity.videoUrl));
                    }else {

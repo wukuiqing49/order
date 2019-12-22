@@ -1,6 +1,7 @@
 package com.wkq.net.api;
 
 import com.wkq.net.BaseInfo;
+import com.wkq.net.model.MoviesInfo;
 
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import io.reactivex.Observable;
 import retrofit2.adapter.rxjava2.Result;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -30,6 +32,22 @@ public interface ApiDemo {
      */
     @GET("contentApi/test?status=true&ts=2")
     Observable<Result<BaseInfo>> test();
+//
+//    /**
+//     /* *
+//     *
+//     * @return
+//     */
+//
+//    @GET("v2/movie/in_theaters")
+//    Observable<Result<BaseInfo<MoviesInfo>>> getHotMovies(@QueryMap() Map<String, String> map);
+//
+
+    @GET("in_theaters")
+    Observable<Result<BaseInfo>> getMovieInTheaters(@Query("apikey") String apikey);
+
+    @GET("new_movies")
+    Observable<Result<BaseInfo<MoviesInfo>>> getMovieNewMovies(@Query("apikey") String apikey);
 
 //    /**
 //     * 分类二级页面达人列表

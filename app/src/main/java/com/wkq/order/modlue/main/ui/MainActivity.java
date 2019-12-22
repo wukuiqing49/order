@@ -12,9 +12,6 @@ import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityMainTestBinding;
 import com.wkq.order.modlue.main.frame.presenter.MainPresenter;
 import com.wkq.order.modlue.main.frame.view.MainView;
-import com.wkq.order.modlue.web.ui.AdbWebActivity;
-import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
-import com.wkq.qr.ui.activity.ScanActivity;
 
 public class MainActivity extends MvpBindingActivity<MainView, MainPresenter, ActivityMainTestBinding> implements View.OnClickListener {
 

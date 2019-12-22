@@ -20,7 +20,7 @@ import androidx.databinding.DataBindingUtil;
 import com.just.agentweb.WebViewClient;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityWebBinding;
-import com.wkq.order.databinding.AdbWebBinding;
+
 
 /**
  * 作者:吴奎庆

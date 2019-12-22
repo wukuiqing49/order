@@ -46,7 +46,7 @@
 
 
         <activity
-            android:name=".modlue.main.ui.MainActivity"
+            android:name=".modlue.main.ui.HomeActivity"
             android:theme="@style/BaseAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,9 +63,6 @@
             android:theme="@style/ThemePlay" />
         <activity
             android:name=".modlue.web.ui.FullVideoActivity"
-            android:theme="@style/BaseAppTheme" />
-        <activity
-            android:name=".modlue.web.ui.AdbWebActivity"
             android:theme="@style/BaseAppTheme" />
 
         <activity
@@ -88,7 +85,7 @@
             android:theme="@style/BaseAppTheme" />
         <activity
             android:launchMode="singleTop"
-            android:name=".modlue.web.ui.VideoWebviewActivity2"
+            android:name=".modlue.main.ui.MainActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:theme="@style/BaseAppTheme" />

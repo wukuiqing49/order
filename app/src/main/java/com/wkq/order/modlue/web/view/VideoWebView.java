@@ -16,7 +16,6 @@ import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
-import com.wkq.order.modlue.web.ui.VideoWebviewActivity2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +126,7 @@ public class VideoWebView implements MvpView {
             public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
 
                 if (!TextUtils.isEmpty(message)) {
-                    VideoWebviewActivity2.startActivity(mActivity, message);
+
 
 //                    mActivity.mAgentWeb.getUrlLoader().loadUrl(message);
                     return true;
@@ -174,7 +173,7 @@ public class VideoWebView implements MvpView {
         mActivity.mAgentWeb = AgentWeb.with(mActivity)
 
                 .setAgentWebParent(mActivity.binding.llRoot, new LinearLayout.LayoutParams(-1, -1))
-                .useDefaultIndicator(mActivity.getResources().getColor(R.color.color_23d41e))
+                .useDefaultIndicator(mActivity.getResources().getColor(R.color.color_1aad19))
                 .closeWebViewClientHelper()
                 .setAgentWebWebSettings(new CustomSettings())
                 .setWebChromeClient(mWebChromeClient)

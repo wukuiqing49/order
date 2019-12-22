@@ -7,7 +7,7 @@ package com.wkq.net.logic;
 public class Config {
 
     //成功状态
-    public static final int SUCCESS = 0;
+    public static final int SUCCESS = 200;
     //失败状态
     public static final int FAIL = -1;
     //系统错误
