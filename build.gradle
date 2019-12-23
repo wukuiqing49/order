@@ -79,5 +79,9 @@ ext {
     glideTransformations = '3.0.1'
     compiler = '4.5.0'
 
+    //SmartRefresh
+    SmartRefreshLayout = '1.1.0-alpha-1'
+    SmartRefreshHeader = '1.1.0-alpha-1'
+
 
 }

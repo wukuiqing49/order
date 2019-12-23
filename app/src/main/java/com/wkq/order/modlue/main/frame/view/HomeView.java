@@ -6,6 +6,7 @@ import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.widget.tab.QMUITab;
 import com.qmuiteam.qmui.widget.tab.QMUITabBuilder;
 import com.wkq.base.frame.mosby.delegate.MvpView;
+import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.main.ui.HomeActivity;
 import com.wkq.order.modlue.main.ui.adapter.HomeFragmentPagerAdapter;
@@ -28,7 +29,8 @@ public class HomeView  implements MvpView {
 
     public void initView() {
 
-
+        StatusBarUtil.setStatusBarWrite(mActivity);
+        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
         HomeFragmentPagerAdapter homeFragmentPagerAdapter=new HomeFragmentPagerAdapter(mActivity,mActivity.getSupportFragmentManager());
 
         QMUITabBuilder builder = mActivity.binding.tabs.tabBuilder();

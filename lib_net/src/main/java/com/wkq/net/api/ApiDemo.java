@@ -1,6 +1,7 @@
 package com.wkq.net.api;
 
 import com.wkq.net.BaseInfo;
+import com.wkq.net.model.MovieInTheatersBean;
 import com.wkq.net.model.MoviesInfo;
 
 import java.util.Map;
@@ -43,11 +44,26 @@ public interface ApiDemo {
 //    Observable<Result<BaseInfo<MoviesInfo>>> getHotMovies(@QueryMap() Map<String, String> map);
 //
 
-    @GET("in_theaters")
-    Observable<Result<BaseInfo>> getMovieInTheaters(@Query("apikey") String apikey);
 
     @GET("new_movies")
     Observable<Result<BaseInfo<MoviesInfo>>> getMovieNewMovies(@Query("apikey") String apikey);
+
+    /**
+     * 正在热映
+     * <p>
+     * apikey：固定值 0b2bdeda43b5688921839c8ecb20399b
+     * city：所在城市，例如北京、上海等
+     * start：分页使用，表示第几页
+     * count：分页使用，表示数量
+     * client：客户端信息。可为空
+     * udid：用户 id。可为空
+     * <p>
+     * 简：https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b
+     * 全：https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=&udid=
+     */
+
+    @GET("in_theaters")
+    Observable<Result<BaseInfo<MovieInTheatersBean>>> getMovieInTheaters(@Query("apikey") String apikey);
 
 //    /**
 //     * 分类二级页面达人列表

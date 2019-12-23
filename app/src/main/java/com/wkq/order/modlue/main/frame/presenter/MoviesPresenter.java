@@ -11,6 +11,7 @@ import com.wkq.net.logic.Logic;
 import com.wkq.net.logic.callback.DataCallback;
 import com.wkq.net.logic.callback.FailureCallback;
 import com.wkq.net.logic.callback.SuccessCallback;
+import com.wkq.net.model.MovieInTheatersBean;
 import com.wkq.net.util.StringUtils;
 import com.wkq.order.modlue.main.frame.view.MoviesView;
 import com.wkq.net.model.MoviesInfo;
@@ -31,45 +32,37 @@ import io.reactivex.disposables.Disposable;
 
 public class MoviesPresenter extends MvpBasePresenter<MoviesView> {
 
-    public void initData(Activity activity, String xx) {
-//        https://api.douban.com/v2/movie/in_theaters?
-//     city=%E6%A1%82%E6%9E%97&start=0&count=9&apikey=0df993c66c0c636e29ecbb5344252a4a
+    public void initData(Activity activity) {
 
         String urlStr = "";
         try {
             urlStr = StringUtils.encode("北京");
         } catch (Exception e) {
-
-        }
-
-        if (xx.equals("1")){
-            return;
         }
 
         HashMap<String, String> requestMap = new HashMap<>();
-        requestMap.put("city", urlStr);
-        requestMap.put("start", "0");
-        requestMap.put("count", "10");
-        requestMap.put("apikey", "0df993c66c0c636e29ecbb5344252a4a");
+//        requestMap.put("apikey", "0df993c66c0c636e29ecbb5344252a4a");
 
-        Logic.create(requestMap).action(new Logic.Action<HashMap<String, String>, BaseInfo<MoviesInfo>>() {
+        Logic.create(requestMap).action(new Logic.Action<HashMap<String, String>, BaseInfo<MovieInTheatersBean>>() {
             @Override
-            public Disposable action(HashMap<String, String> data, DataCallback<BaseInfo<MoviesInfo>> callback) {
-                return ApiRequest.service(ApiDemo.class, apiDemo -> apiDemo.getMovieNewMovies("0df993c66c0c636e29ecbb5344252a4a")).subscribe(activity, callback);
+            public Disposable action(HashMap<String, String> data, DataCallback<BaseInfo<MovieInTheatersBean>> callback) {
+                return ApiRequest.serviceDouBan(ApiDemo.class, apiDemo -> apiDemo.getMovieInTheaters("0df993c66c0c636e29ecbb5344252a4a")).subscribe(activity, callback);
 
             }
-        }).<BaseInfo<MoviesInfo>>event().setFailureCallback(new FailureCallback() {
+        }).<BaseInfo<MovieInTheatersBean>>event().setFailureCallback(new FailureCallback() {
             @Override
             public void onFailure(int state, String message) {
                 Log.e("", "");
 
             }
-        }).setSuccessCallback(new SuccessCallback<BaseInfo<MoviesInfo>>() {
+        }).setSuccessCallback(new SuccessCallback<BaseInfo<MovieInTheatersBean>>() {
             @Override
-            public void onSuccess(BaseInfo<MoviesInfo> data) {
-                Log.e("", "");
+            public void onSuccess(BaseInfo<MovieInTheatersBean> data) {
+
+
+                if (data!=null&&getView()!=null)getView().setData(data);
             }
-        }) .start();
+        }).start();
 
     }
 }

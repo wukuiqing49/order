@@ -54,8 +54,6 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
 // private  static final String  TESTHOST= "http://cmstest.cnlive.com/";
 
 
-
-
     public static <T> String baseEndpoint() {
         return true ? DEBUG_URL : BASE_URL;
     }
@@ -68,11 +66,12 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
 //        return true ? DEBUG_CMS_URL : CMS_URL;
 //    }
 
+    //动态配置BaseUrl
     private static <T> String serviceEndpoint(Class<T> clazz) {
 //        if (clazz == ApiDemo.class) return TESTHOST;
 //        else if (clazz == ApiDemo.class) return baseIMEndpoint();
 //        else
-            return baseEndpoint();
+        return baseEndpoint();
     }
 
     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
@@ -131,44 +130,15 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
                 .service(decode, OKHTTP_KEEP_ALIVE_DURATION_SECONDS);
     }
 
-    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> serviceNoSign(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return service(clazz, api, new DefaultEncryptInterceptor());
-    }
 
-     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-     ApiRequest<Observable, BaseData> service(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
+    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
+    ApiRequest<Observable, BaseData> serviceDouBan(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
         return service(clazz, api, new HandleLoginInterceptor());
     }
-    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> serviceNewVersion(Class<Service> clazz, long connectTimeout , long readTimeout, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return serviceNewVersion(clazz,false, api, connectTimeout,readTimeout,new SignEncryptInterceptor());
-    }
-
 
     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> service(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api, boolean valueUrlencode, boolean responseUrldecode) {
-        return service(clazz, responseUrldecode, api, new SignEncryptInterceptor(valueUrlencode));
-    }
-
-    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> serviceDES(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return service(clazz, api, new DESEncryptInterceptor());
-    }
-
-    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> service2encode(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return service(clazz, api, new SignEncrypt2Interceptor());
-    }
-
-    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> serviceNetPP(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return service(clazz, api, new NetPPEncryptInterceptor());
-    }
-
-    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> serviceNetPPPay(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return service(clazz, api, new NetPPPayEncryptInterceptor());
+    ApiRequest<Observable, BaseData> serviceDefult(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
+        return service(clazz, api, new DefaultEncryptInterceptor());
     }
 
     private static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
@@ -191,7 +161,7 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
 
 
     private static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> serviceNewVersion(Class<Service> clazz, boolean decode, ApiBuild.Api<Service, Observable, BaseData> api, long connectTimeout , long readTimeout, Interceptor... interceptor) {
+    ApiRequest<Observable, BaseData> serviceNewVersion(Class<Service> clazz, boolean decode, ApiBuild.Api<Service, Observable, BaseData> api, long connectTimeout, long readTimeout, Interceptor... interceptor) {
 
         ApiRequest<Observable, BaseData> request = new ApiRequest<>();
 

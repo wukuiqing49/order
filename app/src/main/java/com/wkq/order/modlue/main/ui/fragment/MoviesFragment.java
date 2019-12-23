@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.wkq.base.frame.fragment.MvpBindingFragment;
+import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.databinding.FragmentMoviesBinding;
 import com.wkq.order.modlue.main.frame.presenter.MoviesPresenter;
@@ -23,17 +24,16 @@ import com.wkq.order.modlue.main.frame.view.MoviesView;
 
 public class MoviesFragment extends MvpBindingFragment<MoviesView, MoviesPresenter, FragmentMoviesBinding> {
 
-    public  static MoviesFragment newInstance(Context context,String xx){
+    public static MoviesFragment newInstance(Context context, String xx) {
 
-        Bundle args=new Bundle();
-        args.putString("test",xx);
-        MoviesFragment moviesFragment=new MoviesFragment();
+        Bundle args = new Bundle();
+        args.putString("test", xx);
+        MoviesFragment moviesFragment = new MoviesFragment();
 
         moviesFragment.setArguments(args);
-        return  moviesFragment;
+        return moviesFragment;
 
     }
-
 
 
     @Override
@@ -44,9 +44,10 @@ public class MoviesFragment extends MvpBindingFragment<MoviesView, MoviesPresent
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (getMvpView()!=null)getMvpView().initView();
-      String xx= (String) getArguments().get("test");
-        if (getPresenter()!=null)getPresenter().initData(getActivity(),xx);
+//        StatusBarUtil.setDarkMode(getActivity());
+//        StatusBarUtil.setColor(getActivity(), getActivity().getResources().getColor(R.color.white));
+        if (getMvpView() != null) getMvpView().initView();
+        if (getPresenter() != null) getPresenter().initData(getActivity());
 
 
     }

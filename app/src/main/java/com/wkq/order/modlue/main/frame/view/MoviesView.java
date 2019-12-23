@@ -3,6 +3,8 @@ package com.wkq.order.modlue.main.frame.view;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
+import com.wkq.net.BaseInfo;
+import com.wkq.net.model.MovieInTheatersBean;
 import com.wkq.order.modlue.main.ui.adapter.MoviesAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoviesFragment;
 
@@ -18,17 +20,28 @@ import com.wkq.order.modlue.main.ui.fragment.MoviesFragment;
 public class MoviesView implements MvpView {
 
     MoviesFragment mFragment;
+    private MoviesAdapter moviesAdapter;
 
     public MoviesView(MoviesFragment mFragment) {
-        this.mFragment=mFragment;
+        this.mFragment = mFragment;
     }
 
     public void initView() {
 
-        MoviesAdapter moviesAdapter=new MoviesAdapter(mFragment.getActivity());
+
+        moviesAdapter = new MoviesAdapter(mFragment.getActivity());
 
         mFragment.binding.rvMovies.setLayoutManager(new LinearLayoutManager(mFragment.getActivity()));
         mFragment.binding.rvMovies.setAdapter(moviesAdapter);
+
+    }
+
+    public void setData(BaseInfo<MovieInTheatersBean> data) {
+
+        if (data.getData() != null && data.getData().getSubjects() != null) {
+            moviesAdapter.addItems(data.getData().getSubjects());
+
+        }
 
     }
 }

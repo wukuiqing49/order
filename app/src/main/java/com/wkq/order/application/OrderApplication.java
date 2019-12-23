@@ -2,7 +2,6 @@ package com.wkq.order.application;
 
 import androidx.multidex.MultiDexApplication;
 
-import com.lzy.okgo.OkGo;
 
 
 /**
@@ -17,7 +16,6 @@ public class OrderApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        OkGo.getInstance().init(this);
 
 
     }

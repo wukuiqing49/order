@@ -31,4 +31,5 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
     implementation 'androidx.cardview:cardview:1.0.0'
+    api 'com.qmuiteam:qmui:2.0.0-alpha02'
 }

@@ -6,13 +6,18 @@ import android.os.Environment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 //import com.wkq.media.ImagePicker;
 //import com.wkq.media.PickerConfig;
+import com.wkq.order.R;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.main.ui.MainActivity;
 import com.wkq.order.modlue.main.ui.adapter.VideoWebAddressAdapter;
 import com.wkq.order.modlue.web.ui.VideoSiteActivity;
+import com.wkq.order.utils.GlideRoundedCornersTransform;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,12 +100,16 @@ public class MainView implements MvpView {
         myVideoAdapter.setItemClickListener(new VideoWebAddressAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(VideoWebInfo info) {
-                VideoSiteActivity.startActivity(mActivity,info.getVideoWebAddress());
+                VideoSiteActivity.startActivity(mActivity, info.getVideoWebAddress());
             }
         });
-
-
-
-
+// 圆角
+//        RequestOptions options = RequestOptions.bitmapTransform(new GlideRoundedCornersTransform(5, GlideRoundedCornersTransform.CornerType.ALL)).placeholder(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading).priority(Priority.HIGH);
+//        Glide.with(mContext).load(getItem(position).getPic()).apply(options).into(binding.ivTopic);
+//  圆形头像
+//        RequestOptions options = RequestOptions.circleCropTransform().dontAnimate().skipMemoryCache(false)
+//                .placeholder(R.drawable.touxiang_circle)
+//                .error(R.drawable.touxiang_circle)
+//                .priority(Priority.HIGH);
     }
 }

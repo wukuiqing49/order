@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.wkq.base.R;
 
 import java.lang.reflect.Field;
@@ -40,7 +41,7 @@ public class StatusBarUtil {
      */
     public static void setStatusBarWrite(Activity activity) {
         //修改背景色颜色
-//        QMUIStatusBarHelper.setStatusBarLightMode(activity);
+        QMUIStatusBarHelper.setStatusBarLightMode(activity);
 
     }
 
@@ -49,7 +50,7 @@ public class StatusBarUtil {
      * 支持 4.4 以上版本 MIUI 和 Flyme，以及 6.0 以上版本的其他 Android
      */
     public static void setStatusBarDarkMode(Activity activity) {
-//        QMUIStatusBarHelper.setStatusBarDarkMode(activity);
+        QMUIStatusBarHelper.setStatusBarDarkMode(activity);
 
     }
 
@@ -61,9 +62,9 @@ public class StatusBarUtil {
     @TargetApi(19)
     public static void setStatusBar(Activity activity, int colorOn5x) {
         //修改背景色颜色
-//        QMUIStatusBarHelper.translucent(activity, activity.getResources().getColor(colorOn5x));
+        QMUIStatusBarHelper.translucent(activity, activity.getResources().getColor(colorOn5x));
         //设置 字体颜色为深色字体
-//        QMUIStatusBarHelper.setStatusBarLightMode(activity);
+        QMUIStatusBarHelper.setStatusBarLightMode(activity);
 
     }
 
