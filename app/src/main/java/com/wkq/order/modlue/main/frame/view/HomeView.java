@@ -59,6 +59,8 @@ public class HomeView  implements MvpView {
 
         mActivity.binding.pager.setAdapter(homeFragmentPagerAdapter);
 
+        mActivity.binding.pager.setOffscreenPageLimit(3);
+
         mActivity.binding.tabs.setupWithViewPager(mActivity.binding.pager,false);
 
     }

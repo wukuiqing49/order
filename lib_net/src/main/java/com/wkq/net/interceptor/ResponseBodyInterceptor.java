@@ -33,7 +33,10 @@ public abstract class ResponseBodyInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        String url = request.url().toString();
+//        String url = request.url().toString();
+        HttpUrl.Builder authorizedUrlBuilder = request.url().newBuilder();
+        authorizedUrlBuilder.addQueryParameter("apikey","0df993c66c0c636e29ecbb5344252a4a");
+
         Response response = chain.proceed(request);
         ResponseBody responseBody = response.body();
         if (responseBody != null) {
@@ -58,7 +61,7 @@ public abstract class ResponseBodyInterceptor implements Interceptor {
             }
 
             if (charset != null && contentLength != 0L) {
-                return intercept(response, url, buffer.clone().readString(charset));
+                return intercept(response, authorizedUrlBuilder.build().url().toString(), buffer.clone().readString(charset));
             }
         }
         return response;

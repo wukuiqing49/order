@@ -29,18 +29,27 @@ public class HandleLoginInterceptor extends ResponseBodyInterceptor {
 
         JSONObject jsonObject = null;
         if (response.isSuccessful()) {
-
-
-
             try {
-
-
                 jsonObject=new JSONObject(body);
-
                 JSONObject jsonData = new JSONObject();
                 jsonData.put("errorMessage", "成功");
                 jsonData.put("errorCode", "200");
                 jsonData.put("data", jsonObject);
+                MediaType contentType = response.body().contentType();
+                ResponseBody responseBody = ResponseBody.create(contentType, jsonData.toString());
+
+                return response.newBuilder().body(responseBody).build();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else {
+            try {
+                jsonObject=new JSONObject(body);
+                JSONObject jsonData = new JSONObject();
+                jsonData.put("errorMessage", response.code()+"");
+                jsonData.put("errorCode", response.body().string());
+
 
                 MediaType contentType = response.body().contentType();
                 ResponseBody responseBody = ResponseBody.create(contentType, jsonData.toString());
@@ -48,7 +57,6 @@ public class HandleLoginInterceptor extends ResponseBodyInterceptor {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
 

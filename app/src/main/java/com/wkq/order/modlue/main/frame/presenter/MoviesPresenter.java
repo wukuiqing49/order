@@ -39,14 +39,14 @@ public class MoviesPresenter extends MvpBasePresenter<MoviesView> {
             urlStr = StringUtils.encode("北京");
         } catch (Exception e) {
         }
-
+//        0df993c66c0c636e29ecbb5344252a4a
         HashMap<String, String> requestMap = new HashMap<>();
 //        requestMap.put("apikey", "0df993c66c0c636e29ecbb5344252a4a");
 
         Logic.create(requestMap).action(new Logic.Action<HashMap<String, String>, BaseInfo<MovieInTheatersBean>>() {
             @Override
             public Disposable action(HashMap<String, String> data, DataCallback<BaseInfo<MovieInTheatersBean>> callback) {
-                return ApiRequest.serviceDouBan(ApiDemo.class, apiDemo -> apiDemo.getMovieInTheaters("0df993c66c0c636e29ecbb5344252a4a")).subscribe(activity, callback);
+                return ApiRequest.serviceDouBan(ApiDemo.class, apiDemo -> apiDemo.getMovieInTheaters()).subscribe(activity, callback);
 
             }
         }).<BaseInfo<MovieInTheatersBean>>event().setFailureCallback(new FailureCallback() {
@@ -60,7 +60,7 @@ public class MoviesPresenter extends MvpBasePresenter<MoviesView> {
             public void onSuccess(BaseInfo<MovieInTheatersBean> data) {
 
 
-                if (data!=null&&getView()!=null)getView().setData(data);
+                if (data != null && getView() != null) getView().setData(data);
             }
         }).start();
 

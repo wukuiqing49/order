@@ -63,7 +63,7 @@ public interface ApiDemo {
      */
 
     @GET("in_theaters")
-    Observable<Result<BaseInfo<MovieInTheatersBean>>> getMovieInTheaters(@Query("apikey") String apikey);
+    Observable<Result<BaseInfo<MovieInTheatersBean>>> getMovieInTheaters();
 
 //    /**
 //     * 分类二级页面达人列表

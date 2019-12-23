@@ -16,6 +16,7 @@ import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import com.wkq.base.adutlis.AdBlocker;
 import com.wkq.base.frame.mosby.delegate.MvpView;
+import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoSiteActivity;
@@ -41,6 +42,9 @@ public class VideoSiteView implements MvpView {
     }
 
     public void initView() {
+        StatusBarUtil.setStatusBarWrite(mActivity);
+        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
+
         WebChromeClient mWebChromeClient = new WebChromeClient() {
 
 

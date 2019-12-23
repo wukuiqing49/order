@@ -85,7 +85,13 @@
             android:theme="@style/BaseAppTheme" />
         <activity
             android:launchMode="singleTop"
-            android:name=".modlue.main.ui.MainActivity"
+            android:name=".modlue.main.ui.VideoWebList"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:theme="@style/BaseAppTheme" />
+        <activity
+            android:launchMode="singleTop"
+            android:name=".modlue.main.ui.PlayHelperActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:theme="@style/BaseAppTheme" />
