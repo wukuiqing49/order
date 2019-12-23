@@ -35,23 +35,15 @@ public class HandleLoginInterceptor extends ResponseBodyInterceptor {
             try {
 
 
+                jsonObject=new JSONObject(body);
 
-                JsonObject returnData = new JsonParser().parse(body).getAsJsonObject();
-
-//
-                JsonObject jsonObject1 = new JsonObject();
-
-                jsonObject1.addProperty("errorMessage", "成功");
-                jsonObject1.addProperty("errorCode", "200");
-
-
-
-                JsonElement jsonElement = new Gson().toJsonTree(returnData);
-
-                jsonObject1.add("data", jsonElement);
+                JSONObject jsonData = new JSONObject();
+                jsonData.put("errorMessage", "成功");
+                jsonData.put("errorCode", "200");
+                jsonData.put("data", jsonObject);
 
                 MediaType contentType = response.body().contentType();
-                ResponseBody responseBody = ResponseBody.create(contentType, jsonObject1.toString());
+                ResponseBody responseBody = ResponseBody.create(contentType, jsonData.toString());
                 return response.newBuilder().body(responseBody).build();
             } catch (Exception e) {
                 e.printStackTrace();

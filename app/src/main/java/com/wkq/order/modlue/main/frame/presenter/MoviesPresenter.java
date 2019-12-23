@@ -67,7 +67,7 @@ public class MoviesPresenter extends MvpBasePresenter<MoviesView> {
         }).setSuccessCallback(new SuccessCallback<BaseInfo<MoviesInfo>>() {
             @Override
             public void onSuccess(BaseInfo<MoviesInfo> data) {
-
+                Log.e("", "");
             }
         }) .start();
 

@@ -134,13 +134,13 @@ public abstract class Subscriber<T extends IBaseInfo> {
         @interface RESPONSE_TYPE {
         }
 
-        public static final int response_success = 0;
+        public static final int response_success = 200;
         public static final int response_failure = 1;
         public static final int response_error = 2;
         public static final int response_no_network = 3;
         public static final int response_unknown = 4;
 
-        public static final String default_success_code = "0";
+        public static final String default_success_code = "200";
         public static final String default_failure_code = "-1";
         public static final String default_error_code = "-2";
         public static final String default_no_network_code = "-3";
