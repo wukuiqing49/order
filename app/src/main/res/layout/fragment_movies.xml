@@ -30,17 +30,6 @@
                     app:qmui_contentScrim="@color/color_f4f4f4"
                     app:qmui_statusBarScrim="@color/color_f4f4f4">
 
-                    <TextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="18dp"
-                        android:layout_marginTop="10dp"
-                        android:text="111"
-                        android:textColor="#ff333333"
-                        android:textSize="20sp" />
-<!--                    app:indicator_drawable_selected="@drawable/banner_selected_radius"-->
-<!--                    app:indicator_drawable_unselected="@drawable/banner_unselected_radius"-->
                     <com.youth.banner.Banner
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/banner_movies"

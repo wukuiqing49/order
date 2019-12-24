@@ -38,7 +38,6 @@ public abstract class MoveDbResponseBodyInterceptor implements Interceptor {
                 .method(request.method(), request.body())
                 .url(authorizedUrlBuilder.build())
                 .build();
-
         Response response = chain.proceed(newRequest);
         ResponseBody responseBody = response.body();
         if (responseBody != null) {

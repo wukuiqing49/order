@@ -4,11 +4,17 @@
 
     <style name="BaseAppTheme" parent="AppTheme">
     <!-- Customize your theme here. -->
-    <item name="windowNoTitle">true</item>
 
+        <item name="android:windowBackground">@mipmap/movie_4</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="BaseAppTheme2" parent="AppTheme">
+        <!-- Customize your theme here. -->
 
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <style name="ThemePlay" parent= "Theme.AppCompat.Dialog">
         <item name="android:windowFrame">@android:color/transparent</item><!--边框-->

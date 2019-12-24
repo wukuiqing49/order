@@ -45,7 +45,7 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
             }
         }).setSuccessCallback(data -> {
             Log.e("","");
-
+            if (data != null && getView() != null) getView().setData(data);
         }).start();
 
 

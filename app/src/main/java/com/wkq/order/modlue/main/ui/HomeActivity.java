@@ -1,5 +1,8 @@
 package com.wkq.order.modlue.main.ui;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.databinding.ViewDataBinding;
@@ -20,6 +23,12 @@ import com.wkq.order.modlue.main.frame.view.HomeView;
 
 
 public class HomeActivity  extends MvpBindingActivity<HomeView, HomePresenter, ActivityHomeBinding> {
+
+    public static void startPlayHelperActivity(Context context) {
+        Intent intent = new Intent(context, HomeActivity.class);
+        Activity activity = (Activity) context;
+        activity.startActivity(intent);
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.activity_home;
