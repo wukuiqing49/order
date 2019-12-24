@@ -1,2 +1,2 @@
-include ':app', ':lib_qr', ':lib_base','lib_net',':adblockwebview'
+include ':app', ':lib_qr', ':lib_base','lib_net'
 rootProject.name='order'

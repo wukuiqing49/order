@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.wkq.net.api.ApiDemo;
+import com.wkq.net.api.ApiMoveDb;
 import com.wkq.net.interceptor.DESEncryptInterceptor;
 import com.wkq.net.interceptor.DefaultEncryptInterceptor;
 import com.wkq.net.interceptor.HandleLoginInterceptor;
+import com.wkq.net.interceptor.MoveDbInterceptor;
 import com.wkq.net.interceptor.NetPPEncryptInterceptor;
 import com.wkq.net.interceptor.NetPPPayEncryptInterceptor;
 import com.wkq.net.interceptor.SignEncrypt2Interceptor;
@@ -37,8 +39,15 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
     public static final String BASE_URL = "https://douban-api.uieee.com/v2/movie/";
     //网++ 测试环境 接口域名
     public static final String DEBUG_URL = "https://douban-api.uieee.com/v2/movie/";
+
+    //The Move DB  的api
+    //文档地址 https://developers.themoviedb.org/3/movies/get-top-rated-movies
+
+//
+
     //IM 接口域名
-//    private static final String IM_URL = "https://wjjim.cnlive.com/";
+    private static final String BASE_MOVE_DB = "https://api.themoviedb.org/3/movie/";
+
 //    //IM 测试环境 接口域名
 //    public static final String IM_DEBUG_URL = "http://imtest.cnlive.com/";
 //    //OPEN API 接口域名
@@ -68,7 +77,7 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
 
     //动态配置BaseUrl
     private static <T> String serviceEndpoint(Class<T> clazz) {
-//        if (clazz == ApiDemo.class) return TESTHOST;
+        if (clazz == ApiMoveDb.class) return BASE_MOVE_DB;
 //        else if (clazz == ApiDemo.class) return baseIMEndpoint();
 //        else
         return baseEndpoint();
@@ -139,6 +148,10 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
     ApiRequest<Observable, BaseData> serviceDefult(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
         return service(clazz, api, new DefaultEncryptInterceptor());
+    }
+    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
+    ApiRequest<Observable, BaseData> serviceMoveDb(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
+        return service(clazz, api, new MoveDbInterceptor());
     }
 
     private static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>

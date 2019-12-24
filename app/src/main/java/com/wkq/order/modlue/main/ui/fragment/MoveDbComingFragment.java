@@ -1,0 +1,47 @@
+package com.wkq.order.modlue.main.ui.fragment;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.databinding.ViewDataBinding;
+
+import com.wkq.base.frame.activity.MvpBindingActivity;
+import com.wkq.base.frame.fragment.MvpBindingFragment;
+import com.wkq.order.R;
+import com.wkq.order.databinding.FragmentMovedbComingBinding;
+import com.wkq.order.modlue.main.frame.presenter.MoveDbComingPresenter;
+import com.wkq.order.modlue.main.frame.view.MoveDbComingView;
+
+/**
+ * 作者: 吴奎庆
+ * <p>
+ * 时间: 2019/12/24
+ * <p>
+ * 简介:
+ */
+public class MoveDbComingFragment extends MvpBindingFragment<MoveDbComingView, MoveDbComingPresenter, FragmentMovedbComingBinding> {
+
+    public static MoveDbComingFragment newInstance(Context context) {
+
+        Bundle args = new Bundle();
+        MoveDbComingFragment moviesFragment = new MoveDbComingFragment();
+
+        moviesFragment.setArguments(args);
+        return moviesFragment;
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_movedb_coming;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (getPresenter() != null) getPresenter().getData(getActivity());
+    }
+}
