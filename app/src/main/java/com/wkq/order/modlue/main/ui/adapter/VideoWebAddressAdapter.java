@@ -11,6 +11,8 @@ import com.wkq.order.BR;
 import com.wkq.order.databinding.ItemVideoWebBinding;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.utils.BaseRecyclerAdapter;
+import com.wkq.order.utils.DataBindingAdapter;
+import com.wkq.order.utils.DataBindingViewHolder;
 
 /**
  * 作者: 吴奎庆

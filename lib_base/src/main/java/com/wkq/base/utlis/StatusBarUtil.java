@@ -551,6 +551,10 @@ public class StatusBarUtil {
         }
     }
 
+    /**
+     * 设置黑色字体
+     * @param activity
+     */
     @TargetApi(Build.VERSION_CODES.M)
     public static void setLightMode(Activity activity) {
         setMIUIStatusBarDarkIcon(activity, true);
@@ -560,6 +564,10 @@ public class StatusBarUtil {
         }
     }
 
+    /**
+     * 设置白色字体
+     * @param activity
+     */
     @TargetApi(Build.VERSION_CODES.M)
     public static void setDarkMode(Activity activity) {
         setMIUIStatusBarDarkIcon(activity, false);

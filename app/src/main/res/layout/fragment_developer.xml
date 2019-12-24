@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_f4f4f4"
@@ -31,32 +31,24 @@
                     app:qmui_contentScrim="@color/color_f4f4f4"
                     app:qmui_statusBarScrim="@color/color_f4f4f4">
 
-
-                    <com.youth.banner.Banner
-                        android:id="@+id/banner_movies"
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="211dp"
-
-                        app:image_scale_type="fit_xy"
-                        app:indicator_height="8dp"
-                        app:indicator_margin="4dp"
-                        app:indicator_width="8dp"
-                        app:is_auto_play="true" />
-
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/movie_3" />
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movies"
+                android:id="@+id/rv_developer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
     </LinearLayout>
 

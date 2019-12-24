@@ -2,7 +2,7 @@ package com.wkq.order.modlue.main.frame.presenter;
 
 import com.wkq.base.frame.mosby.MvpBasePresenter;
 import com.wkq.order.modlue.main.frame.view.VideoWebView;
-import com.wkq.order.modlue.main.ui.VideoWebList;
+import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 
 /**
  * 作者: 吴奎庆
@@ -13,7 +13,7 @@ import com.wkq.order.modlue.main.ui.VideoWebList;
  */
 public class VideoWebPresenter extends MvpBasePresenter<VideoWebView> {
 
-    public void getData(VideoWebList activity) {
+    public void getData(VideoWebListActivity activity) {
 
 
 

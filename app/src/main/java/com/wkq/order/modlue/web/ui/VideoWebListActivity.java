@@ -1,4 +1,4 @@
-package com.wkq.order.modlue.main.ui;
+package com.wkq.order.modlue.web.ui;
 
 
 import android.app.Activity;
@@ -13,11 +13,11 @@ import com.wkq.order.databinding.ActivityMainTestBinding;
 import com.wkq.order.modlue.main.frame.presenter.VideoWebPresenter;
 import com.wkq.order.modlue.main.frame.view.VideoWebView;
 
-public class VideoWebList extends MvpBindingActivity<VideoWebView, VideoWebPresenter, ActivityMainTestBinding> implements View.OnClickListener {
+public class VideoWebListActivity extends MvpBindingActivity<VideoWebView, VideoWebPresenter, ActivityMainTestBinding> implements View.OnClickListener {
 
 
-    public static void startVideo(Context context) {
-        Intent intent = new Intent(context, VideoWebList.class);
+    public static void startVideoWebList(Context context) {
+        Intent intent = new Intent(context, VideoWebListActivity.class);
         Activity activity = (Activity) context;
         activity.startActivity(intent);
     }

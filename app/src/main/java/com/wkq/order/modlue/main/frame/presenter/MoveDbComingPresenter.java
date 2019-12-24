@@ -32,6 +32,7 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
 
         HashMap<String, String> requestMap = new HashMap<>();
         requestMap.put("page", 1 + "");
+//
 
         Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbComingInfo>>() {
             @Override

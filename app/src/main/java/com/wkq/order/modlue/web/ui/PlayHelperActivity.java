@@ -1,4 +1,4 @@
-package com.wkq.order.modlue.main.ui;
+package com.wkq.order.modlue.web.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -61,8 +61,11 @@ public class PlayHelperActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        StatusBarUtil.setStatusBarWrite(this);
-        StatusBarUtil.setColor(this, this.getResources().getColor(R.color.color_f4f4f4), 0);
+        StatusBarUtil.setLightMode(this);
+        StatusBarUtil.setTransparentForWindow(this);
+        StatusBarUtil.addTranslucentView(this, 0);
+//        StatusBarUtil.setStatusBarWrite(this);
+//        StatusBarUtil.setColor(this, this.getResources().getColor(R.color.color_f4f4f4), 0);
         binding.rvPlayHelp.setLayoutManager(new LinearLayoutManager(this));
         PlayHelpAdapter mAdapter=new PlayHelpAdapter(this);
         binding.rvPlayHelp.setAdapter(mAdapter);

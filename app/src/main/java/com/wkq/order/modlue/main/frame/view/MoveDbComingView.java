@@ -5,11 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDbComingInfo;
-import com.wkq.net.model.MovieInTheatersBean;
 import com.wkq.order.modlue.main.modle.BannerInfo;
-import com.wkq.order.modlue.main.ui.VideoWebList;
+import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
-import com.wkq.order.modlue.main.ui.adapter.MoviesAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;
 import com.wkq.order.utils.BannerImageLoader;
 import com.youth.banner.BannerConfig;
@@ -102,7 +100,7 @@ public class MoveDbComingView implements MvpView {
 
     private void startVideoPlay() {
 
-        VideoWebList.startVideo(mFragment.getActivity());
+        VideoWebListActivity.startVideoWebList(mFragment.getActivity());
     }
 
     public void setData(BaseInfo<MoveDbComingInfo> data) {

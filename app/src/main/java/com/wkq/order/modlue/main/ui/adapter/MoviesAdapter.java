@@ -12,6 +12,8 @@ import com.wkq.net.model.MovieInTheatersBean;
 import com.wkq.order.R;
 import com.wkq.net.model.MoviesInfo;
 import com.wkq.order.databinding.ItemMovieInfoBinding;
+import com.wkq.order.utils.DataBindingAdapter;
+import com.wkq.order.utils.DataBindingViewHolder;
 import com.wkq.order.utils.GlideRoundedCornersTransform;
 
 /**

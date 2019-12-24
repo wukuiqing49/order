@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.SharedPreferencesHelper;
+import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.base.utlis.TimerHelper;
 import com.wkq.net.model.MoveDbComingInfo;
 import com.wkq.order.modlue.main.ui.HomeActivity;
@@ -30,6 +31,10 @@ public class SplashView implements MvpView {
     }
 
     public void initView() {
+
+        StatusBarUtil.setLightMode(mActivity);
+        StatusBarUtil.setTransparentForWindow(mActivity);
+        StatusBarUtil.addTranslucentView(mActivity, 0);
 
 //        {
 //            "id": 10759,

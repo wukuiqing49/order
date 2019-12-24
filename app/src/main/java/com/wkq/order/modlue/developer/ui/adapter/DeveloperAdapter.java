@@ -1,4 +1,4 @@
-package com.wkq.order.modlue.main.ui.adapter;
+package com.wkq.order.modlue.developer.ui.adapter;
 
 import android.content.Context;
 
@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.wkq.order.BR;
 import com.wkq.order.R;
+import com.wkq.order.databinding.ItemDeveloperBinding;
 import com.wkq.order.databinding.ItemPlayHelpBinding;
-import com.wkq.order.databinding.ItemVideoWebBinding;
+import com.wkq.order.modlue.developer.model.DeveloperInfo;
 import com.wkq.order.modlue.main.modle.PlayHelpInfo;
 import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.DataBindingViewHolder;
@@ -22,13 +23,13 @@ import com.wkq.order.utils.DataBindingViewHolder;
  */
 
 
-public class PlayHelpAdapter extends DataBindingAdapter<PlayHelpInfo> {
+public class DeveloperAdapter extends DataBindingAdapter<DeveloperInfo> {
 
     Context mContext;
 
-    public PlayHelpAdapter(Context context) {
+    public DeveloperAdapter(Context context) {
 
-        super(context, R.layout.item_play_help, BR.data);
+        super(context, R.layout.item_developer, BR.data);
         mContext = context;
 
     }
@@ -38,10 +39,14 @@ public class PlayHelpAdapter extends DataBindingAdapter<PlayHelpInfo> {
         super.onBindViewHolder(holder, position);
         DataBindingViewHolder dataBindingViewHolder = (DataBindingViewHolder) holder;
 
-        ItemPlayHelpBinding binding = (ItemPlayHelpBinding) dataBindingViewHolder.getBinding();
+        ItemDeveloperBinding binding = (ItemDeveloperBinding) dataBindingViewHolder.getBinding();
         binding.setData(getItem(position));
 
-        Glide.with(mContext).load(getItem(position).getSrcInteger()).into(binding.ivStep);
+        binding.root.setOnClickListener(view -> {
+            viewClickListener.onViewClick(binding.root,getItem(position));
+        });
+
+//        Glide.with(mContext).load(getItem(position).getSrcInteger()).into(binding.ivStep);
 
 
     }

@@ -1,28 +1,17 @@
 package com.wkq.order.modlue.web.view;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
-import com.wkq.base.adutlis.AdBlocker;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
-import com.wkq.order.modlue.web.CustomSettings;
+import com.wkq.order.utils.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoSiteActivity;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 作者:吴奎庆

@@ -7,7 +7,7 @@ import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MovieInTheatersBean;
 import com.wkq.order.modlue.main.modle.BannerInfo;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
-import com.wkq.order.modlue.main.ui.VideoWebList;
+import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoviesAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoviesFragment;
 import com.wkq.order.utils.BannerImageLoader;
@@ -105,7 +105,7 @@ public class MoviesView implements MvpView {
 
     private void startVideoPlay() {
 
-        VideoWebList.startVideo(mFragment.getActivity());
+        VideoWebListActivity.startVideoWebList(mFragment.getActivity());
     }
 
     public void setData(BaseInfo<MovieInTheatersBean> data) {

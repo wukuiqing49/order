@@ -1,15 +1,13 @@
 package com.wkq.order.modlue.main.frame.view;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 //import com.wkq.media.ImagePicker;
 //import com.wkq.media.PickerConfig;
 import com.wkq.base.utlis.StatusBarUtil;
-import com.wkq.order.R;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
-import com.wkq.order.modlue.main.ui.VideoWebList;
+import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.modlue.main.ui.adapter.VideoWebAddressAdapter;
 import com.wkq.order.modlue.web.ui.VideoSiteActivity;
 
@@ -24,7 +22,7 @@ import java.util.List;
  * 简介:
  */
 public class VideoWebView implements MvpView {
-    VideoWebList mActivity;
+    VideoWebListActivity mActivity;
     List<VideoWebInfo> videoList = new ArrayList<>();
 
     //发布文件最大值
@@ -45,7 +43,7 @@ public class VideoWebView implements MvpView {
     public static final int REQUEST_CODE_START_DOWNLOAD_READ_WRITE = 10012;
 
 
-    public VideoWebView(VideoWebList activity) {
+    public VideoWebView(VideoWebListActivity activity) {
         mActivity = activity;
     }
 
@@ -84,8 +82,9 @@ public class VideoWebView implements MvpView {
 
 
     public void initView() {
-        StatusBarUtil.setStatusBarWrite(mActivity);
-        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.color_f4f4f4), 0);
+        StatusBarUtil.setLightMode(mActivity);
+        StatusBarUtil.setTransparentForWindow(mActivity);
+        StatusBarUtil.addTranslucentView(mActivity, 0);
         mActivity.binding.rvWeb.setLayoutManager(new LinearLayoutManager(mActivity));
         VideoWebAddressAdapter myVideoAdapter = new VideoWebAddressAdapter(mActivity);
         mActivity.binding.rvWeb.setAdapter(myVideoAdapter);

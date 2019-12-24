@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
-import com.wkq.order.modlue.web.CustomSettings;
+import com.wkq.order.utils.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
 
 import java.util.ArrayList;
@@ -39,8 +39,11 @@ public class VideoWebView implements MvpView {
 
 
     public void initView() {
-        StatusBarUtil.setStatusBarWrite(mActivity);
-        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
+        StatusBarUtil.setLightMode(mActivity);
+        StatusBarUtil.setTransparentForWindow(mActivity);
+        StatusBarUtil.addTranslucentView(mActivity, 0);
+//        StatusBarUtil.setStatusBarWrite(mActivity);
+//        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
         initWaitingBg();
         initWebView();
     }

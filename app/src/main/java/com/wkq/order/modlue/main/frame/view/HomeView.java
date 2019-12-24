@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.widget.tab.QMUITab;
 import com.qmuiteam.qmui.widget.tab.QMUITabBuilder;
+import com.qmuiteam.qmui.widget.tab.QMUITabSegment;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
@@ -20,18 +21,21 @@ import com.wkq.order.modlue.main.ui.adapter.HomeFragmentPagerAdapter;
  */
 
 
-public class HomeView  implements MvpView {
+public class HomeView implements MvpView {
 
     HomeActivity mActivity;
+
     public HomeView(HomeActivity mActivity) {
-        this.mActivity=mActivity;
+        this.mActivity = mActivity;
     }
 
     public void initView() {
+        StatusBarUtil.setTransparentForWindow(mActivity);
+        StatusBarUtil.addTranslucentView(mActivity, 0);
 
-        StatusBarUtil.setStatusBarWrite(mActivity);
-        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
-        HomeFragmentPagerAdapter homeFragmentPagerAdapter=new HomeFragmentPagerAdapter(mActivity,mActivity.getSupportFragmentManager());
+//        StatusBarUtil.setStatusBarWrite(mActivity);
+//        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
+        HomeFragmentPagerAdapter homeFragmentPagerAdapter = new HomeFragmentPagerAdapter(mActivity, mActivity.getSupportFragmentManager());
 
         QMUITabBuilder builder = mActivity.binding.tabs.tabBuilder();
         builder.setSelectedIconScale(1.2f)
@@ -61,7 +65,26 @@ public class HomeView  implements MvpView {
 
         mActivity.binding.pager.setOffscreenPageLimit(3);
 
-        mActivity.binding.tabs.setupWithViewPager(mActivity.binding.pager,false);
+        mActivity.binding.tabs.setupWithViewPager(mActivity.binding.pager, false);
+
+        mActivity.binding.tabs.setOnTabClickListener(new QMUITabSegment.OnTabClickListener() {
+            @Override
+            public void onTabClick(int index) {
+                switch (index) {
+
+                    case 0:
+                        StatusBarUtil.setLightMode(mActivity);
+                        break;
+                    case 1:
+                        StatusBarUtil.setLightMode(mActivity);
+                        break;
+                    case 2:
+                        StatusBarUtil.setDarkMode(mActivity);
+
+                        break;
+                }
+            }
+        });
 
     }
 }

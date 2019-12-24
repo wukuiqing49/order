@@ -13,6 +13,8 @@ import com.wkq.order.R;
 import com.wkq.order.databinding.ItemMovieDbComingInfoBinding;
 import com.wkq.order.databinding.ItemMovieInfoBinding;
 import com.wkq.order.utils.Constant;
+import com.wkq.order.utils.DataBindingAdapter;
+import com.wkq.order.utils.DataBindingViewHolder;
 import com.wkq.order.utils.GlideRoundedCornersTransform;
 import com.wkq.order.utils.MoveDbMoveTypeUtlis;
 
