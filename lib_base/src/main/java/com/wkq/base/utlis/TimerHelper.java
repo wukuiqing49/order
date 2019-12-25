@@ -51,7 +51,7 @@ public class TimerHelper {
                 mSchedule++;
                 handler.sendEmptyMessage(mSchedule);
             }
-        }, 0, 1000);
+        }, mSchedule);
     }
 
     /**
@@ -59,14 +59,18 @@ public class TimerHelper {
      */
     public void onTimerCancel() {
         if (mTimer != null) {
-            mTimer.cancel();
+            mTimer.purge();
             mTimer = null;
+            if (handler != null) {
+                handler.removeCallbacksAndMessages(null);
+                handler = null;
+            }
         }
-
     }
 
     /**
      * 时间清零
+     *
      * @param schedule
      */
     public void setSchedule(int schedule) {

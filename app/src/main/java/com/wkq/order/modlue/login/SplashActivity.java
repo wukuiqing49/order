@@ -36,8 +36,8 @@ public class SplashActivity extends MvpBindingActivity<SplashView, SplashPresent
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         if (timerHelper != null)
             timerHelper.onTimerCancel();
     }
