@@ -43,6 +43,6 @@ public class DeveloperFragment extends MvpBindingFragment<DeveloperView, Develop
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (getMvpView()!=null)getMvpView().initView();
+        if (getMvpView() != null) getMvpView().initView();
     }
 }

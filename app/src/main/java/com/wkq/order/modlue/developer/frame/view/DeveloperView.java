@@ -3,10 +3,12 @@ package com.wkq.order.modlue.developer.frame.view;
 import android.text.TextUtils;
 import android.view.View;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
+import com.wkq.base.utlis.PixelsUtil;
 import com.wkq.order.modlue.developer.model.DeveloperInfo;
 import com.wkq.order.modlue.developer.ui.adapter.DeveloperAdapter;
 import com.wkq.order.modlue.developer.ui.fragment.DeveloperFragment;
@@ -35,6 +37,10 @@ public class DeveloperView implements MvpView {
     }
 
     public void initView() {
+
+        initTobBar();
+
+
         DeveloperAdapter moviesAdapter = new DeveloperAdapter(mFragment.getActivity());
         mFragment.binding.rvDeveloper.setLayoutManager(new LinearLayoutManager(mFragment.getActivity()));
         mFragment.binding.rvDeveloper.setAdapter(moviesAdapter);
@@ -46,6 +52,7 @@ public class DeveloperView implements MvpView {
 
         list.add(new DeveloperInfo(3, "联系开发者"));
         list.add(new DeveloperInfo(4, "关于我们"));
+
 
         moviesAdapter.addItems(list);
 
@@ -77,6 +84,25 @@ public class DeveloperView implements MvpView {
                 }
             }
         });
+    }
+
+    private void initTobBar() {
+
+        mFragment.binding.refreshLayout.setEnableRefresh(false);
+        mFragment.binding.refreshLayout.setEnableOverScrollDrag(true);
+        mFragment.binding.refreshLayout.setEnableFooterFollowWhenLoadFinished(true);
+        mFragment.binding.refreshLayout.setEnablePureScrollMode(true);
+
+        mFragment.binding.scrool.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            int offset = mFragment.binding.scrool.getChildAt(0).getHeight() - mFragment.binding.scrool.getHeight();
+            if (offset < PixelsUtil.dip2px(120)) return;
+            int topViewHeight = mFragment.binding.topViewTest.getHeight();
+            mFragment.binding.topViewTest.setAlpha(Math.min((Math.max(0, (float) scrollY - 8)) / topViewHeight, 1f));
+//            binding.topLayout.headImg.setAlpha(topViewHeight / Math.min((Math.max(1, (float) scrollY - 8)), 1f));
+            mFragment.binding.topViewTest.setVisibility(scrollY > 8 ? View.VISIBLE : View.GONE);
+        });
+
+
     }
 
     public void showMessage(String message) {

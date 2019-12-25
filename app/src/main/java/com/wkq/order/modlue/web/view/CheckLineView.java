@@ -7,16 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
+import com.wkq.base.utlis.DateTimeUtil;
+import com.wkq.order.BuildConfig;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.model.CheckLineInfo;
 import com.wkq.order.modlue.web.ui.CheckLineActivity;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
 import com.wkq.order.modlue.web.ui.WebDemoActivity;
 import com.wkq.order.modlue.web.ui.adapter.CheckLineAdapter;
+import com.wkq.order.realm.AdTimeDao;
 import com.wkq.order.utils.DataBindingAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
 
 /**
  * 作者: 吴奎庆
@@ -36,14 +41,14 @@ public class CheckLineView implements MvpView {
     public void initView() {
 
         List<CheckLineInfo> checkLines = new ArrayList<>();
-        checkLines.add(new CheckLineInfo("VIP无广告","http://demo.hao0606.com/?url="));
-        checkLines.add(new CheckLineInfo("VIP2无广告","https://jiexi.bm6ig.cn/?url="));
+        checkLines.add(new CheckLineInfo("VIP无广告", "http://demo.hao0606.com/?url="));
+        checkLines.add(new CheckLineInfo("VIP2无广告", "https://jiexi.bm6ig.cn/?url="));
 
-        checkLines.add(new CheckLineInfo("上滑动全屏去广告备用(有广告)","http://jx.aeidu.cn/index.php?url="));
+        checkLines.add(new CheckLineInfo("上滑动全屏去广告备用(有广告)", "http://jx.aeidu.cn/index.php?url="));
 
-        checkLines.add(new CheckLineInfo("重点(有广告)","http://jx.du2.cc/?url="));
-        checkLines.add(new CheckLineInfo("重点(有广告","http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=url="));
-        checkLines.add(new CheckLineInfo("速度1(有广告)","http://jx.drgxj.com/?url="));
+        checkLines.add(new CheckLineInfo("重点(有广告)", "http://jx.du2.cc/?url="));
+        checkLines.add(new CheckLineInfo("重点(有广告", "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=url="));
+        checkLines.add(new CheckLineInfo("速度1(有广告)", "http://jx.drgxj.com/?url="));
 
 
 //        checkLines.add(new CheckLineInfo("速度2(有广告)","http://jx.618ge.com/?url="));
@@ -58,7 +63,6 @@ public class CheckLineView implements MvpView {
 
 
 //        http://jx.drgxj.com/?url=https://www.iqiyi.com/v_19rrk406qo.html
-
 
 
 //        checkLines.add(new CheckLineInfo("备用(有广告)","http://jx.598110.com/?url=url="));
@@ -76,20 +80,50 @@ public class CheckLineView implements MvpView {
             public void onViewClick(View v, Object program) {
                 if (v.getId() == R.id.ll_root) {
                     CheckLineInfo info = (CheckLineInfo) program;
-                   if (info!=null&& !TextUtils.isEmpty(mActivity.videoUrl)&&!TextUtils.isEmpty(info.getLineUrl())){
-                       VideoWebviewActivity.startActivity(mActivity,info.getLineUrl().concat(mActivity.videoUrl));
+                    if (info != null && !TextUtils.isEmpty(mActivity.videoUrl) && !TextUtils.isEmpty(info.getLineUrl())) {
+
+                        checkAdTime(info);
 //                       VideoWebviewActivity.startActivity(mActivity,info.getLineUrl().concat("http://v.qq.com/x/cover/uzuqdig87eggmiw.html?ptag=douban.movie"));
 
 //                       WebDemoActivity.startActivity(mActivity,info.getLineUrl().concat(mActivity.videoUrl));
-                   }else {
-                       showMessage("无效视频地址");
-                   }
+                    } else {
+                        showMessage("无效视频地址");
+                    }
                 }
             }
         });
         mActivity.binding.tvCancel.setOnClickListener(v -> {
             mActivity.finish();
         });
+
+    }
+
+    private void checkAdTime(CheckLineInfo info) {
+        String time = DateTimeUtil.getCurrentTime();
+        Realm realm = Realm.getDefaultInstance();
+        AdTimeDao adTimeDao = realm.where(AdTimeDao.class).findFirst();
+        if (adTimeDao == null) {
+
+            adTimeDao = realm.createObject(AdTimeDao.class,BuildConfig.APP_ID);
+            adTimeDao.setKey(BuildConfig.APP_ID);
+            adTimeDao.setAdClickCount(1);
+            adTimeDao.setNowTime(time);
+
+        } else {
+            int count = adTimeDao.getAdClickCount() + 1;
+            realm.beginTransaction();
+            adTimeDao.setNowTime(time);
+            adTimeDao.setAdClickCount(count);
+
+        }
+        AdTimeDao adTimeDaos = realm.where(AdTimeDao.class).findFirst();
+        if (adTimeDaos.getAdClickCount() > 3) {
+            VideoWebviewActivity.startActivity(mActivity, info.getLineUrl().concat(mActivity.videoUrl));
+
+        } else {
+            showMessage("点击广告");
+        }
+
 
     }
 

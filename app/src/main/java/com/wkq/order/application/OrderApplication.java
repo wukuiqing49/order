@@ -2,6 +2,8 @@ package com.wkq.order.application;
 
 import androidx.multidex.MultiDexApplication;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 
 /**
@@ -17,7 +19,19 @@ public class OrderApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
+        initDb();
+    }
 
+    /**
+     * 初始化数据库
+     */
+    private void initDb() {
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("wy.realm")
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 }
 

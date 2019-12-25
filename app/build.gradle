@@ -1,4 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+static def stringValue(def value) {
+    return "\"${value}\""
+}
 
 android {
 
@@ -48,16 +53,52 @@ android {
         debugConfig {
             storeFile file("order.jks")
             storePassword "wu199149"
-            keyAlias "order"
+            keyAlias "orderjks"
             keyPassword "wu199149"
         }
         releaseConfig {
             storeFile file("order.jks")
             storePassword "wu199149"
-            keyAlias "order"
+            keyAlias "orderjks"
             keyPassword "wu199149"
         }
     }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debugConfig
+            zipAlignEnabled true
+            debuggable = true
+            applicationIdSuffix ".debug"
+
+            buildConfigField("boolean", "VERSION_AS_DEBUG", "true")
+            buildConfigField("String", "APP_ID", stringValue("wu199149"))
+
+        }
+        release {
+            signingConfig signingConfigs.releaseConfig
+            zipAlignEnabled true
+            //debug是否开启
+            debuggable = true
+
+
+            buildConfigField("String", "APP_ID", stringValue("wu199149"))
+//            manifestPlaceholders = [
+//                    TINGYUN_SCHEME   : "tingyun.33867",
+//                    APP_START_HOST   : "wjjh5.cnlive.com",
+//                    MAP_APPKEY       : "4b9aa4122d1d6f4d6beb6cb7701f2873",
+//                    BAIDU_APP_ID     : "14380860",
+//                    BAIDU_APP_KEY    : "4bX1eK7SiCL461QBnRKilowc",
+//                    BAIDU_MAP_APP_KEY: "Q7y9SGcZVs0tmhbNTiaz0jHm4S1xGzE2",
+//                    BAIDU_APP_SECRET : "BTzXLoPbUjlLeOM1nHnfOuTB9q18YZVq",
+//                    UMENG_APPKEY     : "5d647f890cafb21b6b000aee",
+//                    OPENINSTALL_KEY  : "vfkj9x"
+//            ]
+        }
+    }
+
+
+
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
@@ -106,4 +147,5 @@ dependencies {
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.SmartRefreshHeader"
 
     implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'io.realm:realm-android-library:3.5.0'
 }
