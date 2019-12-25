@@ -39,9 +39,10 @@ public class VideoWebView implements MvpView {
 
 
     public void initView() {
-        StatusBarUtil.setLightMode(mActivity);
+
         StatusBarUtil.setTransparentForWindow(mActivity);
         StatusBarUtil.addTranslucentView(mActivity, 0);
+        StatusBarUtil.setDarkMode(mActivity);
 //        StatusBarUtil.setStatusBarWrite(mActivity);
 //        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
         initWaitingBg();
@@ -67,9 +68,7 @@ public class VideoWebView implements MvpView {
         int END = pics.size()-1;
         //产生随机数
         int number = random.nextInt(END - START + 1) + START;
-
         Integer x = pics.get(number);
-
         Picasso.with(mActivity).load(x).into(mActivity.binding.ivLoading);
 
     }

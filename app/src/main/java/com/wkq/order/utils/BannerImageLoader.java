@@ -25,8 +25,8 @@ public class BannerImageLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
 
-        RequestOptions requestOptions=RequestOptions.placeholderOf(R.drawable.loading).error(R.drawable.loading)
-                .fitCenter().skipMemoryCache(false)  .diskCacheStrategy(DiskCacheStrategy.ALL)
+        RequestOptions requestOptions=RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
+                .centerCrop().skipMemoryCache(false)  .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .priority(Priority.HIGH);
 
         Glide.with(context.getApplicationContext())

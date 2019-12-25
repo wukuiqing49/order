@@ -69,22 +69,21 @@ public class VideoWebView implements MvpView {
 
 
     public void initData() {
-        videoList.add(new VideoWebInfo("http://www.le.com/", "进入乐视视频"));
-        videoList.add(new VideoWebInfo("https://www.iqiyi.com/", "进入奇艺视频"));
-
-        videoList.add(new VideoWebInfo("http://www.mgtv.com/", "进入芒果视频"));
         videoList.add(new VideoWebInfo("https://v.qq.com/", "进入腾讯视频"));
+        videoList.add(new VideoWebInfo("https://www.iqiyi.com/", "进入奇艺视频"));
         videoList.add(new VideoWebInfo("https://www.youku.com/", "进入优酷视频"));
+        videoList.add(new VideoWebInfo("http://www.mgtv.com/", "进入芒果视频"));
         videoList.add(new VideoWebInfo("https://tv.sohu.com/", "进入搜狐视频"));
         videoList.add(new VideoWebInfo("http://www.pptv.com/", "进入pptv视频"));
-
+        videoList.add(new VideoWebInfo("http://www.le.com/", "进入乐视视频"));
     }
 
 
     public void initView() {
-        StatusBarUtil.setLightMode(mActivity);
+
         StatusBarUtil.setTransparentForWindow(mActivity);
         StatusBarUtil.addTranslucentView(mActivity, 0);
+        StatusBarUtil.setLightMode(mActivity);
         mActivity.binding.rvWeb.setLayoutManager(new LinearLayoutManager(mActivity));
         VideoWebAddressAdapter myVideoAdapter = new VideoWebAddressAdapter(mActivity);
         mActivity.binding.rvWeb.setAdapter(myVideoAdapter);

@@ -42,6 +42,8 @@ public class MoveDbComingFragment extends MvpBindingFragment<MoveDbComingView, M
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (getMvpView()!=null)getMvpView().initView();
+        if (getPresenter() != null) getPresenter().getBannerData(getActivity());
         if (getPresenter() != null) getPresenter().getData(getActivity());
+
     }
 }

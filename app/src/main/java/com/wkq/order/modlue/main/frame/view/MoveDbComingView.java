@@ -3,13 +3,19 @@ package com.wkq.order.modlue.main.frame.view;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
+import com.wkq.base.utlis.AlertUtil;
+import com.wkq.base.utlis.RandomUtil;
+import com.wkq.base.utlis.SharedPreferencesHelper;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDbComingInfo;
+import com.wkq.net.model.MoveDbNowPlayingInfo;
 import com.wkq.order.modlue.main.modle.BannerInfo;
 import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;
 import com.wkq.order.utils.BannerImageLoader;
+import com.wkq.order.utils.Constant;
+import com.wkq.order.utils.MoveDbDataSaveUtlis;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -26,6 +32,7 @@ import java.util.List;
 public class MoveDbComingView implements MvpView {
     MoveDbComingFragment mFragment;
     private MoveDbComingAdapter moviesAdapter;
+    private List<BannerInfo> mBannerBeanList = new ArrayList<>();
 
     public MoveDbComingView(MoveDbComingFragment moveDbComingFragment) {
         mFragment = moveDbComingFragment;
@@ -42,60 +49,46 @@ public class MoveDbComingView implements MvpView {
         mFragment.binding.rvMovies.setAdapter(moviesAdapter);
 
     }
-    private List<BannerInfo> mBannerBeanList=new ArrayList<>();
+
+
     private void initBanner() {
-        mBannerBeanList = new ArrayList<BannerInfo>();
-        //这里手动添加一些测试数据
-        BannerInfo bannerBean1 = new BannerInfo();
-        bannerBean1.setTitle("免费看电影");
-        bannerBean1.setImgUrl("https://b.bdstatic.com/boxlib/20180120/2018012017100383423448679.jpg");
-        bannerBean1.setUrlPath("http://pic.chinadaily.com.cn/2018-01/20/content_35544757.htm");
-
-        BannerInfo bannerBean2 = new BannerInfo();
-        bannerBean2.setTitle("成都熊猫基地太阳产房全新升级");
-        bannerBean2.setImgUrl("https://b.bdstatic.com/boxlib/20180120/2018012017100311270281486.jpg");
-        bannerBean2.setUrlPath("http://pic.chinadaily.com.cn/2018-01/20/content_35544758.htm");
-
-        BannerInfo bannerBean3 = new BannerInfo();
-        bannerBean3.setTitle("长沙“90后”交警用手绘记录交警故事");
-        bannerBean3.setImgUrl("https://b.bdstatic.com/boxlib/20180120/2018012017100392134086973.jpg");
-        bannerBean3.setUrlPath("http://pic.chinadaily.com.cn/2018-01/20/content_35544759.htm");
-
-        mBannerBeanList.add(bannerBean1);
-        mBannerBeanList.add(bannerBean2);
-        mBannerBeanList.add(bannerBean3);
-
-        List<String> images = new ArrayList<String>();
-        List<String> titles = new ArrayList<String>();
-        for(BannerInfo bannerBean : mBannerBeanList){
-            images.add(bannerBean.getImgUrl());
-            titles.add(bannerBean.getTitle());
-        }
-
-
         //轮播图的常规设置
         mFragment.binding.bannerMovies.setIndicatorGravity(BannerConfig.RIGHT);//设置指示器局右显示
         //====加载Banner数据====
         mFragment.binding.bannerMovies.setImageLoader(new BannerImageLoader());//设置图片加载器
         //设置显示圆形指示器和标题（水平显示）
         mFragment.binding.bannerMovies.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        mFragment.binding.bannerMovies.setImages(images);
-        mFragment.binding.bannerMovies.setBannerTitles(titles);
-
         //banner设置方法全部调用完毕时最后调用
-        mFragment.binding.bannerMovies.setDelayTime(2000);
-        mFragment.binding.bannerMovies.start();
 
+//        mBannerBeanList = MoveDbDataSaveUtlis.getBannerList(mFragment.getActivity());
+        mBannerBeanList = MoveDbDataSaveUtlis.getBannerList(mFragment.getActivity());
+        playBaner();
         mFragment.binding.bannerMovies.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                startVideoPlay();
-
+                BannerInfo bannerInfo = mBannerBeanList.get(position);
+                if (bannerInfo.getUrlPath().equals("1008611"))
+                    startVideoPlay();
+                else
+                    showMessage("待开发");
             }
         });
 
 
+    }
 
+    private void playBaner() {
+        List<String> images = new ArrayList<String>();
+        List<String> titles = new ArrayList<String>();
+        for (BannerInfo bannerBean : mBannerBeanList) {
+            images.add(bannerBean.getImgUrl());
+            titles.add(bannerBean.getTitle());
+        }
+        mFragment.binding.bannerMovies.setDelayTime(2000);
+
+        mFragment.binding.bannerMovies.setImages(images);
+        mFragment.binding.bannerMovies.setBannerTitles(titles);
+        mFragment.binding.bannerMovies.start();
     }
 
     private void startVideoPlay() {
@@ -107,9 +100,34 @@ public class MoveDbComingView implements MvpView {
 
         if (data.getData() != null && data.getData().getResults() != null) {
             moviesAdapter.addItems(data.getData().getResults());
-
         }
 
     }
 
+    public void showMessage(String message) {
+        if (mFragment == null && mFragment.getActivity() == null) return;
+        AlertUtil.showDeftToast(mFragment.getActivity(), message);
+    }
+
+    public void setBanner(BaseInfo<MoveDbNowPlayingInfo> data) {
+
+        if (data != null && data.getData() != null && data.getData().getResults() != null && data.getData().getResults().size() > 0) {
+            int size = data.getData().getResults().size();
+            List<MoveDbNowPlayingInfo.ResultsBean> list = data.getData().getResults();
+            if (mBannerBeanList != null && mBannerBeanList.size() > 0) mBannerBeanList.clear();
+            BannerInfo helpBanner = new BannerInfo();
+            helpBanner.setTitle("免费看电影");
+            helpBanner.setImgUrl("https://b.bdstatic.com/boxlib/20180120/2018012017100383423448679.jpg");
+            helpBanner.setUrlPath("1008611");
+            mBannerBeanList.add(helpBanner);
+            for (int i = 0; i < 5; i++) {
+                int one = RandomUtil.getRandomForIntegerBounded(0, size);
+                MoveDbNowPlayingInfo.ResultsBean info = list.get(one);
+                BannerInfo bannerBean = new BannerInfo(info.getTitle(), Constant.MOVE_DB_IMG_BASE_400.concat(info.getPoster_path()), info.getId() + "");
+                mBannerBeanList.add(bannerBean);
+            }
+            MoveDbDataSaveUtlis.saveBannerData(mFragment.getActivity(), mBannerBeanList);
+            playBaner();
+        }
+    }
 }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.net.ApiRequest;
+import com.wkq.net.BaseInfo;
+import com.wkq.net.api.ApiMoveDb;
+import com.wkq.net.logic.Logic;
+import com.wkq.net.logic.callback.DataCallback;
+import com.wkq.net.model.MoveDbMoveDetailInfo;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityPlayHelpBinding;
 import com.wkq.order.modlue.main.modle.PlayHelpInfo;
@@ -18,6 +25,8 @@ import com.wkq.order.modlue.main.ui.adapter.PlayHelpAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * 作者:吴奎庆
@@ -61,15 +70,27 @@ public class PlayHelperActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        StatusBarUtil.setLightMode(this);
+
         StatusBarUtil.setTransparentForWindow(this);
         StatusBarUtil.addTranslucentView(this, 0);
+        StatusBarUtil.setLightMode(this);
 //        StatusBarUtil.setStatusBarWrite(this);
 //        StatusBarUtil.setColor(this, this.getResources().getColor(R.color.color_f4f4f4), 0);
         binding.rvPlayHelp.setLayoutManager(new LinearLayoutManager(this));
         PlayHelpAdapter mAdapter=new PlayHelpAdapter(this);
         binding.rvPlayHelp.setAdapter(mAdapter);
         mAdapter.addItems(steps);
+
+        Logic.create("419704").action(new Logic.Action<String, BaseInfo<MoveDbMoveDetailInfo>>() {
+            @Override
+            public Disposable action(String data, DataCallback<BaseInfo<MoveDbMoveDetailInfo>> callback) {
+                return ApiRequest.serviceMoveDb(ApiMoveDb.class ,apiMoveDb -> apiMoveDb.getMovieDetail(data)).subscribe(PlayHelperActivity.this,callback);
+            }
+        }).<BaseInfo<MoveDbMoveDetailInfo>>event().setFailureCallback((state, message) -> {
+            Log.e("","");
+        }).setSuccessCallback(data -> {
+            Log.e("","");
+        }).start();
 
     }
 }

@@ -32,7 +32,7 @@ public class HomeView implements MvpView {
     public void initView() {
         StatusBarUtil.setTransparentForWindow(mActivity);
         StatusBarUtil.addTranslucentView(mActivity, 0);
-
+        StatusBarUtil.setDarkMode(mActivity);
 //        StatusBarUtil.setStatusBarWrite(mActivity);
 //        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
         HomeFragmentPagerAdapter homeFragmentPagerAdapter = new HomeFragmentPagerAdapter(mActivity, mActivity.getSupportFragmentManager());
@@ -76,10 +76,11 @@ public class HomeView implements MvpView {
                         StatusBarUtil.setLightMode(mActivity);
                         break;
                     case 1:
-                        StatusBarUtil.setLightMode(mActivity);
+                        StatusBarUtil.setDarkMode(mActivity);
                         break;
                     case 2:
                         StatusBarUtil.setDarkMode(mActivity);
+//
 
                         break;
                 }

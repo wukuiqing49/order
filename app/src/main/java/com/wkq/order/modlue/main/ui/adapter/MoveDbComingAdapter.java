@@ -8,15 +8,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.wkq.net.model.MoveDbComingInfo;
-import com.wkq.net.model.MovieInTheatersBean;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ItemMovieDbComingInfoBinding;
-import com.wkq.order.databinding.ItemMovieInfoBinding;
 import com.wkq.order.utils.Constant;
 import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.DataBindingViewHolder;
 import com.wkq.order.utils.GlideRoundedCornersTransform;
-import com.wkq.order.utils.MoveDbMoveTypeUtlis;
+import com.wkq.order.utils.MoveDbDataSaveUtlis;
 
 /**
  * 作者:吴奎庆
@@ -41,7 +39,7 @@ public class MoveDbComingAdapter extends DataBindingAdapter<MoveDbComingInfo.Res
         ItemMovieDbComingInfoBinding binding = (ItemMovieDbComingInfoBinding) bindingHolder.getBinding();
         binding.setData(getItem(position));
         if (getItem(position).getGenre_ids() != null && getItem(position).getGenre_ids().size() > 0) {
-            String type = MoveDbMoveTypeUtlis.getType(mContext, getItem(position).getGenre_ids().get(0));
+            String type = MoveDbDataSaveUtlis.getType(mContext, getItem(position).getGenre_ids().get(0));
             binding.tvType.setText(type);
         }
 

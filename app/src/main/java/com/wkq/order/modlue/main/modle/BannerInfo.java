@@ -14,6 +14,16 @@ public class BannerInfo {
     private String imgUrl;
     private String urlPath;
 
+    public BannerInfo() {
+
+    }
+
+    public BannerInfo(String title, String imgUrl, String urlPath) {
+        this.title = title;
+        this.imgUrl = imgUrl;
+        this.urlPath = urlPath;
+    }
+
     public String getTitle() {
         return title;
     }

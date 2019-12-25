@@ -33,7 +33,7 @@ public class VideoSiteView implements MvpView {
     public void initView() {
         StatusBarUtil.setStatusBarWrite(mActivity);
         StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
-
+        StatusBarUtil.setLightMode(mActivity);
         WebChromeClient mWebChromeClient = new WebChromeClient() {
 
 

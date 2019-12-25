@@ -2,17 +2,21 @@ package com.wkq.order.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.wkq.base.utlis.SharedPreferencesHelper;
-import com.wkq.net.ApiBuild;
 import com.wkq.order.modlue.login.MoveDbMoveType;
+import com.wkq.order.modlue.main.modle.BannerInfo;
+import com.youth.banner.Banner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,15 +26,78 @@ import java.util.List;
  * <p>
  * 简介:
  */
-public class MoveDbMoveTypeUtlis {
+public class MoveDbDataSaveUtlis {
 
 
     public static void putType(Context context) {
 
         String data = SharedPreferencesHelper.getInstance(context).getValue(Constant.MOVE_DB_TYPE_KEY);
+        if (!TextUtils.isEmpty(data)) return;
 
-//        if (!TextUtils.isEmpty(data)) return;
-
+//        {
+//            "id": 10759,
+//                "name": "动作冒险"
+//        },
+//        {
+//            "id": 16,
+//                "name": "动画"
+//        },
+//        {
+//            "id": 35,
+//                "name": "喜剧"
+//        },
+//        {
+//            "id": 80,
+//                "name": "犯罪"
+//        },
+//        {
+//            "id": 99,
+//                "name": "纪录"
+//        },
+//        {
+//            "id": 18,
+//                "name": "剧情"
+//        },
+//        {
+//            "id": 10751,
+//                "name": "家庭"
+//        },
+//        {
+//            "id": 10762,
+//                "name": "儿童"
+//        },
+//        {
+//            "id": 9648,
+//                "name": "悬疑"
+//        },
+//        {
+//            "id": 10763,
+//                "name": "新闻"
+//        },
+//        {
+//            "id": 10764,
+//                "name": "真人秀"
+//        },
+//        {
+//            "id": 10765,
+//                "name": "Sci-Fi & Fantasy"
+//        },
+//        {
+//            "id": 10766,
+//                "name": "肥皂剧"
+//        },
+//        {
+//            "id": 10767,
+//                "name": "脱口秀"
+//        },
+//        {
+//            "id": 10768,
+//                "name": "War & Politics"
+//        },
+//        {
+//            "id": 37,
+//                "name": "西部"
+//        }
 
         List<MoveDbMoveType> types = new ArrayList<>();
         types.add(new MoveDbMoveType(37, "西部"));
@@ -50,7 +117,7 @@ public class MoveDbMoveTypeUtlis {
         types.add(new MoveDbMoveType(10759, "动作冒险"));
         types.add(new MoveDbMoveType(16, "动画片"));
         types.add(new MoveDbMoveType(28, "动作"));
-        String typeStrings = MoveDbMoveTypeUtlis.list2json(types);
+        String typeStrings = MoveDbDataSaveUtlis.list2json(types);
         SharedPreferencesHelper.getInstance(context).setValue(Constant.MOVE_DB_TYPE_KEY, typeStrings);
     }
 
@@ -113,17 +180,58 @@ public class MoveDbMoveTypeUtlis {
 
     public static String getType(Context conetxt, int id) {
         String data = SharedPreferencesHelper.getInstance(conetxt).getValue(Constant.MOVE_DB_TYPE_KEY);
-
         List<MoveDbMoveType> list = json2list(data);
         if (list != null && list.size() > 0) {
-
             for (MoveDbMoveType moveDbMoveType : list) {
                 if (id == moveDbMoveType.getId()) {
                     return moveDbMoveType.getType();
                 }
             }
-
         }
         return "其他";
     }
+
+    /**
+     * 保存Banner数据
+     *
+     * @param context
+     * @param bannerList
+     * @return
+     */
+
+    public static boolean saveBannerData(Context context, List bannerList) {
+
+        //3.把list或对象转化为json
+
+        try {
+            Gson gson2 = new Gson();
+            String str = gson2.toJson(bannerList);
+            SharedPreferencesHelper.getInstance(context).setValue(Constant.MOVE_DB_HOME_BANNER_KEY, str);
+            return true;
+        } catch (Exception e) {
+            Log.e("TAG", e.getMessage());
+        }
+
+        return false;
+    }
+
+    /**
+     * 获取Banner
+     *
+     * @param context
+     * @return
+     */
+    public static List<BannerInfo> getBannerList(Context context) {
+        List<BannerInfo> banners = new ArrayList<>();
+        String bannerStr = SharedPreferencesHelper.getInstance(context).getValue(Constant.MOVE_DB_HOME_BANNER_KEY);
+        if (TextUtils.isEmpty(bannerStr)) return banners;
+
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<List<BannerInfo>>() {
+        }.getType();
+        banners = gson.fromJson(bannerStr, type);
+        return banners;
+    }
+
 }

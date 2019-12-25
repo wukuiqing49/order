@@ -17,4 +17,6 @@ public class Constant {
     public static String MOVE_DB_IMG_BASE_500 = "https://image.tmdb.org/t/p/w500/";
     //sp存储的 电影类型数据的key
     public static String MOVE_DB_TYPE_KEY = "VIDEOTYPE";
+    //首页Banner数据 的key
+    public static String MOVE_DB_HOME_BANNER_KEY = "HOMEBANNER";
 }
