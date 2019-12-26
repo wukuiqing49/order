@@ -1,14 +1,24 @@
 package com.wkq.order.modlue.main.frame.view;
 
+import android.graphics.Color;
+import android.util.Log;
+import android.view.View;
+
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
+import com.wkq.base.utlis.PixelsUtil;
 import com.wkq.base.utlis.RandomUtil;
 import com.wkq.base.utlis.SharedPreferencesHelper;
+import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDbComingInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
+import com.wkq.net.model.MoveDbPopularInfo;
+import com.wkq.order.R;
 import com.wkq.order.modlue.main.modle.BannerInfo;
 import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
@@ -41,6 +51,7 @@ public class MoveDbComingView implements MvpView {
 
     public void initView() {
         initBanner();
+        initToolBar();
 
 
         moviesAdapter = new MoveDbComingAdapter(mFragment.getActivity());
@@ -49,6 +60,49 @@ public class MoveDbComingView implements MvpView {
         mFragment.binding.rvMovies.setAdapter(moviesAdapter);
 
     }
+    /**
+     * 根据百分比改变颜色透明度
+     */
+    public int changeAlpha(int color, float fraction) {
+        if (fraction >= 0.5) {
+            fraction = (float) 0.5;
+        }
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        int alpha = (int) (Color.alpha(color) * fraction);
+        return Color.argb(alpha, red, green, blue);
+    }
+
+    private void initToolBar() {
+
+
+//        mFragment.binding.appbarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+//            @Override
+//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//                mFragment.binding.toolbar.setBackgroundResource(R.color.white);
+//                if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
+//                    if (!mFragment.isExpend) {
+//
+//                        StatusBarUtil.setStatusBarWrite(mFragment.getActivity());
+//
+//                    }
+//                } else {
+//                    float ff = Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange();
+//                    Log.e("测试数据:", ff + "");
+//                    mFragment.binding.toolbar.setBackgroundColor(changeAlpha(mFragment.getActivity().getResources().getColor(R.color.white), Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange()));
+//                    if (mFragment.isExpend) {
+//                        StatusBarUtil.setStatusBarDarkMode(mFragment.getActivity());
+//
+//                    }
+//
+//
+//                }
+//
+//            }
+//        });
+    }
+
 
 
     private void initBanner() {
@@ -57,7 +111,7 @@ public class MoveDbComingView implements MvpView {
         //====加载Banner数据====
         mFragment.binding.bannerMovies.setImageLoader(new BannerImageLoader());//设置图片加载器
         //设置显示圆形指示器和标题（水平显示）
-        mFragment.binding.bannerMovies.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        mFragment.binding.bannerMovies.setBannerStyle(BannerConfig.NOT_INDICATOR);
         //banner设置方法全部调用完毕时最后调用
 
 //        mBannerBeanList = MoveDbDataSaveUtlis.getBannerList(mFragment.getActivity());
@@ -96,7 +150,7 @@ public class MoveDbComingView implements MvpView {
         VideoWebListActivity.startVideoWebList(mFragment.getActivity());
     }
 
-    public void setData(BaseInfo<MoveDbComingInfo> data) {
+    public void setData(BaseInfo<MoveDbPopularInfo> data) {
 
         if (data.getData() != null && data.getData().getResults() != null) {
             moviesAdapter.addItems(data.getData().getResults());

@@ -1,11 +1,9 @@
 package com.wkq.order.modlue.developer.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.databinding.ViewDataBinding;
 
 import com.wkq.base.frame.fragment.MvpBindingFragment;
 import com.wkq.order.R;

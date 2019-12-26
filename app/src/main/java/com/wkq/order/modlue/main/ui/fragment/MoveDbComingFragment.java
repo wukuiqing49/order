@@ -23,6 +23,9 @@ import com.wkq.order.modlue.main.frame.view.MoveDbComingView;
  */
 public class MoveDbComingFragment extends MvpBindingFragment<MoveDbComingView, MoveDbComingPresenter, FragmentMovedbComingBinding> {
 
+    // 是否扩展
+    public boolean isExpend;
+
     public static MoveDbComingFragment newInstance(Context context) {
 
         Bundle args = new Bundle();

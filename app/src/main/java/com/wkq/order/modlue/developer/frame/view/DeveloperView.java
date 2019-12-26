@@ -10,6 +10,7 @@ import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.PixelsUtil;
 import com.wkq.order.modlue.developer.model.DeveloperInfo;
+import com.wkq.order.modlue.developer.ui.activity.ApiTestActivity;
 import com.wkq.order.modlue.developer.ui.adapter.DeveloperAdapter;
 import com.wkq.order.modlue.developer.ui.fragment.DeveloperFragment;
 import com.wkq.order.modlue.web.ui.PlayHelperActivity;
@@ -52,6 +53,7 @@ public class DeveloperView implements MvpView {
 
         list.add(new DeveloperInfo(3, "联系开发者"));
         list.add(new DeveloperInfo(4, "关于我们"));
+        list.add(new DeveloperInfo(5, "Api测试"));
 
 
         moviesAdapter.addItems(list);
@@ -78,7 +80,7 @@ public class DeveloperView implements MvpView {
                         showMessage("关于我们");
                         break;
                     case 5:
-
+                        ApiTestActivity.startActivity(mFragment.getActivity());
                         break;
 
                 }
@@ -92,6 +94,7 @@ public class DeveloperView implements MvpView {
         mFragment.binding.refreshLayout.setEnableOverScrollDrag(true);
         mFragment.binding.refreshLayout.setEnableFooterFollowWhenLoadFinished(true);
         mFragment.binding.refreshLayout.setEnablePureScrollMode(true);
+
 
         mFragment.binding.scrool.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             int offset = mFragment.binding.scrool.getChildAt(0).getHeight() - mFragment.binding.scrool.getHeight();

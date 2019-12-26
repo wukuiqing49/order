@@ -15,6 +15,8 @@ import com.wkq.net.logic.callback.DataCallback;
 import com.wkq.net.logic.callback.FailureCallback;
 import com.wkq.net.model.MoveDbComingInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
+import com.wkq.net.model.MoveDbPopularInfo;
+import com.wkq.order.modlue.developer.ui.activity.ApiTestActivity;
 import com.wkq.order.modlue.main.frame.view.MoveDbComingView;
 
 import java.util.HashMap;
@@ -36,22 +38,40 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
 
     public void getData(FragmentActivity activity) {
 
-        HashMap<String, String> requestMap = new HashMap<>();
+//        HashMap<String, String> requestMap = new HashMap<>();
+//        requestMap.put("page", 1 + "");
+//        eventData = Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbComingInfo>>() {
+//            @Override
+//            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbComingInfo>> callback) {
+//                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getUpComing(data)).subscribe(activity, callback);
+//            }
+//        }).<BaseInfo<MoveDbComingInfo>>event().setFailureCallback(new FailureCallback() {
+//            @Override
+//            public void onFailure(int state, String message) {
+//                Log.e("", "");
+//            }
+//        }).setSuccessCallback(data -> {
+//            Log.e("", "");
+//            if (data != null && getView() != null) getView().setData(data);
+//        }).start();
+
+        Map<String, String> requestMap = new HashMap<>();
         requestMap.put("page", 1 + "");
-        eventData = Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbComingInfo>>() {
+
+
+        eventData =   Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbPopularInfo>>() {
             @Override
-            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbComingInfo>> callback) {
-                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getUpComing(data)).subscribe(activity, callback);
+            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbPopularInfo>> callback) {
+                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getPopular(data)).subscribe(activity, callback);
             }
-        }).<BaseInfo<MoveDbComingInfo>>event().setFailureCallback(new FailureCallback() {
-            @Override
-            public void onFailure(int state, String message) {
-                Log.e("", "");
-            }
-        }).setSuccessCallback(data -> {
+        }).<BaseInfo<MoveDbPopularInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");
+
+        }).setSuccessCallback(data -> {
             if (data != null && getView() != null) getView().setData(data);
+
         }).start();
+
 
     }
 

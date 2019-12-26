@@ -2,7 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_f4f4f4"
@@ -26,8 +26,9 @@
                     android:id="@+id/collapsing_topbar_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_scrollFlags="scroll"
+
                     app:qmui_collapsedTitleGravity="center"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:qmui_contentScrim="@color/color_f4f4f4"
                     app:qmui_statusBarScrim="@color/color_f4f4f4">
 
@@ -43,6 +44,22 @@
                         app:indicator_width="8dp"
                         app:is_auto_play="true" />
 
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/toolbar"
+                        android:background="@color/transparent"
+                        app:layout_collapseMode="pin"
+                        android:layout_height="90dp">
+
+                        <TextView
+                            android:layout_marginTop="50dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="测试"/>
+                    </com.google.android.material.appbar.AppBarLayout>
+
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -57,7 +74,41 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+        <RelativeLayout
 
-    </LinearLayout>
+            android:id="@+id/topViewTest"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+
+            android:clickable="true"
+            android:visibility="gone">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/movie_6" />
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:id="@+id/topUserIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="微影"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
 </layout>

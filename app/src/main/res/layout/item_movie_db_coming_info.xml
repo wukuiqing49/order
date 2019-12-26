@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.wkq.net.model.MoveDbComingInfo.ResultsBean" />
+            type="com.wkq.net.model.MoveDbPopularInfo.ResultsBean" />
 
     </data>
 

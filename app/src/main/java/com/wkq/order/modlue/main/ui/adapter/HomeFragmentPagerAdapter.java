@@ -38,11 +38,12 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
 
             case 0:
+                fragment = MoveDbComingFragment.newInstance(context);
 
-                fragment = MoviesFragment.newInstance(context, "0");
+
                 break;
             case 1:
-                fragment = MoveDbComingFragment.newInstance(context);
+                fragment = MoviesFragment.newInstance(context, "0");
 
                 break;
             case 2:
