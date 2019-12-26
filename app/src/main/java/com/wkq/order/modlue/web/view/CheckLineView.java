@@ -8,20 +8,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.DateTimeUtil;
+import com.wkq.database.dao.AdTimeInfo;
+import com.wkq.database.utils.DataBaseUtils;
 import com.wkq.order.BuildConfig;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.model.CheckLineInfo;
 import com.wkq.order.modlue.web.ui.CheckLineActivity;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
-import com.wkq.order.modlue.web.ui.WebDemoActivity;
 import com.wkq.order.modlue.web.ui.adapter.CheckLineAdapter;
-import com.wkq.order.realm.AdTimeDao;
 import com.wkq.order.utils.DataBindingAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.realm.Realm;
 
 /**
  * 作者: 吴奎庆
@@ -100,31 +98,14 @@ public class CheckLineView implements MvpView {
 
     private void checkAdTime(CheckLineInfo info) {
         String time = DateTimeUtil.getCurrentTime();
-        Realm realm = Realm.getDefaultInstance();
-        AdTimeDao adTimeDao = realm.where(AdTimeDao.class).findFirst();
-        if (adTimeDao == null) {
-
-            adTimeDao = realm.createObject(AdTimeDao.class,BuildConfig.APP_ID);
-            adTimeDao.setKey(BuildConfig.APP_ID);
-            adTimeDao.setAdClickCount(1);
-            adTimeDao.setNowTime(time);
-
-        } else {
-            int count = adTimeDao.getAdClickCount() + 1;
-            realm.beginTransaction();
-            adTimeDao.setNowTime(time);
-            adTimeDao.setAdClickCount(count);
-
-        }
-        AdTimeDao adTimeDaos = realm.where(AdTimeDao.class).findFirst();
-        if (adTimeDaos.getAdClickCount() > 3) {
+        DataBaseUtils.updateAdTimeInfo(mActivity, BuildConfig.APP_ID, time);
+        AdTimeInfo adTimeInfo = DataBaseUtils.getAdTimeInfo(mActivity, BuildConfig.APP_ID);
+        if (adTimeInfo != null && adTimeInfo.getAdTime().equals(time) && adTimeInfo.getAdClickCount() >= BuildConfig.APP_AD_COUNT) {
             VideoWebviewActivity.startActivity(mActivity, info.getLineUrl().concat(mActivity.videoUrl));
-
+            mActivity.finish();
         } else {
             showMessage("点击广告");
         }
-
-
     }
 
     public void showMessage(String message) {

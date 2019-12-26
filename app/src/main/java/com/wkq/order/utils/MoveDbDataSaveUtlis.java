@@ -34,74 +34,15 @@ public class MoveDbDataSaveUtlis {
         String data = SharedPreferencesHelper.getInstance(context).getValue(Constant.MOVE_DB_TYPE_KEY);
         if (!TextUtils.isEmpty(data)) return;
 
-//        {
-//            "id": 10759,
-//                "name": "动作冒险"
-//        },
-//        {
-//            "id": 16,
-//                "name": "动画"
-//        },
-//        {
-//            "id": 35,
-//                "name": "喜剧"
-//        },
-//        {
-//            "id": 80,
-//                "name": "犯罪"
-//        },
-//        {
-//            "id": 99,
-//                "name": "纪录"
-//        },
-//        {
-//            "id": 18,
-//                "name": "剧情"
-//        },
-//        {
-//            "id": 10751,
-//                "name": "家庭"
-//        },
-//        {
-//            "id": 10762,
-//                "name": "儿童"
-//        },
-//        {
-//            "id": 9648,
-//                "name": "悬疑"
-//        },
-//        {
-//            "id": 10763,
-//                "name": "新闻"
-//        },
-//        {
-//            "id": 10764,
-//                "name": "真人秀"
-//        },
-//        {
-//            "id": 10765,
-//                "name": "Sci-Fi & Fantasy"
-//        },
-//        {
-//            "id": 10766,
-//                "name": "肥皂剧"
-//        },
-//        {
-//            "id": 10767,
-//                "name": "脱口秀"
-//        },
-//        {
-//            "id": 10768,
-//                "name": "War & Politics"
-//        },
-//        {
-//            "id": 37,
-//                "name": "西部"
-//        }
-
         List<MoveDbMoveType> types = new ArrayList<>();
         types.add(new MoveDbMoveType(37, "西部"));
-        types.add(new MoveDbMoveType(10768, "战争"));
+        types.add(new MoveDbMoveType(10402, "音乐"));
+        types.add(new MoveDbMoveType(10749, "爱情"));
+        types.add(new MoveDbMoveType(36, "历史"));
+        types.add(new MoveDbMoveType(53, "惊悚"));
+        types.add(new MoveDbMoveType(878, "科幻"));
+        types.add(new MoveDbMoveType(10752, "战争"));
+        types.add(new MoveDbMoveType(27, "恐怖"));
         types.add(new MoveDbMoveType(10767, "脱口秀"));
         types.add(new MoveDbMoveType(10766, "肥皂剧"));
         types.add(new MoveDbMoveType(10765, "科幻"));
@@ -117,6 +58,7 @@ public class MoveDbDataSaveUtlis {
         types.add(new MoveDbMoveType(10759, "动作冒险"));
         types.add(new MoveDbMoveType(16, "动画片"));
         types.add(new MoveDbMoveType(28, "动作"));
+        types.add(new MoveDbMoveType(12, "冒险"));
         String typeStrings = MoveDbDataSaveUtlis.list2json(types);
         SharedPreferencesHelper.getInstance(context).setValue(Constant.MOVE_DB_TYPE_KEY, typeStrings);
     }

@@ -46,7 +46,9 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
 //
 
     //IM 接口域名
-    private static final String BASE_MOVE_DB = "https://api.themoviedb.org/3/movie/";
+    private static final String BASE_MOVE_DB = "https://api.themoviedb.org/3/";
+    //IM 接口域名
+    private static final String BASE_MOVE_DB_SEARCH = "https://api.themoviedb.org/3/search/";
 
 //    //IM 测试环境 接口域名
 //    public static final String IM_DEBUG_URL = "http://imtest.cnlive.com/";

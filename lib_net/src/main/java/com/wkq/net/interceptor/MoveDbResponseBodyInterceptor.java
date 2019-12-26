@@ -32,6 +32,7 @@ public abstract class MoveDbResponseBodyInterceptor implements Interceptor {
         HttpUrl.Builder authorizedUrlBuilder = request.url().newBuilder();
         authorizedUrlBuilder.addQueryParameter("api_key", "9d16633c17134f489c1f643b3b4e274d");
         authorizedUrlBuilder.addQueryParameter("language", "zh");
+        authorizedUrlBuilder.addQueryParameter("region", "CN");
 
 
         Request newRequest = request.newBuilder()

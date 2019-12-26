@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'realm-android'
 
 static def stringValue(def value) {
     return "\"${value}\""
@@ -73,6 +72,7 @@ android {
 
             buildConfigField("boolean", "VERSION_AS_DEBUG", "true")
             buildConfigField("String", "APP_ID", stringValue("wu199149"))
+            buildConfigField("int", "APP_AD_COUNT", "3")
 
         }
         release {
@@ -81,8 +81,9 @@ android {
             //debug是否开启
             debuggable = true
 
-
+            buildConfigField("boolean", "VERSION_AS_DEBUG", "false")
             buildConfigField("String", "APP_ID", stringValue("wu199149"))
+            buildConfigField("int", "APP_AD_COUNT", "3")
 //            manifestPlaceholders = [
 //                    TINGYUN_SCHEME   : "tingyun.33867",
 //                    APP_START_HOST   : "wjjh5.cnlive.com",
@@ -96,8 +97,6 @@ android {
 //            ]
         }
     }
-
-
 
 
     android.applicationVariants.all { variant ->
@@ -123,6 +122,9 @@ dependencies {
     implementation project(path: ':lib_net')
     implementation project(path: ':lib_qr')
     implementation project(path: ':lib_base')
+    implementation project(path: ':lib_database')
+
+
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
 
@@ -147,5 +149,5 @@ dependencies {
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.SmartRefreshHeader"
 
     implementation 'com.youth.banner:banner:1.4.10'
-    implementation 'io.realm:realm-android-library:3.5.0'
+
 }
