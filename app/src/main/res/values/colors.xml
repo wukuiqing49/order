@@ -55,5 +55,7 @@
     <color name="color_333">#ff333333</color>
     <color name="color_666">#ff666666</color>
     <color name="color_999">#ff999999</color>
+    <color name="color_6bd">#ff6BD17A</color>
+    <color name="color_2b2b2b">#2B2B2B</color>
 
 </resources>

@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.wkq.base.utlis.TimerHelper;
 import com.wkq.net.ApiRequest;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.api.ApiMoveDb;
@@ -26,12 +27,11 @@ import com.wkq.net.model.MoveDbTopRatedInfo;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityApiTestBinding;
 import com.wkq.order.modlue.main.ui.HomeActivity;
-import com.wkq.order.modlue.web.ui.PlayHelperActivity;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.reactivex.disposables.Disposable;
 
@@ -45,7 +45,7 @@ import io.reactivex.disposables.Disposable;
 public class ApiTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityApiTestBinding binding;
-
+    TimerHelper  timerHelper;
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ApiTestActivity.class);
         Activity activity = (Activity) context;
@@ -59,6 +59,16 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
         binding = DataBindingUtil.setContentView(this, R.layout.activity_api_test);
 
         binding.setOnclick(this);
+
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//
+//            @Override
+//            public void run() {
+//                getMoveTop();
+//            }
+//        }, 3000,3000);
+
     }
 
     @Override
@@ -108,7 +118,7 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
         }).start();
 
     }
-
+    int count=0;
     private void getMoveTop() {
 
         Map<String, String> requestMap = new HashMap<>();
@@ -121,9 +131,12 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
             }
         }).<BaseInfo<MoveDbTopRatedInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");
+            Log.e("数据请求失败:", "---------------------------------------------------------");
 
         }).setSuccessCallback(data -> {
-            Log.e("", "");
+            count+=1;
+            Log.e("数据请求成功:", data.getData().getTotal_results()+"请求次数:--------"+count);
+
 
         }).start();
 

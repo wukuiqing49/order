@@ -6,7 +6,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_f4f4f4"
-
         android:orientation="vertical">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,45 +19,45 @@
                 android:id="@+id/appbarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_f4f4f4">
+                android:background="@color/transparent"
+                app:elevation="0dp">
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:id="@+id/collapsing_topbar_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    app:qmui_collapsedTitleGravity="center"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                    app:qmui_contentScrim="@color/color_f4f4f4"
-                    app:qmui_statusBarScrim="@color/color_f4f4f4">
+                    app:contentScrim="@color/color_2b2b2b"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
                     <com.youth.banner.Banner
                         android:id="@+id/banner_movies"
                         android:layout_width="match_parent"
                         android:layout_height="211dp"
-
                         app:image_scale_type="fit_xy"
                         app:indicator_height="8dp"
+
                         app:indicator_margin="4dp"
                         app:indicator_width="8dp"
-                        app:is_auto_play="true" />
+                        app:is_auto_play="true"
+                        app:layout_collapseMode="parallax"
+                        app:layout_collapseParallaxMultiplier="0.7" />
 
-                    <com.google.android.material.appbar.AppBarLayout
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
                         android:background="@color/transparent"
-                        app:layout_collapseMode="pin"
-                        android:layout_height="90dp">
+                        app:layout_collapseMode="pin">
 
                         <TextView
-                            android:layout_marginTop="50dp"
-                            android:layout_gravity="center"
-                            android:textColor="@color/white"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="测试"/>
-                    </com.google.android.material.appbar.AppBarLayout>
+                            android:layout_marginTop="50dp"
+                            android:text="测试"
+                            android:textColor="@color/color_333" />
+                    </androidx.appcompat.widget.Toolbar>
 
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -69,7 +68,7 @@
                 android:id="@+id/rv_movies"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -91,13 +90,13 @@
                 android:src="@mipmap/movie_6" />
 
             <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
                 android:id="@+id/topUserIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_vertical"
+
+                android:layout_marginTop="40dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="微影"

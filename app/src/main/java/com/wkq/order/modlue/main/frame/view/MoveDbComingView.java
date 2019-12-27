@@ -60,6 +60,7 @@ public class MoveDbComingView implements MvpView {
         mFragment.binding.rvMovies.setAdapter(moviesAdapter);
 
     }
+
     /**
      * 根据百分比改变颜色透明度
      */
@@ -77,32 +78,23 @@ public class MoveDbComingView implements MvpView {
     private void initToolBar() {
 
 
-//        mFragment.binding.appbarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                mFragment.binding.toolbar.setBackgroundResource(R.color.white);
-//                if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
-//                    if (!mFragment.isExpend) {
-//
-//                        StatusBarUtil.setStatusBarWrite(mFragment.getActivity());
-//
-//                    }
-//                } else {
-//                    float ff = Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange();
-//                    Log.e("测试数据:", ff + "");
-//                    mFragment.binding.toolbar.setBackgroundColor(changeAlpha(mFragment.getActivity().getResources().getColor(R.color.white), Math.abs(verticalOffset * 1.0f) / appBarLayout.getTotalScrollRange()));
-//                    if (mFragment.isExpend) {
-//                        StatusBarUtil.setStatusBarDarkMode(mFragment.getActivity());
-//
-//                    }
-//
-//
-//                }
-//
-//            }
-//        });
+        mFragment.binding.appbarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
+                    if (!mFragment.isExpend) {
+                        StatusBarUtil.setLightMode(mFragment.getActivity());
+                        mFragment.isExpend = !mFragment.isExpend;
+                    }
+                } else {
+                    if (mFragment.isExpend) {
+                        StatusBarUtil.setDarkMode(mFragment.getActivity());
+                        mFragment.isExpend = !mFragment.isExpend;
+                    }
+                }
+            }
+        });
     }
-
 
 
     private void initBanner() {

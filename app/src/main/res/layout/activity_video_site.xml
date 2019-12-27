@@ -2,7 +2,9 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-    <import type="android.view.View.OnClickListener"/>
+
+        <import type="android.view.View.OnClickListener" />
+
         <variable
             name="listener"
             type="OnClickListener" />
@@ -16,27 +18,23 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/cd_play"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="20dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="20dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="150dp"
-            app:cardElevation="10dp"
-            app:cardPreventCornerOverlap="true"
-            >
-
-            <ImageView
-                android:id="@+id/cd_play"
-                android:onClick="@{listener}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/video_play" />
-        </androidx.cardview.widget.CardView>
+            android:backgroundTint="@color/color_6bd"
+            android:clickable="true"
+            android:onClick="@{listener}"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/iv_video_play"
+            app:borderWidth="0dp"
+            app:elevation="5dp"
+            app:rippleColor="@android:color/transparent" />
 
 
     </RelativeLayout>
