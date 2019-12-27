@@ -1,30 +1,26 @@
 package com.wkq.order.modlue.main.frame.view;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.PixelsUtil;
 import com.wkq.base.utlis.RandomUtil;
-import com.wkq.base.utlis.SharedPreferencesHelper;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.net.BaseInfo;
-import com.wkq.net.model.MoveDbComingInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
 import com.wkq.net.model.MoveDbPopularInfo;
-import com.wkq.order.R;
 import com.wkq.order.modlue.main.modle.BannerInfo;
-import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;
+import com.wkq.order.modlue.move.ui.MoveDetailActivity;
+import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.utils.BannerImageLoader;
 import com.wkq.order.utils.Constant;
+import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.MoveDbDataSaveUtlis;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -58,6 +54,16 @@ public class MoveDbComingView implements MvpView {
 
         mFragment.binding.rvMovies.setLayoutManager(new LinearLayoutManager(mFragment.getActivity()));
         mFragment.binding.rvMovies.setAdapter(moviesAdapter);
+
+        moviesAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
+            @Override
+            public void onViewClick(View v, Object program) {
+                MoveDbPopularInfo.ResultsBean bean= (MoveDbPopularInfo.ResultsBean) program;
+                MoveDetailActivity.startMoveDetail(mFragment.getActivity(),bean.getId()+"");
+
+
+            }
+        });
 
     }
 
@@ -116,7 +122,7 @@ public class MoveDbComingView implements MvpView {
                 if (bannerInfo.getUrlPath().equals("1008611"))
                     startVideoPlay();
                 else
-                    showMessage("待开发");
+                    MoveDetailActivity.startMoveDetail(mFragment.getActivity(),mBannerBeanList.get(position).getUrlPath());
             }
         });
 

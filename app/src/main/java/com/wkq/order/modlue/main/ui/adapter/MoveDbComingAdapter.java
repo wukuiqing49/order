@@ -43,6 +43,8 @@ public class MoveDbComingAdapter extends DataBindingAdapter<MoveDbPopularInfo.Re
             String type = MoveDbDataSaveUtlis.getType(mContext, getItem(position).getGenre_ids().get(0));
             binding.tvType.setText(type);
         }
+        binding.root.setOnClickListener(view -> viewClickListener.onViewClick(view,getItem(position)));
+
 
         RequestOptions options = RequestOptions.bitmapTransform(new GlideRoundedCornersTransform(5, GlideRoundedCornersTransform.CornerType.ALL)).placeholder(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading).priority(Priority.HIGH);
         Glide.with(mContext).load(Constant.MOVE_DB_IMG_BASE_200.concat(getItem(position).getPoster_path())).apply(options).into(binding.ivImage);

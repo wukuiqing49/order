@@ -120,6 +120,13 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".modlue.move.ui.MoveDetailActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
 
     </application>
