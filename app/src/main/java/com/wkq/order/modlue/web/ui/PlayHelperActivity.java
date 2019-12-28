@@ -24,7 +24,9 @@ import com.wkq.order.modlue.main.modle.PlayHelpInfo;
 import com.wkq.order.modlue.main.ui.adapter.PlayHelpAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
 
@@ -81,10 +83,13 @@ public class PlayHelperActivity extends AppCompatActivity {
         binding.rvPlayHelp.setAdapter(mAdapter);
         mAdapter.addItems(steps);
 
+        Map<String, String> requestMap = new HashMap<>();
+        requestMap.put("append_to_response", "similar_movies,alternative_titles,images");
+
         Logic.create("419704").action(new Logic.Action<String, BaseInfo<MoveDbMoveDetailInfo>>() {
             @Override
             public Disposable action(String data, DataCallback<BaseInfo<MoveDbMoveDetailInfo>> callback) {
-                return ApiRequest.serviceMoveDb(ApiMoveDb.class ,apiMoveDb -> apiMoveDb.getMovieDetail(data)).subscribe(PlayHelperActivity.this,callback);
+                return ApiRequest.serviceMoveDb(ApiMoveDb.class ,apiMoveDb -> apiMoveDb.getMovieDetail(data,requestMap)).subscribe(PlayHelperActivity.this,callback);
             }
         }).<BaseInfo<MoveDbMoveDetailInfo>>event().setFailureCallback((state, message) -> {
             Log.e("","");

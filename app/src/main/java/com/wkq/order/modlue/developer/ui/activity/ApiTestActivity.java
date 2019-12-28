@@ -45,7 +45,8 @@ import io.reactivex.disposables.Disposable;
 public class ApiTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityApiTestBinding binding;
-    TimerHelper  timerHelper;
+    TimerHelper timerHelper;
+
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, ApiTestActivity.class);
         Activity activity = (Activity) context;
@@ -118,7 +119,9 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
         }).start();
 
     }
-    int count=0;
+
+    int count = 0;
+
     private void getMoveTop() {
 
         Map<String, String> requestMap = new HashMap<>();
@@ -134,8 +137,8 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
             Log.e("数据请求失败:", "---------------------------------------------------------");
 
         }).setSuccessCallback(data -> {
-            count+=1;
-            Log.e("数据请求成功:", data.getData().getTotal_results()+"请求次数:--------"+count);
+            count += 1;
+            Log.e("数据请求成功:", data.getData().getTotal_results() + "请求次数:--------" + count);
 
 
         }).start();
@@ -206,10 +209,13 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void getMoveDetail() {
+//        similar_movies,alternative_titles,images
+        Map<String, String> requestMap = new HashMap<>();
+        requestMap.put("append_to_response", "similar_movies,alternative_titles,images");
         Logic.create("419704").action(new Logic.Action<String, BaseInfo<MoveDbMoveDetailInfo>>() {
             @Override
             public Disposable action(String data, DataCallback<BaseInfo<MoveDbMoveDetailInfo>> callback) {
-                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getMovieDetail(data)).subscribe(ApiTestActivity.this, callback);
+                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getMovieDetail(data, requestMap)).subscribe(ApiTestActivity.this, callback);
             }
         }).<BaseInfo<MoveDbMoveDetailInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");

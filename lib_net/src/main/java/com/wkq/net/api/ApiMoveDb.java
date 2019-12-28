@@ -6,7 +6,9 @@ import com.wkq.net.model.MoveDbMoveDetailInfo;
 import com.wkq.net.model.MoveDbMoveImagesInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
 import com.wkq.net.model.MoveDbPopularInfo;
+import com.wkq.net.model.MoveDbReviewsInfo;
 import com.wkq.net.model.MoveDbSearchInfo;
+import com.wkq.net.model.MoveDbSimilarInfo;
 import com.wkq.net.model.MoveDbTopRatedInfo;
 
 import java.util.Map;
@@ -54,12 +56,15 @@ public interface ApiMoveDb {
 
     /**
      * 电影详细信息
+     * <p>
+     * similar_movies  相似电影  关键字 alternative_titles  片花 images
+     * similar_movies,alternative_titles,images   参数名是 append_to_response
      *
      * @param movieId
-     * @return https://api.themoviedb.org/3/movie/419704?api_key=9d16633c17134f489c1f643b3b4e274d&language=zh
+     * @return https://api.themoviedb.org/3/movie/51533?api_key=9d16633c17134f489c1f643b3b4e274d&language=zh&append_to_response=similar_movies%2Calternative_titles%2Cimages
      */
     @GET("movie/{id}")
-    Observable<Result<BaseInfo<MoveDbMoveDetailInfo>>> getMovieDetail(@Path("id") String movieId);
+    Observable<Result<BaseInfo<MoveDbMoveDetailInfo>>> getMovieDetail(@Path("id") String movieId, @QueryMap Map<String, String> requestMap);
 
     /**
      * top 排行榜
@@ -108,6 +113,28 @@ public interface ApiMoveDb {
      */
     @GET("movie/{id}/images")
     Observable<Result<BaseInfo<MoveDbMoveImagesInfo>>> getMoveImages(@Path("id") String movieId);
+
+    /**
+     * 获取评论的接口
+     *
+     * @param movieId
+     * @return page  页数   返回数据没有中文
+     * <p>
+     * https://api.themoviedb.org/3/movie/278/reviews?api_key=9d16633c17134f489c1f643b3b4e274d&page=1
+     */
+    @GET("movie/{id}/reviews")
+    Observable<Result<BaseInfo<MoveDbReviewsInfo>>> getReviews(@Path("id") String movieId, @QueryMap Map<String, String> requestMap);
+
+    /**
+     * 获取相似电影
+     *
+     * @param movieId
+     * @return page  页数
+     * <p>
+     * https://api.themoviedb.org/3/movie/51533/similar?api_key=9d16633c17134f489c1f643b3b4e274d&language=zh&page=1
+     */
+    @GET("movie/{id}/reviews")
+    Observable<Result<BaseInfo<MoveDbSimilarInfo>>> getSimilar(@Path("id") String movieId, @QueryMap Map<String, String> requestMap);
 
 
 }
