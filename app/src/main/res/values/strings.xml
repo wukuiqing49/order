@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">微影</string>
+
+    <string name="string_time_playing">%s %s分钟</string>
     <string name="string_data_err">数据异常</string>
+
 </resources>

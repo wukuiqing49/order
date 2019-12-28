@@ -57,7 +57,7 @@ public interface ApiMoveDb {
     /**
      * 电影详细信息
      * <p>
-     * similar_movies  相似电影  关键字 alternative_titles  片花 images
+     * similar_movies  相似电影  关键字 alternative_titles  片花 images  credits  演员列表
      * similar_movies,alternative_titles,images   参数名是 append_to_response
      *
      * @param movieId

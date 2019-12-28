@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.databinding.ViewDataBinding;
 
@@ -23,7 +24,7 @@ import com.wkq.order.modlue.move.frame.view.MoveDailView;
  */
 
 
-public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDetailPresenter, ActivityMoveDetailBinding> {
+public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDetailPresenter, ActivityMoveDetailBinding> implements View.OnClickListener {
 
     public String moveId;
 
@@ -49,5 +50,23 @@ public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDet
         }
         if (getMvpView() != null) getMvpView().initView();
         if (getPresenter() != null) getPresenter().getMoveDetail(this,moveId);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+
+            case R.id.rl_back:
+
+                finish();
+                break;
+
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (getPresenter()!=null)getPresenter().cancel();
     }
 }
