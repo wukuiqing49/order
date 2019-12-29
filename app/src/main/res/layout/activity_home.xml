@@ -19,7 +19,7 @@
         <com.qmuiteam.qmui.widget.tab.QMUITabSegment
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/home_tab_height"
+            android:layout_height="65dp"
             android:layout_gravity="bottom"
             android:background="@color/qmui_config_color_white"
             android:textSize="12sp"

@@ -1,4 +1,4 @@
-package com.wkq.order.modlue.move.ui;
+package com.wkq.order.modlue.move.ui.adapter;
 
 import android.content.Context;
 

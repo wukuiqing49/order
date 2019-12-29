@@ -8,9 +8,11 @@ import org.greenrobot.greendao.generator.Schema;
 public class MainDaoGenerator {
 
     public static void main(String args[]) throws Exception {
-        Schema schema = new Schema(1, "com.wkq.database.dao");
+        Schema schema = new Schema(2, "com.wkq.database.dao");
         addDefautDao(schema);
         addAdTimeInfo(schema);
+        addTopBanneInfo(schema);
+        addHomeMoveDbDataHitory(schema);
         new DaoGenerator().generateAll(schema, args[0]);
     }
 
@@ -31,5 +33,25 @@ public class MainDaoGenerator {
         uploadVideo.addStringProperty("AdTime").notNull();
         uploadVideo.addIntProperty("AdClickCount").notNull();
     }
+
+
+    private static void addTopBanneInfo(Schema schema) {
+
+        Entity uploadVideo = schema.addEntity("HomeTopBannerInfo");
+        uploadVideo.setHasKeepSections(true);
+        uploadVideo.addStringProperty("key").primaryKey();
+        uploadVideo.addStringProperty("data").notNull();
+    }
+
+
+    private static void addHomeMoveDbDataHitory(Schema schema) {
+
+        Entity uploadVideo = schema.addEntity("MoveDbDataHitory");
+        uploadVideo.setHasKeepSections(true);
+        uploadVideo.addStringProperty("key").primaryKey();
+        uploadVideo.addStringProperty("data").notNull();
+
+    }
+
 
 }

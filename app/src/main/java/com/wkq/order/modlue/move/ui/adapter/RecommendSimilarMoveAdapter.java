@@ -39,6 +39,10 @@ public class RecommendSimilarMoveAdapter extends DataBindingAdapter<MoveDbMoveDe
 
         GlideUtlis.loadMoveImg200(context, getItem(position).getPoster_path(), binding.ivIcon);
 
+        binding.root.setOnClickListener(view -> {
+            viewClickListener.onViewClick(view,getItem(position));
+        });
+
 
     }
 }

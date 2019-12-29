@@ -147,7 +147,15 @@ dependencies {
     //刷新库
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.SmartRefreshLayout"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.SmartRefreshHeader"
-
+    //轮播图
     implementation 'com.youth.banner:banner:1.4.10'
+    //加载状态
+    implementation 'com.tuyenmonkey:mkloader:1.4.0'
+    //星星
+    implementation 'com.xl.ratingbar:ratingbar:0.1.1'
+    //指针
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+    // 图片展示
+    implementation 'com.github.wukuiqing49:Large:1.0.92'
 
 }

@@ -56,4 +56,15 @@ public class GlideUtlis {
         Glide.with(context).load(Constant.MOVE_DB_IMG_BASE_500.concat(path)).apply(requestOptions).into(view);
 
     }
+
+    public static void loadMoveImg200Round(Context context, String path, ImageView view) {
+        if (TextUtils.isEmpty(path))path="";
+
+        RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transform(new GlideRoundedCornersTransform(2,GlideRoundedCornersTransform.CornerType.TOP));
+
+        Glide.with(context).load(Constant.MOVE_DB_IMG_BASE_200.concat(path)).apply(requestOptions).into(view);
+
+    }
 }

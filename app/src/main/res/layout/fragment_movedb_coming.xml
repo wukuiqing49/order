@@ -34,7 +34,7 @@
                         android:id="@+id/banner_movies"
                         android:layout_width="match_parent"
                         android:layout_height="211dp"
-                        app:image_scale_type="fit_xy"
+                        app:image_scale_type="center_crop"
                         app:indicator_height="8dp"
 
                         app:indicator_margin="4dp"

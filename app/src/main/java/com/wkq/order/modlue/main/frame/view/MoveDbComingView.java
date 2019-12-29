@@ -1,15 +1,22 @@
 package com.wkq.order.modlue.main.frame.view;
 
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.RandomUtil;
+import com.wkq.base.utlis.SharedPreferencesHelper;
 import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.database.dao.HomeTopBannerInfo;
+import com.wkq.database.dao.MoveDbDataHitory;
+import com.wkq.database.utils.DataBaseUtils;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
 import com.wkq.net.model.MoveDbPopularInfo;
@@ -25,8 +32,12 @@ import com.wkq.order.utils.MoveDbDataSaveUtlis;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.wkq.order.utils.Constant.MOVE_DB_HOME_BANNER_KEY;
+import static com.wkq.order.utils.Constant.MOVE_DB_HOME_DATA_KEY;
 
 /**
  * 作者: 吴奎庆
@@ -58,12 +69,21 @@ public class MoveDbComingView implements MvpView {
         moviesAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
             @Override
             public void onViewClick(View v, Object program) {
-                MoveDbPopularInfo.ResultsBean bean= (MoveDbPopularInfo.ResultsBean) program;
-                MoveDetailActivity.startMoveDetail(mFragment.getActivity(),bean.getId()+"");
+                MoveDbPopularInfo.ResultsBean bean = (MoveDbPopularInfo.ResultsBean) program;
+                MoveDetailActivity.startMoveDetail(mFragment.getActivity(), bean.getId() + "");
 
 
             }
         });
+
+        if (DataBaseUtils.getMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY) != null) {
+            MoveDbDataHitory info = DataBaseUtils.getMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY);
+            Gson gson = new Gson();
+            MoveDbPopularInfo historyData = gson.fromJson(info.getData(), MoveDbPopularInfo.class);
+            moviesAdapter.addItems(historyData.getResults());
+
+        }
+
 
     }
 
@@ -110,11 +130,21 @@ public class MoveDbComingView implements MvpView {
         mFragment.binding.bannerMovies.setImageLoader(new BannerImageLoader());//设置图片加载器
         //设置显示圆形指示器和标题（水平显示）
         mFragment.binding.bannerMovies.setBannerStyle(BannerConfig.NOT_INDICATOR);
-        //banner设置方法全部调用完毕时最后调用
 
-//        mBannerBeanList = MoveDbDataSaveUtlis.getBannerList(mFragment.getActivity());
-        mBannerBeanList = MoveDbDataSaveUtlis.getBannerList(mFragment.getActivity());
-        playBaner();
+
+
+
+
+
+        if (DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY) != null) {
+            HomeTopBannerInfo info = DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY);
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<BannerInfo>>() {
+            }.getType();
+            mBannerBeanList = gson.fromJson(info.getData(), type);
+            playBaner();
+        }
+
         mFragment.binding.bannerMovies.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
@@ -122,7 +152,7 @@ public class MoveDbComingView implements MvpView {
                 if (bannerInfo.getUrlPath().equals("1008611"))
                     startVideoPlay();
                 else
-                    MoveDetailActivity.startMoveDetail(mFragment.getActivity(),mBannerBeanList.get(position).getUrlPath());
+                    MoveDetailActivity.startMoveDetail(mFragment.getActivity(), mBannerBeanList.get(position).getUrlPath());
             }
         });
 
@@ -149,10 +179,16 @@ public class MoveDbComingView implements MvpView {
     }
 
     public void setData(BaseInfo<MoveDbPopularInfo> data) {
+        Gson gson = new Gson();
+        String dataStr = gson.toJson(data.getData());
+        DataBaseUtils.insertMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY, dataStr);
 
-        if (data.getData() != null && data.getData().getResults() != null) {
-            moviesAdapter.addItems(data.getData().getResults());
+        if (DataBaseUtils.getMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY) == null) {
+            if (data.getData() != null && data.getData().getResults() != null) {
+                moviesAdapter.addItems(data.getData().getResults());
+            }
         }
+
 
     }
 
@@ -178,8 +214,16 @@ public class MoveDbComingView implements MvpView {
                 BannerInfo bannerBean = new BannerInfo(info.getTitle(), Constant.MOVE_DB_IMG_BASE_400.concat(info.getPoster_path()), info.getId() + "");
                 mBannerBeanList.add(bannerBean);
             }
-            MoveDbDataSaveUtlis.saveBannerData(mFragment.getActivity(), mBannerBeanList);
-            playBaner();
+
+            Gson gson2 = new Gson();
+            String bannerStr = gson2.toJson(mBannerBeanList);
+            DataBaseUtils.insertHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY, bannerStr);
+
+            if (DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY) == null) {
+                playBaner();
+            }
+
+//
         }
     }
 }

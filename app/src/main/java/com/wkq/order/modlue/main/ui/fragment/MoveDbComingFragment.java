@@ -49,4 +49,10 @@ public class MoveDbComingFragment extends MvpBindingFragment<MoveDbComingView, M
         if (getPresenter() != null) getPresenter().getData(getActivity());
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getPresenter()!=null)getPresenter().cancel();
+    }
 }

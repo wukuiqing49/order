@@ -4,13 +4,10 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.wkq.order.R;
 import com.youth.banner.loader.ImageLoader;
-
-import static com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade;
 
 /**
  * 作者:吴奎庆
@@ -25,9 +22,9 @@ public class BannerImageLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
 
-        RequestOptions requestOptions=RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
-                .centerCrop().skipMemoryCache(false)  .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .priority(Priority.HIGH);
+        RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).optionalCenterCrop();
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         Glide.with(context.getApplicationContext())
 

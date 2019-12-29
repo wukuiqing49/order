@@ -25,11 +25,9 @@ import com.wkq.order.modlue.main.frame.view.MoviesView;
 public class MoviesFragment extends MvpBindingFragment<MoviesView, MoviesPresenter, FragmentMoviesBinding> {
 
     public static MoviesFragment newInstance(Context context, String xx) {
-
         Bundle args = new Bundle();
         args.putString("test", xx);
         MoviesFragment moviesFragment = new MoviesFragment();
-
         moviesFragment.setArguments(args);
         return moviesFragment;
 

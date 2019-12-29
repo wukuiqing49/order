@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.wkq.order.modlue.developer.ui.fragment.DeveloperFragment;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;
+import com.wkq.order.modlue.main.ui.fragment.MoveInformationFragment;
 import com.wkq.order.modlue.main.ui.fragment.MoviesFragment;
 
 /**
@@ -43,7 +44,7 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
 
                 break;
             case 1:
-                fragment = MoviesFragment.newInstance(context, "0");
+                fragment = MoveInformationFragment.newInstance(context);
 
                 break;
             case 2:

@@ -7,6 +7,8 @@ import com.wkq.database.dao.AdTimeInfoDao;
 import com.wkq.database.dao.DaoMaster;
 import com.wkq.database.dao.DaoSession;
 import com.wkq.database.dao.ExceptionInfoDao;
+import com.wkq.database.dao.HomeTopBannerInfoDao;
+import com.wkq.database.dao.MoveDbDataHitoryDao;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -40,11 +42,17 @@ public class DaoHelper {
         return instance;
     }
 
-    public ExceptionInfoDao getExceptionInfoDao() {
-        return daoSession.getExceptionInfoDao();
-    }
+
     public AdTimeInfoDao getAdTimeDao() {
         return daoSession.getAdTimeInfoDao();
+    }
+
+    public HomeTopBannerInfoDao getHomeTopDao() {
+        return daoSession.getHomeTopBannerInfoDao();
+    }
+
+    public MoveDbDataHitoryDao getMoveDbDataHistoryDao() {
+        return daoSession.getMoveDbDataHitoryDao();
     }
 
 

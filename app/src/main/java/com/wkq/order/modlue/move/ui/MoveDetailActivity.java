@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import androidx.databinding.ViewDataBinding;
 
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
@@ -28,6 +27,8 @@ public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDet
 
     public String moveId;
 
+    public boolean isExpend;
+
     public static void startMoveDetail(Context context, String moveId) {
         Intent intent = new Intent(context, MoveDetailActivity.class);
         intent.putExtra("moveId", moveId);
@@ -35,6 +36,16 @@ public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDet
         activity.startActivity(intent);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+//        binding.collapsingTopbarLayout.scrollTo(0,0);
+        binding.rlContent.scrollTo(0, 0);
+        binding.appbarLayout.setExpanded(true);
+        moveId = intent.getStringExtra("moveId");
+        if (getMvpView() != null) getMvpView().initView();
+        if (getPresenter() != null) getPresenter().getMoveDetail(this, moveId);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -49,15 +60,14 @@ public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDet
             getMvpView().showMessage(getResources().getString(R.string.string_data_err));
         }
         if (getMvpView() != null) getMvpView().initView();
-        if (getPresenter() != null) getPresenter().getMoveDetail(this,moveId);
+        if (getPresenter() != null) getPresenter().getMoveDetail(this, moveId);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.rl_back:
-
                 finish();
                 break;
 
@@ -67,6 +77,6 @@ public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDet
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (getPresenter()!=null)getPresenter().cancel();
+        if (getPresenter() != null) getPresenter().cancel();
     }
 }

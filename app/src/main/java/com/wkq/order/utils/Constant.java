@@ -19,4 +19,5 @@ public class Constant {
     public static String MOVE_DB_TYPE_KEY = "VIDEOTYPE";
     //首页Banner数据 的key
     public static String MOVE_DB_HOME_BANNER_KEY = "HOMEBANNER";
+    public static String MOVE_DB_HOME_DATA_KEY = "HOMEDATAKEY";
 }

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.wkq.database.dao.AdTimeInfoDao;
 import com.wkq.database.dao.DaoMaster;
 import com.wkq.database.dao.ExceptionInfoDao;
+import com.wkq.database.dao.HomeTopBannerInfoDao;
+import com.wkq.database.dao.MoveDbDataHitoryDao;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -26,7 +28,7 @@ public final class MigrationHelper extends DaoMaster.OpenHelper {
     @Override
     public void onUpgrade(Database db, int oldVersion, int newVersion) {
         new UpgradeHelper().migrate(db,
-                ExceptionInfoDao.class, AdTimeInfoDao.class
+                ExceptionInfoDao.class, AdTimeInfoDao.class, HomeTopBannerInfoDao.class, MoveDbDataHitoryDao.class
         );
     }
 }

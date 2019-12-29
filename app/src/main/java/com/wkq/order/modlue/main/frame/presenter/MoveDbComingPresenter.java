@@ -38,23 +38,6 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
 
     public void getData(FragmentActivity activity) {
 
-//        HashMap<String, String> requestMap = new HashMap<>();
-//        requestMap.put("page", 1 + "");
-//        eventData = Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbComingInfo>>() {
-//            @Override
-//            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbComingInfo>> callback) {
-//                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getUpComing(data)).subscribe(activity, callback);
-//            }
-//        }).<BaseInfo<MoveDbComingInfo>>event().setFailureCallback(new FailureCallback() {
-//            @Override
-//            public void onFailure(int state, String message) {
-//                Log.e("", "");
-//            }
-//        }).setSuccessCallback(data -> {
-//            Log.e("", "");
-//            if (data != null && getView() != null) getView().setData(data);
-//        }).start();
-
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("page", 1 + "");
 

@@ -1,9 +1,14 @@
 package com.wkq.database.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.wkq.database.dao.AdTimeInfo;
 import com.wkq.database.dao.AdTimeInfoDao;
+import com.wkq.database.dao.HomeTopBannerInfo;
+import com.wkq.database.dao.HomeTopBannerInfoDao;
+import com.wkq.database.dao.MoveDbDataHitory;
+import com.wkq.database.dao.MoveDbDataHitoryDao;
 
 /**
  * 作者: 吴奎庆
@@ -67,5 +72,76 @@ public class DataBaseUtils {
             adTimeInfo.setAdClickCount(count);
             adTimeInfoDao.insert(adTimeInfo);
         }
+    }
+
+    /**
+     * 插入首页banner数据
+     *
+     * @param context
+     * @param key
+     * @param data
+     */
+    public static void insertHomeTopData(Context context, String key, String data) {
+
+        HomeTopBannerInfoDao dao = DaoHelper.getInstance(context).getHomeTopDao();
+        HomeTopBannerInfo info = new HomeTopBannerInfo();
+        info.setKey(key);
+        info.setData(data);
+
+        dao.insertOrReplace(info);
+
+    }
+
+    /**
+     * 获取首页banner数据
+     *
+     * @param context
+     * @param key
+     * @return
+     */
+
+    public static HomeTopBannerInfo getHomeTopData(Context context, String key) {
+        if (context == null || TextUtils.isEmpty(key)) return null;
+
+        HomeTopBannerInfoDao dao = DaoHelper.getInstance(context).getHomeTopDao();
+        HomeTopBannerInfo info = dao.load(key);
+        return info;
+
+
+    }
+
+    /**
+     * 插入首页列表数据
+     *
+     * @param context
+     * @param key
+     * @param data
+     */
+    public static void insertMoveDbHistoryData(Context context, String key, String data) {
+
+        MoveDbDataHitoryDao dao = DaoHelper.getInstance(context).getMoveDbDataHistoryDao();
+        MoveDbDataHitory info = new MoveDbDataHitory();
+        info.setKey(key);
+        info.setData(data);
+
+        dao.insertOrReplace(info);
+
+    }
+
+    /**
+     * 获取首页列表数据
+     *
+     * @param context
+     * @param key
+     * @return
+     */
+    public static MoveDbDataHitory getMoveDbHistoryData(Context context, String key) {
+        if (context == null || TextUtils.isEmpty(key)) return null;
+
+        MoveDbDataHitoryDao dao = DaoHelper.getInstance(context).getMoveDbDataHistoryDao();
+        MoveDbDataHitory info = dao.load(key);
+        return info;
+
+
     }
 }

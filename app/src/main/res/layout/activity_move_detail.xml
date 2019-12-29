@@ -46,6 +46,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
                         android:background="@color/white"
                         app:layout_collapseMode="parallax">
 
@@ -61,10 +62,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginTop="185dp"
+                            android:layout_marginTop="200dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@color/transparent">
 
                             <ImageView
+
                                 android:id="@+id/iv_icon"
                                 android:layout_width="100dp"
                                 android:layout_height="130dp"
@@ -138,29 +141,47 @@
 
 
                     <androidx.appcompat.widget.Toolbar
-                        app:contentInsetStart="0dp"
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="90dp"
                         android:background="@color/transparent"
+                        app:contentInsetStart="0dp"
                         app:layout_collapseMode="pin">
 
                         <RelativeLayout
-                            android:id="@+id/rl_back"
-                            android:layout_width="70dp"
 
-                            android:layout_height="match_parent"
-                            android:onClick="@{onclick}">
+                            android:layout_width="match_parent"
 
-                            <ImageButton
-                                android:layout_marginTop="40dp"
-                                android:layout_marginLeft="20dp"
-                                android:id="@+id/iv_back"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:id="@+id/rl_back"
+                                android:layout_width="70dp"
+                                android:layout_height="match_parent"
+                                android:onClick="@{onclick}">
+
+                                <ImageButton
+                                    android:id="@+id/iv_back"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginTop="50dp"
+                                    android:src="@mipmap/ic_arrow_back_white_24dp" />
+
+                            </RelativeLayout>
+
+
+                            <TextView
+                                android:id="@+id/tv_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
-
-                                android:src="@mipmap/ic_arrow_back_white_24dp" />
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="50dp"
+                                android:text="@{data.title}"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
 
 
                         </RelativeLayout>
@@ -182,9 +203,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-                    android:layout_marginTop="20dp"
-
                     android:orientation="vertical">
 
                     <View
@@ -193,7 +211,74 @@
                         android:background="@color/color_f2f2"
                         android:visibility="gone" />
 
+                    <RelativeLayout
+                        android:id="@+id/ll_star"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_star"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="评分"
+                            android:textColor="@color/color_333" />
+
+                        <TextView
+                            android:id="@+id/tv_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_star"
+                            android:layout_marginLeft="30dp"
+
+                            android:text="@{String.valueOf(data.vote_average)}"
+                            android:textColor="@color/color_666"
+                            android:textSize="30dp"
+
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_toRightOf="@+id/tv_count"
+                            android:orientation="vertical">
+
+                            <com.xl.ratingbar.MyRatingBar
+                                android:id="@+id/ra_star"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:clickable="false"
+                                app:halfstart="true"
+                                app:starCount="5"
+                                app:starEmpty="@mipmap/fat_star_empty"
+                                app:starFill="@mipmap/fat_star_full"
+                                app:starHalf="@mipmap/fat_star_half"
+                                app:starImageHeight="15dp"
+                                app:starImagePadding="5dp"
+                                app:starImageWidth="15dp"
+                                app:starNum="1"
+                                app:touchable="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:text="@{String.format(@string/string_move_voted,data.vote_count)}"
+                                android:textColor="@color/color_666"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
                     <LinearLayout
+                        android:id="@+id/ll_credits"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -224,16 +309,42 @@
                         android:visibility="gone" />
 
                     <TextView
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:id="@+id/tv_des"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:text="@{data.overview}"
                         android:textColor="@color/color_666"
                         android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_imgs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="剧照"
+                            android:textColor="@color/color_333" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+
+                            android:id="@+id/rv_imgs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp" />
+                    </LinearLayout>
+
 
                     <View
                         android:layout_width="match_parent"
@@ -242,6 +353,7 @@
                         android:visibility="gone" />
 
                     <LinearLayout
+                        android:id="@+id/ll_rs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -277,12 +389,11 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <RelativeLayout
-
-            android:id="@+id/topViewTest"
+            android:id="@+id/rl_loading"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-
+            android:layout_height="match_parent"
             android:clickable="true"
+
             android:visibility="gone">
 
 
@@ -292,20 +403,12 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/movie_6" />
 
-            <TextView
-                android:id="@+id/topUserIcon"
+            <com.tuyenmonkey.mkloader.MKLoader
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_vertical"
-
-                android:layout_marginTop="40dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="微影"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="24dp"
+                app:mk_type="TwinFishesSpinner" />
 
 
         </RelativeLayout>

@@ -6,6 +6,7 @@ import com.wkq.base.frame.mosby.MvpBasePresenter;
 import com.wkq.net.ApiRequest;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.api.ApiMoveDb;
+import com.wkq.net.logic.Config;
 import com.wkq.net.logic.Event;
 import com.wkq.net.logic.Logic;
 import com.wkq.net.logic.callback.DataCallback;
@@ -33,23 +34,30 @@ public class MoveDetailPresenter extends MvpBasePresenter<MoveDailView> {
 
     public void getMoveDetail(MoveDetailActivity activity, String moveId) {
 
-       Map<String,String>  requestMap=new HashMap<>();
-        requestMap.put("append_to_response","similar_movies,images,credits");
+        Map<String, String> requestMap = new HashMap<>();
+        requestMap.put("append_to_response", "similar_movies,images,credits");
 
         event = Logic.create(moveId).action(new Logic.Action<String, BaseInfo<MoveDbMoveDetailInfo>>() {
             @Override
             public Disposable action(String data, DataCallback<BaseInfo<MoveDbMoveDetailInfo>> callback) {
-                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getMovieDetail(data,requestMap)).subscribe(activity, callback);
+                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getMovieDetail(data, requestMap)).subscribe(activity, callback);
             }
-        }).<BaseInfo<MoveDbMoveDetailInfo>>event().setFailureCallback((state, message) -> {
+        }).<BaseInfo<MoveDbMoveDetailInfo>>event().setStateCallback(state -> {
+            if (state == Config.STATE_LOAD) {
+                if (getView() != null) getView().showLoading();
+            } else if (state == Config.SUCCESS) {
+                if (getView() != null) getView().hideLoading();
+            }
+        }).setFailureCallback((state, message) -> {
             Log.e("", "");
         }).setSuccessCallback(data -> {
-           if (getView()!=null)getView().setData(data);
+            if (getView() != null) getView().setData(data);
+            if (getView() != null) getView().hideLoading();
         }).start();
 
     }
 
-    public void cancel(){
-        if (event!=null)event.cencel();
+    public void cancel() {
+        if (event != null) event.cencel();
     }
 }
