@@ -1,5 +1,8 @@
 package com.wkq.order.modlue.main.ui;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.databinding.ViewDataBinding;
@@ -18,6 +21,13 @@ import com.wkq.order.modlue.main.frame.view.SearchView;
  * 简介:
  */
 public class SearchActivity extends MvpBindingActivity<SearchView, SearchPresenter, ActivitySearchBinding> {
+
+    public static void startSearch(Context context) {
+        Intent intent = new Intent(context, SearchActivity.class);
+        Activity activity = (Activity) context;
+        activity.startActivity(intent);
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_search;
@@ -28,5 +38,7 @@ public class SearchActivity extends MvpBindingActivity<SearchView, SearchPresent
         super.onCreate(savedInstanceState);
 
         if (getMvpView()!=null)getMvpView().initView();
+
+
     }
 }

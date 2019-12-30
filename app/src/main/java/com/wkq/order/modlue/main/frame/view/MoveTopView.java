@@ -1,5 +1,7 @@
 package com.wkq.order.modlue.main.frame.view;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -11,9 +13,12 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.net.BaseInfo;
-import com.wkq.net.model.MoveDbTopRatedInfo;
+import com.wkq.net.model.MoveDataInfo;
+import com.wkq.order.R;
 import com.wkq.order.modlue.main.ui.adapter.MoveTopAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveTopFragment;
+import com.wkq.order.modlue.move.ui.MoveDetailActivity;
+import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.DynamicTimeFormat;
 
 import java.text.SimpleDateFormat;
@@ -44,6 +49,8 @@ public class MoveTopView implements MvpView {
 
         ClassicsHeader header = new ClassicsHeader(mFragment.getActivity());
         ClassicsFooter footer = new ClassicsFooter(mFragment.getActivity());
+        header.setProgressDrawable(mFragment.getResources().getDrawable(R.drawable.ic_progress_puzzle));
+        header.setBackgroundColor(mFragment.getResources().getColor(R.color.color_f4f4f4));
         header.setSpinnerStyle(SpinnerStyle.Translate);
         int delta = new Random().nextInt(7 * 24 * 60 * 60 * 1000);
 
@@ -73,10 +80,21 @@ public class MoveTopView implements MvpView {
             }
         });
 
+        moveTopAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
+            @Override
+            public void onViewClick(View v, Object program) {
+                if (program != null && program instanceof MoveDataInfo.ResultsBean) {
+                    MoveDataInfo.ResultsBean bean = (MoveDataInfo.ResultsBean) program;
+                    MoveDetailActivity.startMoveDetail(mFragment.getActivity(), bean.getId() + "");
+                }
+
+            }
+        });
+
 
     }
 
-    public void setData(BaseInfo<MoveDbTopRatedInfo> data) {
+    public void setData(BaseInfo<MoveDataInfo> data) {
         if (data == null) return;
         if (data.getData() != null && data.getData().getResults() != null) {
 

@@ -24,7 +24,7 @@ import com.wkq.order.modlue.main.frame.view.MoveComingView;
 
 public class MoveComingFragment extends MvpBindingFragment<MoveComingView, MoveComingPresenter, FragmentMoveComingBinding> {
 
-
+    public int page = 1;
     public static MoveComingFragment newInstance(Context context) {
 
         Bundle args = new Bundle();
@@ -42,5 +42,7 @@ public class MoveComingFragment extends MvpBindingFragment<MoveComingView, MoveC
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getMvpView() != null) getMvpView().initView();
+        if (getPresenter() != null) getPresenter().getData(getActivity(), page);
     }
 }

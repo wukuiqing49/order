@@ -2,11 +2,9 @@ package com.wkq.order.modlue.main.ui.adapter;
 
 import android.content.Context;
 
-import androidx.databinding.Bindable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wkq.net.model.MoveDbTopRatedInfo;
-import com.wkq.order.BR;
+import com.wkq.net.model.MoveDataInfo;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ItemMoveTopBinding;
 import com.wkq.order.utils.DataBindingAdapter;
@@ -22,7 +20,7 @@ import com.wkq.order.utils.GlideUtlis;
  */
 
 
-public class MoveTopAdapter extends DataBindingAdapter<MoveDbTopRatedInfo.ResultsBean> {
+public class MoveTopAdapter extends DataBindingAdapter<MoveDataInfo.ResultsBean> {
     Context context;
 
     public MoveTopAdapter(Context context) {
@@ -38,5 +36,9 @@ public class MoveTopAdapter extends DataBindingAdapter<MoveDbTopRatedInfo.Result
         ItemMoveTopBinding binding = (ItemMoveTopBinding) bindingViewHolder.getBinding();
 
         GlideUtlis.loadMoveImg200Round(context, getItem(position).getPoster_path(), binding.ivMovePoster);
+
+        binding.root.setOnClickListener(view -> {
+            viewClickListener.onViewClick(view,getItem(position));
+        });
     }
 }

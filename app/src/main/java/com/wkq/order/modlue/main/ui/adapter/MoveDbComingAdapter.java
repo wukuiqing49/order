@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.wkq.net.model.MoveDbComingInfo;
-import com.wkq.net.model.MoveDbPopularInfo;
+import com.wkq.net.model.MoveDataInfo;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ItemMovieDbComingInfoBinding;
 import com.wkq.order.utils.Constant;
@@ -26,7 +25,7 @@ import com.wkq.order.utils.MoveDbDataSaveUtlis;
  */
 
 
-public class MoveDbComingAdapter extends DataBindingAdapter<MoveDbPopularInfo.ResultsBean> {
+public class MoveDbComingAdapter extends DataBindingAdapter<MoveDataInfo.ResultsBean> {
     public MoveDbComingAdapter(Context context) {
         super(context, R.layout.item_movie_db_coming_info, com.wkq.order.BR.data);
     }

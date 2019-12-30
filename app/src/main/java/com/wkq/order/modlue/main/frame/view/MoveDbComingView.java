@@ -1,7 +1,6 @@
 package com.wkq.order.modlue.main.frame.view;
 
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,12 +11,12 @@ import com.google.gson.reflect.TypeToken;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.RandomUtil;
-import com.wkq.base.utlis.SharedPreferencesHelper;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.database.dao.HomeTopBannerInfo;
 import com.wkq.database.dao.MoveDbDataHitory;
 import com.wkq.database.utils.DataBaseUtils;
 import com.wkq.net.BaseInfo;
+import com.wkq.net.model.MoveDataInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
 import com.wkq.net.model.MoveDbPopularInfo;
 import com.wkq.order.modlue.main.modle.BannerInfo;
@@ -28,7 +27,6 @@ import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.utils.BannerImageLoader;
 import com.wkq.order.utils.Constant;
 import com.wkq.order.utils.DataBindingAdapter;
-import com.wkq.order.utils.MoveDbDataSaveUtlis;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -69,7 +67,7 @@ public class MoveDbComingView implements MvpView {
         moviesAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
             @Override
             public void onViewClick(View v, Object program) {
-                MoveDbPopularInfo.ResultsBean bean = (MoveDbPopularInfo.ResultsBean) program;
+                MoveDataInfo.ResultsBean bean = (MoveDataInfo.ResultsBean) program;
                 MoveDetailActivity.startMoveDetail(mFragment.getActivity(), bean.getId() + "");
 
 
@@ -79,7 +77,7 @@ public class MoveDbComingView implements MvpView {
         if (DataBaseUtils.getMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY) != null) {
             MoveDbDataHitory info = DataBaseUtils.getMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY);
             Gson gson = new Gson();
-            MoveDbPopularInfo historyData = gson.fromJson(info.getData(), MoveDbPopularInfo.class);
+            MoveDataInfo historyData = gson.fromJson(info.getData(), MoveDataInfo.class);
             moviesAdapter.addItems(historyData.getResults());
 
         }
@@ -132,10 +130,6 @@ public class MoveDbComingView implements MvpView {
         mFragment.binding.bannerMovies.setBannerStyle(BannerConfig.NOT_INDICATOR);
 
 
-
-
-
-
         if (DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY) != null) {
             HomeTopBannerInfo info = DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY);
             Gson gson = new Gson();
@@ -178,7 +172,7 @@ public class MoveDbComingView implements MvpView {
         VideoWebListActivity.startVideoWebList(mFragment.getActivity());
     }
 
-    public void setData(BaseInfo<MoveDbPopularInfo> data) {
+    public void setData(BaseInfo<MoveDataInfo> data) {
         Gson gson = new Gson();
         String dataStr = gson.toJson(data.getData());
         DataBaseUtils.insertMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY, dataStr);

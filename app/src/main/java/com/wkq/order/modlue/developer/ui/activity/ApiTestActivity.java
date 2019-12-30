@@ -18,20 +18,16 @@ import com.wkq.net.api.ApiMoveDb;
 import com.wkq.net.logic.Logic;
 import com.wkq.net.logic.callback.DataCallback;
 import com.wkq.net.logic.callback.FailureCallback;
-import com.wkq.net.model.MoveDbComingInfo;
+import com.wkq.net.model.MoveDataInfo;
 import com.wkq.net.model.MoveDbMoveDetailInfo;
 import com.wkq.net.model.MoveDbMoveImagesInfo;
 import com.wkq.net.model.MoveDbPopularInfo;
 import com.wkq.net.model.MoveDbSearchInfo;
-import com.wkq.net.model.MoveDbTopRatedInfo;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityApiTestBinding;
-import com.wkq.order.modlue.main.ui.HomeActivity;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import io.reactivex.disposables.Disposable;
 
@@ -103,12 +99,12 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
 
         HashMap<String, String> requestMap = new HashMap<>();
         requestMap.put("page", 1 + "");
-        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbComingInfo>>() {
+        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
             @Override
-            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbComingInfo>> callback) {
+            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
                 return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getUpComing(data)).subscribe(ApiTestActivity.this, callback);
             }
-        }).<BaseInfo<MoveDbComingInfo>>event().setFailureCallback(new FailureCallback() {
+        }).<BaseInfo<MoveDataInfo>>event().setFailureCallback(new FailureCallback() {
             @Override
             public void onFailure(int state, String message) {
                 Log.e("", "");
@@ -127,12 +123,12 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("page", 1 + "");
 
-        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbTopRatedInfo>>() {
+        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
             @Override
-            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbTopRatedInfo>> callback) {
+            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
                 return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getTopRated(data)).subscribe(ApiTestActivity.this, callback);
             }
-        }).<BaseInfo<MoveDbTopRatedInfo>>event().setFailureCallback((state, message) -> {
+        }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");
             Log.e("数据请求失败:", "---------------------------------------------------------");
 
@@ -173,12 +169,12 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
 
         requestMap.put("query", "让子弹飞");
 
-        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbSearchInfo>>() {
+        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
             @Override
-            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbSearchInfo>> callback) {
+            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
                 return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.searchMovies(data)).subscribe(ApiTestActivity.this, callback);
             }
-        }).<BaseInfo<MoveDbSearchInfo>>event().setFailureCallback((state, message) -> {
+        }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");
 
         }).setSuccessCallback(data -> {
@@ -193,9 +189,9 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
         requestMap.put("page", 1 + "");
 
 
-        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbPopularInfo>>() {
+        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
             @Override
-            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbPopularInfo>> callback) {
+            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
                 return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getPopular(data)).subscribe(ApiTestActivity.this, callback);
             }
         }).<BaseInfo<MoveDbPopularInfo>>event().setFailureCallback((state, message) -> {

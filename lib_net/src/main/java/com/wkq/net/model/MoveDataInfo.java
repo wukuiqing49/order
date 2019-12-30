@@ -11,7 +11,7 @@ import java.util.List;
  * <p>
  * 简介:
  */
-public class MoveDbTopRatedInfo extends BaseObservable {
+public class MoveDataInfo extends BaseObservable {
 
     /**
      * page : 1

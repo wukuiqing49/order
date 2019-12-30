@@ -1,15 +1,12 @@
 package com.wkq.net.api;
 
 import com.wkq.net.BaseInfo;
-import com.wkq.net.model.MoveDbComingInfo;
 import com.wkq.net.model.MoveDbMoveDetailInfo;
 import com.wkq.net.model.MoveDbMoveImagesInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
-import com.wkq.net.model.MoveDbPopularInfo;
 import com.wkq.net.model.MoveDbReviewsInfo;
-import com.wkq.net.model.MoveDbSearchInfo;
 import com.wkq.net.model.MoveDbSimilarInfo;
-import com.wkq.net.model.MoveDbTopRatedInfo;
+import com.wkq.net.model.MoveDataInfo;
 
 import java.util.Map;
 
@@ -41,7 +38,7 @@ public interface ApiMoveDb {
      */
 
     @GET("movie/upcoming")
-    Observable<Result<BaseInfo<MoveDbComingInfo>>> getUpComing(@QueryMap Map<String, String> requestMap);
+    Observable<Result<BaseInfo<MoveDataInfo>>> getUpComing(@QueryMap Map<String, String> requestMap);
 
     /**
      * 正在热播
@@ -73,7 +70,7 @@ public interface ApiMoveDb {
      * @return https://api.themoviedb.org/3/movie/top_rated?api_key=9d16633c17134f489c1f643b3b4e274d&language=zh&page=1
      */
     @GET("movie/top_rated")
-    Observable<Result<BaseInfo<MoveDbTopRatedInfo>>> getTopRated(@QueryMap Map<String, String> requestMap);
+    Observable<Result<BaseInfo<MoveDataInfo>>> getTopRated(@QueryMap Map<String, String> requestMap);
 
 
     /**
@@ -86,7 +83,7 @@ public interface ApiMoveDb {
      */
 
     @GET("search/movie")
-    Observable<Result<BaseInfo<MoveDbSearchInfo>>> searchMovies(@QueryMap Map<String, String> requestMap);
+    Observable<Result<BaseInfo<MoveDataInfo>>> searchMovies(@QueryMap Map<String, String> requestMap);
 
 
     /**
@@ -100,7 +97,7 @@ public interface ApiMoveDb {
      */
 
     @GET("movie/popular")
-    Observable<Result<BaseInfo<MoveDbPopularInfo>>> getPopular(@QueryMap Map<String, String> requestMap);
+    Observable<Result<BaseInfo<MoveDataInfo>>> getPopular(@QueryMap Map<String, String> requestMap);
 
 
     /**

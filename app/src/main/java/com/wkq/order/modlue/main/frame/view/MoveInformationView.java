@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
+import com.wkq.order.modlue.main.ui.SearchActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveFragmentPagerAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveInformationFragment;
 import com.wkq.order.modlue.main.ui.widget.ScaleTransitionPagerTitleView;
@@ -53,11 +54,13 @@ public class MoveInformationView implements MvpView {
 
     public void initView() {
 
-//        StatusBarUtil.setColor(mFragment.getActivity(), mFragment.getActivity().getResources().getColor(R.color.white), 0);
-        StatusBarUtil.setDarkMode(mFragment.getActivity());
 
-        MoveFragmentPagerAdapter fragmentAdapter = new MoveFragmentPagerAdapter(mFragment.getActivity(), mFragment.getFragmentManager());
+        StatusBarUtil.setDarkMode(mFragment.getActivity());
+        MoveFragmentPagerAdapter fragmentAdapter = new MoveFragmentPagerAdapter(mFragment.getActivity(), mFragment.getChildFragmentManager());
         mFragment.binding.vpInformation.setAdapter(fragmentAdapter);
+
+        mFragment.binding.vpInformation.setCurrentItem(0);
+        mFragment.binding.vpInformation.setOffscreenPageLimit(3);
 
 
         MagicIndicator magicIndicator = (MagicIndicator) mFragment.binding.magicIndicator;
@@ -98,6 +101,11 @@ public class MoveInformationView implements MvpView {
 
         magicIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(magicIndicator, mFragment.binding.vpInformation);
+
+        mFragment.binding.rlSearch.setOnClickListener(view -> {
+
+            SearchActivity.startSearch(mFragment.getActivity());
+        });
 
     }
 

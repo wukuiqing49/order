@@ -32,6 +32,7 @@ public class GlideUtlis {
     }
 
     public static void loadMoveImg300(Context context, String path, ImageView view) {
+        if (TextUtils.isEmpty(path))path="";
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.mipmap.bg_pro_comment).error(R.mipmap.bg_pro_comment)
                 .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).useAnimationPool(true);
 
@@ -41,6 +42,7 @@ public class GlideUtlis {
     }
 
     public static void loadMoveImg400(Context context, String path, ImageView view) {
+        if (TextUtils.isEmpty(path))path="";
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.mipmap.bg_pro_comment).error(R.mipmap.bg_pro_comment)
                 .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).useAnimationPool(true);
 
@@ -50,6 +52,7 @@ public class GlideUtlis {
     }
 
     public static void loadMoveImg500(Context context, String path, ImageView view) {
+        if (TextUtils.isEmpty(path))path="";
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.mipmap.bg_pro_comment).error(R.mipmap.bg_pro_comment)
                 .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL);
 

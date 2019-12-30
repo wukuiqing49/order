@@ -8,6 +8,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="100dp">
 
@@ -18,7 +19,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
-                android:src="@mipmap/ic_search_white_48dp" />
+                android:src="@mipmap/ic_search_white_48dp"
+                android:visibility="gone" />
 
             <net.lucode.hackware.magicindicator.MagicIndicator
                 android:id="@+id/magic_indicator"
@@ -35,12 +37,14 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true">
 
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginBottom="20dp"
 
 
                     android:background="@mipmap/ic_search_white_48dp"

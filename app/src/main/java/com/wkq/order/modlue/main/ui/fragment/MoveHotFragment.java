@@ -26,7 +26,7 @@ import com.wkq.order.modlue.main.frame.view.MoveHotView;
 
 public class MoveHotFragment extends MvpBindingFragment<MoveHotView, MoveHotPresenter, FragmentMoveHotBinding> {
 
-
+    public int page = 1;
     public static MoveHotFragment newInstance(Context context) {
 
         Bundle args = new Bundle();
@@ -44,5 +44,7 @@ public class MoveHotFragment extends MvpBindingFragment<MoveHotView, MoveHotPres
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getMvpView() != null) getMvpView().initView();
+        if (getPresenter() != null) getPresenter().getData(getActivity(), page);
     }
 }

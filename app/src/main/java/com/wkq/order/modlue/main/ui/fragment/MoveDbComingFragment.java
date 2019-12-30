@@ -26,6 +26,8 @@ public class MoveDbComingFragment extends MvpBindingFragment<MoveDbComingView, M
     // 是否扩展
     public boolean isExpend;
 
+
+
     public static MoveDbComingFragment newInstance(Context context) {
 
         Bundle args = new Bundle();
