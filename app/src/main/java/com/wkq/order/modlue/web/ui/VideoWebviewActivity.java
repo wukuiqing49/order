@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.just.agentweb.AgentWeb;
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityVideoWebBinding;
@@ -38,9 +39,6 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
-//                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         url = getIntent().getStringExtra("url");
         if (getMvpView()!=null){
             getMvpView().initView();
@@ -63,6 +61,9 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
         if (mAgentWeb!=null)
         mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
+        MobclickAgent.onResume(this);
+
+        if (getMvpView()!=null)getMvpView().onResume();
     }
 
     @Override
@@ -70,6 +71,8 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
         if (mAgentWeb!=null)
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
+        MobclickAgent.onPause(this);
+        if (getMvpView()!=null)getMvpView().cancelAd();
     }
 
 
@@ -87,4 +90,6 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
         }
 
     }
+
+
 }

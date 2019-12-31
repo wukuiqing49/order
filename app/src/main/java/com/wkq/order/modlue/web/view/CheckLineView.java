@@ -97,15 +97,18 @@ public class CheckLineView implements MvpView {
     }
 
     private void checkAdTime(CheckLineInfo info) {
-        String time = DateTimeUtil.getCurrentTime();
-        DataBaseUtils.updateAdTimeInfo(mActivity, BuildConfig.APP_ID, time);
-        AdTimeInfo adTimeInfo = DataBaseUtils.getAdTimeInfo(mActivity, BuildConfig.APP_ID);
-        if (adTimeInfo != null && adTimeInfo.getAdTime().equals(time) && adTimeInfo.getAdClickCount() >= BuildConfig.APP_AD_COUNT) {
-            VideoWebviewActivity.startActivity(mActivity, info.getLineUrl().concat(mActivity.videoUrl));
-            mActivity.finish();
-        } else {
-            showMessage("点击广告");
-        }
+
+        VideoWebviewActivity.startActivity(mActivity, info.getLineUrl().concat(mActivity.videoUrl));
+        mActivity.finish();
+//        String time = DateTimeUtil.getCurrentTime();
+//        DataBaseUtils.updateAdTimeInfo(mActivity, BuildConfig.APP_ID, time);
+//        AdTimeInfo adTimeInfo = DataBaseUtils.getAdTimeInfo(mActivity, BuildConfig.APP_ID);
+//        if (adTimeInfo != null && adTimeInfo.getAdTime().equals(time) && adTimeInfo.getAdClickCount() >= BuildConfig.APP_AD_COUNT) {
+//            VideoWebviewActivity.startActivity(mActivity, info.getLineUrl().concat(mActivity.videoUrl));
+//            mActivity.finish();
+//        } else {
+//            showMessage("点击广告");
+//        }
     }
 
     public void showMessage(String message) {

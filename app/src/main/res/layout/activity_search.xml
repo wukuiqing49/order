@@ -63,9 +63,9 @@
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp"
+
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="18dp"
 
 
                     android:background="@mipmap/ic_search_white_48dp"
@@ -75,6 +75,54 @@
 
 
         </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_search_hisory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="搜索历史 :"
+                android:textColor="@color/color_666"
+                android:textSize="15sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_f4f4f4"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="100dp"
+                    android:src="@mipmap/ic_cinema_movie_sold_out" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
     </LinearLayout>
 </layout>

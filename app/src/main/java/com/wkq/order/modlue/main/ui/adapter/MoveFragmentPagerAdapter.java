@@ -41,11 +41,12 @@ public class MoveFragmentPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
 
             case 0:
-                fragment = MoveComingFragment.newInstance(context);
+                fragment = MoveHotFragment.newInstance(context);
+
 
                 break;
             case 1:
-                fragment = MoveHotFragment.newInstance(context);
+                fragment = MoveComingFragment.newInstance(context);
 
                 break;
             case 2:

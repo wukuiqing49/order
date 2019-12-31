@@ -10,6 +10,10 @@ package com.wkq.order.utils;
 public class Constant {
     //movedb  的app_key
     public static String MOVE_DB_IKEY_ID = "9d16633c17134f489c1f643b3b4e274d";
+    public static String MOVE_TT_AD_ID = "5044034";
+    public static String MOVE_TT_AD_SPLASH_ID = "887290295";
+    public static String MOVE_TT_AD_VIDEO_ID = "943998267";
+    public static String MOVE_TT_AD_STREAM_ID = "943998589";
     //图片地址的BaseUrl
     public static String MOVE_DB_IMG_BASE_200 = "https://image.tmdb.org/t/p/w200";
     public static String MOVE_DB_IMG_BASE_300 = "https://image.tmdb.org/t/p/w300";

@@ -1,13 +1,20 @@
 package com.wkq.order.modlue.main.frame.view;
 
-import android.graphics.Color;
+import android.view.TextureView;
 import android.view.View;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.RandomUtil;
@@ -18,7 +25,7 @@ import com.wkq.database.utils.DataBaseUtils;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDataInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
-import com.wkq.net.model.MoveDbPopularInfo;
+import com.wkq.order.R;
 import com.wkq.order.modlue.main.modle.BannerInfo;
 import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;
@@ -27,12 +34,17 @@ import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.utils.BannerImageLoader;
 import com.wkq.order.utils.Constant;
 import com.wkq.order.utils.DataBindingAdapter;
+import com.wkq.order.utils.DynamicTimeFormat;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 import static com.wkq.order.utils.Constant.MOVE_DB_HOME_BANNER_KEY;
 import static com.wkq.order.utils.Constant.MOVE_DB_HOME_DATA_KEY;
@@ -58,6 +70,7 @@ public class MoveDbComingView implements MvpView {
         initBanner();
         initToolBar();
 
+        initRefush();
 
         moviesAdapter = new MoveDbComingAdapter(mFragment.getActivity());
 
@@ -85,18 +98,37 @@ public class MoveDbComingView implements MvpView {
 
     }
 
-    /**
-     * 根据百分比改变颜色透明度
-     */
-    public int changeAlpha(int color, float fraction) {
-        if (fraction >= 0.5) {
-            fraction = (float) 0.5;
-        }
-        int red = Color.red(color);
-        int green = Color.green(color);
-        int blue = Color.blue(color);
-        int alpha = (int) (Color.alpha(color) * fraction);
-        return Color.argb(alpha, red, green, blue);
+    private void initRefush() {
+
+        ClassicsHeader header = new ClassicsHeader(mFragment.getActivity());
+        ClassicsFooter footer = new ClassicsFooter(mFragment.getActivity());
+        header.setProgressDrawable(mFragment.getResources().getDrawable(R.drawable.ic_progress_puzzle));
+        header.setBackgroundColor(mFragment.getResources().getColor(R.color.color_f4f4f4));
+        header.setSpinnerStyle(SpinnerStyle.Translate);
+        int delta = new Random().nextInt(7 * 24 * 60 * 60 * 1000);
+
+        header.setLastUpdateTime(new Date(System.currentTimeMillis() - delta));
+        header.setTimeFormat(new SimpleDateFormat("更新于 MM-dd HH:mm", Locale.CHINA));
+        header.setTimeFormat(new DynamicTimeFormat("更新于 %s"));
+
+        mFragment.binding.rvSf.setEnableRefresh(false);
+        mFragment.binding.rvSf.setRefreshHeader(header);
+        mFragment.binding.rvSf.setRefreshFooter(footer);
+
+        mFragment.binding.rvSf.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                mFragment.getPresenter().getData(mFragment.getActivity(), mFragment.page);
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                mFragment.page = 1;
+                mFragment.getPresenter().getData(mFragment.getActivity(), mFragment.page);
+
+            }
+        });
+
     }
 
     private void initToolBar() {
@@ -107,13 +139,19 @@ public class MoveDbComingView implements MvpView {
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
                     if (!mFragment.isExpend) {
-                        StatusBarUtil.setLightMode(mFragment.getActivity());
+                        StatusBarUtil.setDarkMode(mFragment.getActivity());
                         mFragment.isExpend = !mFragment.isExpend;
+
+                        mFragment.binding.toolbar.setVisibility(View.VISIBLE);
+                        mFragment.binding.tvTitle.setVisibility(View.VISIBLE);
                     }
                 } else {
                     if (mFragment.isExpend) {
                         StatusBarUtil.setDarkMode(mFragment.getActivity());
                         mFragment.isExpend = !mFragment.isExpend;
+                        mFragment.binding.toolbar.setVisibility(View.GONE);
+
+                        mFragment.binding.tvTitle.setVisibility(View.GONE);
                     }
                 }
             }
@@ -127,7 +165,7 @@ public class MoveDbComingView implements MvpView {
         //====加载Banner数据====
         mFragment.binding.bannerMovies.setImageLoader(new BannerImageLoader());//设置图片加载器
         //设置显示圆形指示器和标题（水平显示）
-        mFragment.binding.bannerMovies.setBannerStyle(BannerConfig.NOT_INDICATOR);
+        mFragment.binding.bannerMovies.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
 
 
         if (DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY) != null) {
@@ -150,7 +188,6 @@ public class MoveDbComingView implements MvpView {
             }
         });
 
-
     }
 
     private void playBaner() {
@@ -161,7 +198,6 @@ public class MoveDbComingView implements MvpView {
             titles.add(bannerBean.getTitle());
         }
         mFragment.binding.bannerMovies.setDelayTime(2000);
-
         mFragment.binding.bannerMovies.setImages(images);
         mFragment.binding.bannerMovies.setBannerTitles(titles);
         mFragment.binding.bannerMovies.start();
@@ -173,15 +209,25 @@ public class MoveDbComingView implements MvpView {
     }
 
     public void setData(BaseInfo<MoveDataInfo> data) {
-        Gson gson = new Gson();
-        String dataStr = gson.toJson(data.getData());
-        DataBaseUtils.insertMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY, dataStr);
 
-        if (DataBaseUtils.getMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY) == null) {
-            if (data.getData() != null && data.getData().getResults() != null) {
+        if (data.getData() != null && data.getData().getResults() != null) {
+            if (mFragment.page == 1) {
+                MoveDbDataHitory resultsBeans = DataBaseUtils.getMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY);
+                if (resultsBeans == null) moviesAdapter.addItems(data.getData().getResults());
+
+                Gson gson = new Gson();
+                String dataStr = gson.toJson(data.getData());
+                DataBaseUtils.insertMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY, dataStr);
+            } else {
                 moviesAdapter.addItems(data.getData().getResults());
             }
+            mFragment.page += 1;
+
         }
+
+        mFragment.binding.rvSf.finishLoadMore(1000, true, mFragment.page > data.getData().getTotal_pages());
+
+        mFragment.binding.rvSf.finishRefresh(1000, true);
 
 
     }
@@ -197,27 +243,33 @@ public class MoveDbComingView implements MvpView {
             int size = data.getData().getResults().size();
             List<MoveDbNowPlayingInfo.ResultsBean> list = data.getData().getResults();
             if (mBannerBeanList != null && mBannerBeanList.size() > 0) mBannerBeanList.clear();
-            BannerInfo helpBanner = new BannerInfo();
-            helpBanner.setTitle("免费看电影");
-            helpBanner.setImgUrl("https://b.bdstatic.com/boxlib/20180120/2018012017100383423448679.jpg");
-            helpBanner.setUrlPath("1008611");
-            mBannerBeanList.add(helpBanner);
+//            BannerInfo helpBanner = new BannerInfo();
+//            helpBanner.setTitle("免费看电影");
+//            helpBanner.setImgUrl("https://b.bdstatic.com/boxlib/20180120/2018012017100383423448679.jpg");
+//            helpBanner.setUrlPath("1008611");
+//            mBannerBeanList.add(helpBanner);
             for (int i = 0; i < 5; i++) {
                 int one = RandomUtil.getRandomForIntegerBounded(0, size);
                 MoveDbNowPlayingInfo.ResultsBean info = list.get(one);
-                BannerInfo bannerBean = new BannerInfo(info.getTitle(), Constant.MOVE_DB_IMG_BASE_400.concat(info.getPoster_path()), info.getId() + "");
+                BannerInfo bannerBean = new BannerInfo(info.getTitle(), Constant.MOVE_DB_IMG_BASE_500.concat(info.getPoster_path()), info.getId() + "");
                 mBannerBeanList.add(bannerBean);
             }
 
             Gson gson2 = new Gson();
             String bannerStr = gson2.toJson(mBannerBeanList);
-            DataBaseUtils.insertHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY, bannerStr);
-
             if (DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY) == null) {
                 playBaner();
             }
+            DataBaseUtils.insertHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY, bannerStr);
+        }
+    }
 
-//
+    public void showFail(String message) {
+        if (mFragment.page == 1) {
+            mFragment.binding.llEmpty.setVisibility(View.VISIBLE);
+            mFragment.binding.rvSf.setVisibility(View.GONE);
+        } else {
+            showMessage(message);
         }
     }
 }

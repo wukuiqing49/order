@@ -13,7 +13,10 @@ import com.wkq.order.modlue.developer.model.DeveloperInfo;
 import com.wkq.order.modlue.developer.ui.activity.ApiTestActivity;
 import com.wkq.order.modlue.developer.ui.adapter.DeveloperAdapter;
 import com.wkq.order.modlue.developer.ui.fragment.DeveloperFragment;
-import com.wkq.order.modlue.web.ui.PlayHelperActivity;
+import com.wkq.order.modlue.main.ui.activity.AboutActivity;
+import com.wkq.order.modlue.main.ui.activity.AdAboutActivity;
+import com.wkq.order.modlue.main.ui.activity.ContactDeveloperActivity;
+import com.wkq.order.modlue.main.ui.activity.PlayHelperActivity;
 import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.utils.DataBindingAdapter;
 
@@ -71,13 +74,14 @@ public class DeveloperView implements MvpView {
                         PlayHelperActivity.startPlayHelperActivity(mFragment.getActivity());
                         break;
                     case 2:
-                        showMessage("广告介绍");
+                        AdAboutActivity.startActivity(mFragment.getActivity());
                         break;
                     case 3:
-                        showMessage("联系开发者");
+                        ContactDeveloperActivity.startActivity(mFragment.getActivity());
                         break;
                     case 4:
-                        showMessage("关于我们");
+//                        showMessage("关于我们");
+                        AboutActivity.startActivity(mFragment.getActivity());
                         break;
                     case 5:
                         ApiTestActivity.startActivity(mFragment.getActivity());

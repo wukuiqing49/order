@@ -54,31 +54,20 @@
                             android:layout_marginLeft="18dp"
                             android:layout_marginTop="40dp"
                             android:gravity="center"
-                            android:text="免费看电影"
+                            android:text="网站列表"
                             android:textColor="#ff333333"
                             android:textSize="25sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-
-                            android:text="看电影有点广告的逻辑"
-                            android:textColor="#ff333333"
-                            android:textSize="20sp" />
 
                         <TextView
-                            android:layout_marginTop="10dp"
                             android:id="@+id/tv_play_help"
                             android:layout_width="match_parent"
-                            android:onClick="@{onClicker}"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="18dp"
+                            android:layout_marginTop="10dp"
                             android:gravity="center"
+                            android:onClick="@{onClicker}"
                             android:padding="10dp"
                             android:text="播放视频帮助文档"
                             android:textColor="#ff333333"

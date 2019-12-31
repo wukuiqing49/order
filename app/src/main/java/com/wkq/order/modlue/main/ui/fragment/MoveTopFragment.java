@@ -50,4 +50,10 @@ public class MoveTopFragment extends MvpBindingFragment<MoveTopView, MoveTopPres
         if (getMvpView() != null) getMvpView().initView();
         if (getPresenter() != null) getPresenter().getData(getActivity(), page);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getPresenter()!=null)getPresenter().cancel();
+    }
 }

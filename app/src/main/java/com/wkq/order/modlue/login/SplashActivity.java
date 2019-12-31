@@ -1,15 +1,12 @@
 package com.wkq.order.modlue.login;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import androidx.databinding.ViewDataBinding;
-
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.base.utlis.TimerHelper;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivitySplashBinding;
-import com.wkq.order.modlue.main.ui.HomeActivity;
 
 /**
  * 作者: 吴奎庆
@@ -41,4 +38,5 @@ public class SplashActivity extends MvpBindingActivity<SplashView, SplashPresent
         if (timerHelper != null)
             timerHelper.onTimerCancel();
     }
+
 }

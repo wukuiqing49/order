@@ -106,6 +106,12 @@ android {
         }
     }
 
+    repositories {
+        flatDir {
+            dirs file('libs')
+        }
+    }
+
 }
 
 dependencies {
@@ -157,5 +163,13 @@ dependencies {
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
     // 图片展示
     implementation 'com.github.wukuiqing49:Large:1.0.92'
+
+    //广告
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.6'
+    implementation(name: 'open_ad_sdk', ext: 'aar')
+    //广点通sdk
+    implementation (name:'GDTSDK.unionNormal.4.132.1002', ext:'aar')
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.wkq.order.modlue.web.view;
 
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
@@ -40,6 +41,9 @@ public class VideoSiteView implements MvpView {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
+                if (newProgress>80&&mActivity.binding.cdPlay.getVisibility()== View.GONE){
+                    mActivity.binding.cdPlay.setVisibility(View.VISIBLE);
+                }
             }
         };
 
@@ -52,7 +56,7 @@ public class VideoSiteView implements MvpView {
                 .useDefaultIndicator(mActivity.getResources().getColor(R.color.color_23d41e))
                 .setAgentWebWebSettings(new CustomSettings())
                 .setWebChromeClient(mWebChromeClient)
-                .setWebViewClient(webChromeClient)
+//                .setWebViewClient(webChromeClient)
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .createAgentWeb()
                 .ready()

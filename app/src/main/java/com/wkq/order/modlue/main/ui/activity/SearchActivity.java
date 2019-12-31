@@ -1,12 +1,11 @@
-package com.wkq.order.modlue.main.ui;
+package com.wkq.order.modlue.main.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.databinding.ViewDataBinding;
-
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivitySearchBinding;
@@ -37,8 +36,26 @@ public class SearchActivity extends MvpBindingActivity<SearchView, SearchPresent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getMvpView()!=null)getMvpView().initView();
+        if (getMvpView() != null) getMvpView().initView();
 
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getPresenter() != null) getPresenter().cancel();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
 }

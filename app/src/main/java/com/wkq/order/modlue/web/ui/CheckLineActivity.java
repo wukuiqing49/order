@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.databinding.ViewDataBinding;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityCheckLineBinding;
@@ -56,5 +57,16 @@ public class CheckLineActivity extends MvpBindingActivity<CheckLineView, CheckLi
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.preview_activity_in, R.anim.preview_activity_out);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

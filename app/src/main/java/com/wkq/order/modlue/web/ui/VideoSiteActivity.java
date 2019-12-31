@@ -8,6 +8,7 @@ import android.view.View;
 
 
 import com.just.agentweb.AgentWeb;
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityVideoSiteBinding;
@@ -81,10 +82,6 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
 
         if (getMvpView() != null) getMvpView().initView();
 
-//        Date date = new Date(System.currentTimeMillis());
-//        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm", Locale.getDefault());
-//        String time= format.format(date);
-//        String time2= format.format(date);
     }
 
     @Override
@@ -112,13 +109,17 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
     protected void onResume() {
         mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
+        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
+        MobclickAgent.onPause(this);
     }
+
+
 
 
     @Override

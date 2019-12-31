@@ -42,6 +42,7 @@ public class MoveDbComingAdapter extends DataBindingAdapter<MoveDataInfo.Results
             String type = MoveDbDataSaveUtlis.getType(mContext, getItem(position).getGenre_ids().get(0));
             binding.tvType.setText(type);
         }
+        if (viewClickListener!=null)
         binding.root.setOnClickListener(view -> viewClickListener.onViewClick(view,getItem(position)));
 
 

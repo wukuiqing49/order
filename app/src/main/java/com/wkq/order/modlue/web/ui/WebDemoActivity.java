@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.just.agentweb.WebViewClient;
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityWebBinding;
 
@@ -156,8 +157,13 @@ Log.e("","");
 
 
     @Override
-    protected void onDestroy() {
-
-        super.onDestroy();
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

@@ -27,16 +27,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:contentScrim="@color/color_2b2b2b"
+
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
                     <com.youth.banner.Banner
                         android:id="@+id/banner_movies"
                         android:layout_width="match_parent"
-                        android:layout_height="211dp"
+                        android:layout_height="245dp"
                         app:image_scale_type="center_crop"
                         app:indicator_height="8dp"
-
                         app:indicator_margin="4dp"
                         app:indicator_width="8dp"
                         app:is_auto_play="true"
@@ -46,17 +46,30 @@
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="90dp"
+                        android:layout_height="100dp"
                         android:background="@color/transparent"
                         app:layout_collapseMode="pin">
 
-                        <TextView
-                            android:visibility="gone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="50dp"
-                            android:text="测试"
-                            android:textColor="@color/color_333" />
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="20dp"
+                                android:text="首页"
+                                android:textColor="@color/white"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+                        </RelativeLayout>
+
+
                     </androidx.appcompat.widget.Toolbar>
 
 
@@ -64,45 +77,40 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movies"
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/rv_sf"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                android:background="@color/color_f4f4f4"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:srlEnableAutoLoadMore="false"
+                app:srlEnableLoadMore="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_movies"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <RelativeLayout
-
-            android:id="@+id/topViewTest"
+            android:visibility="gone"
+            android:id="@+id/ll_empty"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
 
-            android:clickable="true"
-            android:visibility="gone">
+            android:clickable="true">
 
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/movie_6" />
-
-            <TextView
-                android:id="@+id/topUserIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_vertical"
-
-                android:layout_marginTop="40dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="微影"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_cinema_movie_sold_out" />
 
 
         </RelativeLayout>

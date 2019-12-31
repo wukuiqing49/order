@@ -47,4 +47,10 @@ public class MoveHotFragment extends MvpBindingFragment<MoveHotView, MoveHotPres
         if (getMvpView() != null) getMvpView().initView();
         if (getPresenter() != null) getPresenter().getData(getActivity(), page);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getPresenter()!=null)getPresenter().cancel();
+    }
 }

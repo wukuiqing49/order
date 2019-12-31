@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityMoveDetailBinding;
@@ -78,5 +79,16 @@ public class MoveDetailActivity extends MvpBindingActivity<MoveDailView, MoveDet
     protected void onDestroy() {
         super.onDestroy();
         if (getPresenter() != null) getPresenter().cancel();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

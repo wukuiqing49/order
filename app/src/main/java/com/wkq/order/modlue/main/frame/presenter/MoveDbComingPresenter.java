@@ -34,10 +34,10 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
     private Event eventData;
     private Event eventBanner;
 
-    public void getData(FragmentActivity activity) {
+    public void getData(Context activity,int page) {
 
         Map<String, String> requestMap = new HashMap<>();
-        requestMap.put("page", 1 + "");
+        requestMap.put("page", page + "");
 
 
         eventData =   Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
@@ -47,6 +47,7 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
             }
         }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");
+            if (getView()!=null)getView().showFail(message);
 
         }).setSuccessCallback(data -> {
             if (data != null && getView() != null) getView().setData(data);

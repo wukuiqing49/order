@@ -3,17 +3,14 @@ package com.wkq.order.modlue.main.frame.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
-import com.wkq.order.modlue.main.ui.SearchActivity;
+import com.wkq.order.modlue.main.ui.activity.SearchActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveFragmentPagerAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveInformationFragment;
-import com.wkq.order.modlue.main.ui.widget.ScaleTransitionPagerTitleView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -23,7 +20,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 

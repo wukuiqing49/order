@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityMainTestBinding;
 import com.wkq.order.modlue.main.frame.presenter.VideoWebPresenter;
 import com.wkq.order.modlue.main.frame.view.VideoWebView;
+import com.wkq.order.modlue.main.ui.activity.PlayHelperActivity;
 
 public class VideoWebListActivity extends MvpBindingActivity<VideoWebView, VideoWebPresenter, ActivityMainTestBinding> implements View.OnClickListener {
 
@@ -62,5 +64,16 @@ public class VideoWebListActivity extends MvpBindingActivity<VideoWebView, Video
 
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

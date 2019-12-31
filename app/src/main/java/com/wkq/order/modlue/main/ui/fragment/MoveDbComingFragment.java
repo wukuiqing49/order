@@ -26,7 +26,7 @@ public class MoveDbComingFragment extends MvpBindingFragment<MoveDbComingView, M
     // 是否扩展
     public boolean isExpend;
 
-
+    public int page = 1;
 
     public static MoveDbComingFragment newInstance(Context context) {
 
@@ -48,7 +48,7 @@ public class MoveDbComingFragment extends MvpBindingFragment<MoveDbComingView, M
         super.onViewCreated(view, savedInstanceState);
         if (getMvpView()!=null)getMvpView().initView();
         if (getPresenter() != null) getPresenter().getBannerData(getActivity());
-        if (getPresenter() != null) getPresenter().getData(getActivity());
+        if (getPresenter() != null) getPresenter().getData(getActivity(),page);
 
     }
 

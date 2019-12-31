@@ -9,6 +9,10 @@ import com.wkq.database.dao.HomeTopBannerInfo;
 import com.wkq.database.dao.HomeTopBannerInfoDao;
 import com.wkq.database.dao.MoveDbDataHitory;
 import com.wkq.database.dao.MoveDbDataHitoryDao;
+import com.wkq.database.dao.MoveSearchHistory;
+import com.wkq.database.dao.MoveSearchHistoryDao;
+
+import java.util.List;
 
 /**
  * 作者: 吴奎庆
@@ -142,6 +146,40 @@ public class DataBaseUtils {
         MoveDbDataHitory info = dao.load(key);
         return info;
 
+    }
+
+    /**
+     * 获取首页列表数据
+     *
+     * @param context
+     * @return
+     */
+    public static void insertHistoryData(Context context, String moveName) {
+
+        if (TextUtils.isEmpty(moveName)) return;
+
+        MoveSearchHistoryDao dao = DaoHelper.getInstance(context).getMoveSearchHistoryDao();
+
+        if (dao.load(moveName) != null) return;
+
+        MoveSearchHistory info = new MoveSearchHistory();
+
+        info.setMoveName(TextUtils.isEmpty(moveName) ? "" : moveName);
+
+        dao.insertOrReplace(info);
+    }
+
+    /**
+     * 获取查询历史
+     *
+     * @param context
+     * @return
+     */
+    public static List<MoveSearchHistory> getMoveHistoryData(Context context) {
+
+        MoveSearchHistoryDao dao = DaoHelper.getInstance(context).getMoveSearchHistoryDao();
+
+        return dao == null ? null : dao.loadAll();
 
     }
 }

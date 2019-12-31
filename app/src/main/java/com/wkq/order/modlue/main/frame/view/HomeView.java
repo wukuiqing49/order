@@ -9,8 +9,9 @@ import com.qmuiteam.qmui.widget.tab.QMUITabSegment;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
-import com.wkq.order.modlue.main.ui.HomeActivity;
+import com.wkq.order.modlue.main.ui.activity.HomeActivity;
 import com.wkq.order.modlue.main.ui.adapter.HomeFragmentPagerAdapter;
+import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 
 /**
  * 作者:吴奎庆
@@ -32,7 +33,7 @@ public class HomeView implements MvpView {
     public void initView() {
         StatusBarUtil.setTransparentForWindow(mActivity);
         StatusBarUtil.addTranslucentView(mActivity, 0);
-        StatusBarUtil.setDarkMode(mActivity);
+//        StatusBarUtil.setDarkMode(mActivity);
 //        StatusBarUtil.setStatusBarWrite(mActivity);
 //        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
         HomeFragmentPagerAdapter homeFragmentPagerAdapter = new HomeFragmentPagerAdapter(mActivity, mActivity.getSupportFragmentManager());
@@ -73,7 +74,7 @@ public class HomeView implements MvpView {
                 switch (index) {
 
                     case 0:
-                        StatusBarUtil.setLightMode(mActivity);
+                        StatusBarUtil.setDarkMode(mActivity);
                         break;
                     case 1:
                         StatusBarUtil.setDarkMode(mActivity);
@@ -85,6 +86,10 @@ public class HomeView implements MvpView {
                         break;
                 }
             }
+        });
+
+        mActivity.binding.cdPlay.setOnClickListener(view -> {
+            VideoWebListActivity.startVideoWebList(mActivity);
         });
 
     }

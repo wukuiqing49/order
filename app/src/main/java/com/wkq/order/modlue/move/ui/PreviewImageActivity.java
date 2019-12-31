@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.databinding.ViewDataBinding;
 
+import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.order.R;
@@ -59,5 +60,16 @@ public class PreviewImageActivity extends MvpBindingActivity<PreviewImageView, P
             finish();
         }
         if (getMvpView() != null) getMvpView().initView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }
