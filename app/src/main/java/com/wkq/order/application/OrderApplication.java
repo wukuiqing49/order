@@ -3,7 +3,6 @@ package com.wkq.order.application;
 import androidx.multidex.MultiDexApplication;
 
 import com.umeng.commonsdk.UMConfigure;
-import com.wkq.order.utils.TTAdManagerHolder;
 
 
 /**
@@ -31,7 +30,7 @@ public class OrderApplication extends MultiDexApplication {
      */
     private void initDb() {
         //强烈建议在应用对应的Application#onCreate()方法中调用，避免出现content为null的异常
-        TTAdManagerHolder.init(this);
+
 }}
 
 

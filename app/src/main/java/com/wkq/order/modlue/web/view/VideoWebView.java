@@ -1,34 +1,15 @@
 package com.wkq.order.modlue.web.view;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.JsPromptResult;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bytedance.sdk.openadsdk.AdSlot;
-import com.bytedance.sdk.openadsdk.TTAdConstant;
-import com.bytedance.sdk.openadsdk.TTAdDislike;
-import com.bytedance.sdk.openadsdk.TTAdManager;
-import com.bytedance.sdk.openadsdk.TTAdNative;
-import com.bytedance.sdk.openadsdk.TTAppDownloadListener;
-import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
-import com.bytedance.sdk.openadsdk.TTImage;
-import com.bytedance.sdk.openadsdk.TTNativeAd;
-import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.WebChromeClient;
@@ -38,17 +19,12 @@ import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
-import com.wkq.order.utils.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
-import com.wkq.order.utils.TTAdManagerHolder;
+import com.wkq.order.utils.CustomSettings;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import static com.wkq.order.utils.Constant.MOVE_TT_AD_STREAM_ID;
-import static com.wkq.order.utils.Constant.MOVE_TT_AD_VIDEO_ID;
 
 
 /**
@@ -59,15 +35,12 @@ public class VideoWebView implements MvpView {
 
     VideoWebviewActivity mActivity;
 
-    TTAdNative mTTAdNative;
 
-    private TTNativeExpressAd mTTAd;
-    private long startTime = 0;
 
     private boolean isOclick = false;
 
 
-    private TTFullScreenVideoAd mttFullVideoAd;
+
 
     public VideoWebView(VideoWebviewActivity mActivity) {
 
@@ -89,130 +62,7 @@ public class VideoWebView implements MvpView {
 
 
     private void initAd() {
-        //step1:初始化sdk
-        mTTAdNative = TTAdManagerHolder.get().createAdNative(mActivity);
 
-//step3:可选，申请部分权限，如read_phone_state,防止获取不了imei时候，下载类广告没有填充的问题。
-        TTAdManagerHolder.get().requestPermissionIfNecessary(mActivity);
-
-
-        AdSlot adSlot = new AdSlot.Builder()
-                .setCodeId("943999020") //广告位id
-                .setSupportDeepLink(true)
-                .setAdCount(1) //请求广告数量为1到3条
-                .setExpressViewAcceptedSize(600, 400) //期望模板广告view的size,单位dp
-                .setImageAcceptedSize(600, 400)//这个参数设置即可，不影响模板广告的size
-                .build();
-        mTTAdNative.loadInteractionExpressAd(adSlot, new TTAdNative.NativeExpressAdListener() {
-            @Override
-            public void onError(int code, String message) {
-                AlertUtil.showDeftToast(mActivity, message);
-                mActivity.finish();
-            }
-
-            @Override
-            public void onNativeExpressAdLoad(List<TTNativeExpressAd> ads) {
-                if (ads == null || ads.size() == 0) {
-                    return;
-                }
-                mTTAd = ads.get(0);
-                bindAdListener(mTTAd);
-                startTime = System.currentTimeMillis();
-                mTTAd.render();
-            }
-        });
-
-
-    }
-
-    private void bindAdListener(TTNativeExpressAd ad) {
-        ad.setExpressInteractionListener(new TTNativeExpressAd.AdInteractionListener() {
-            @Override
-            public void onAdDismiss() {
-
-//                showMessage("广告关闭");
-
-                if (mActivity.mAgentWeb != null)
-                    mActivity.mAgentWeb.getUrlLoader().loadUrl(mActivity.url);
-
-
-            }
-
-            @Override
-            public void onAdClicked(View view, int type) {
-                isOclick = true;
-
-            }
-
-            @Override
-            public void onAdShow(View view, int type) {
-
-//                showMessage("广告展示");
-            }
-
-            @Override
-            public void onRenderFail(View view, String msg, int code) {
-
-//                showMessage(msg);
-                mActivity.finish();
-            }
-
-            @Override
-            public void onRenderSuccess(View view, float width, float height) {
-                //返回view的宽高 单位 dp
-
-//                showMessage("渲染成功");
-                mTTAd.showInteractionExpressAd(mActivity);
-
-            }
-        });
-
-//
-//        if (ad.getInteractionType() != TTAdConstant.INTERACTION_TYPE_DOWNLOAD) {
-//            return;
-//        }
-//        ad.setDownloadListener(new TTAppDownloadListener() {
-//            @Override
-//            public void onIdle() {
-////                TToast.show(InteractionExpressActivity.this, "点击开始下载", Toast.LENGTH_LONG);
-//                showMessage("点击开始下载");
-//            }
-//
-//            @Override
-//            public void onDownloadActive(long totalBytes, long currBytes, String fileName, String appName) {
-//                if (!mHasShowDownloadActive) {
-//                    mHasShowDownloadActive = true;
-////                    TToast.show(InteractionExpressActivity.this, "下载中，点击暂停", Toast.LENGTH_LONG);
-//                    showMessage("下载中，点击暂停");
-//                }
-//            }
-//
-//            @Override
-//            public void onDownloadPaused(long totalBytes, long currBytes, String fileName, String appName) {
-////                TToast.show(InteractionExpressActivity.this, "下载暂停，点击继续", Toast.LENGTH_LONG);
-//
-//                showMessage("下载暂停，点击继续");
-//            }
-//
-//            @Override
-//            public void onDownloadFailed(long totalBytes, long currBytes, String fileName, String appName) {
-////                TToast.show(InteractionExpressActivity.this, "下载失败，点击重新下载", Toast.LENGTH_LONG);
-//                showMessage("下载失败，点击重新下载");
-//            }
-//
-//            @Override
-//            public void onInstalled(String fileName, String appName) {
-////                TToast.show(InteractionExpressActivity.this, "安装完成，点击图片打开", Toast.LENGTH_LONG);
-//                showMessage("安装完成，点击图片打开");
-//            }
-//
-//            @Override
-//            public void onDownloadFinished(long totalBytes, String fileName, String appName) {
-////                TToast.show(InteractionExpressActivity.this, "点击安装", Toast.LENGTH_LONG);
-//
-//                showMessage("点击安装");
-//            }
-//        });
 
 
     }
@@ -393,9 +243,7 @@ public class VideoWebView implements MvpView {
 
 
     public void cancelAd() {
-        if (mTTAd != null) {
-            mTTAd.destroy();
-        }
+
     }
 
     public void onResume() {
