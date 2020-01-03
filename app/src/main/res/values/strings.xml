@@ -4,6 +4,7 @@
     <string name="string_time_playing">%s %s分钟</string>
     <string name="string_move_voted">%d 票</string>
     <string name="string_move_voted_score">%2f 评分</string>
+    <string name="string_permission_save_pic">应用程序需要获取拍照权限和外部存储卡写入权限，否则无法保存图片!</string>
 
 
 </resources>

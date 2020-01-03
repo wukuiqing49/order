@@ -213,7 +213,7 @@ public class VideoWebView implements MvpView {
                 .setWebViewClient(webChromeClient)
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .createAgentWeb()
-                .ready().get();
+                .ready().go(mActivity.url);
 
 
         mActivity.mAgentWeb.getJsAccessEntrace().callJs("document.getElementsByTagName(\"iframe\")[0].src");
@@ -247,7 +247,7 @@ public class VideoWebView implements MvpView {
     }
 
     public void onResume() {
-        if (mActivity.mAgentWeb != null && isOclick)
-            mActivity.mAgentWeb.getUrlLoader().loadUrl(mActivity.url);
+//        if (mActivity.mAgentWeb != null && isOclick)
+//            mActivity.mAgentWeb.getUrlLoader().loadUrl(mActivity.url);
     }
 }

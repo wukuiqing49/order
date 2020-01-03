@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.cnlive.largeimage.CustomPreviewClickListener;
 import com.cnlive.largeimage.CustomPreviewImageView;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ItemPrevieImgBinding;
@@ -32,6 +33,11 @@ import java.util.List;
 public class PreviewImgsViewPagerAdapter extends PagerAdapter {
     List<String> imgs = new ArrayList<>();
     Context context;
+    OnPicItemClickListener listener;
+
+    public void setOnLongClickerListener(OnPicItemClickListener longClickerListener) {
+        listener = longClickerListener;
+    }
 
     public PreviewImgsViewPagerAdapter(Context context, List<String> imgs) {
         this.context = context;
@@ -57,7 +63,20 @@ public class PreviewImgsViewPagerAdapter extends PagerAdapter {
         ItemPrevieImgBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_previe_img, container, false);
 
         binding.largeView.setImageView(Constant.MOVE_DB_IMG_BASE_500.concat(imgs.get(position)), "");
+
+        binding.largeView.setClickLisetner(new CustomPreviewClickListener() {
+            @Override
+            public void longClick(String file) {
+                if (listener!=null)listener.onItemLongClicker(imgs.get(position));
+            }
+
+            @Override
+            public void click() {
+
+            }
+        });
         container.addView(binding.getRoot());
+
         return binding.getRoot();
     }
 
@@ -65,5 +84,10 @@ public class PreviewImgsViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
+    }
+
+    public interface OnPicItemClickListener {
+        void onItemLongClicker(String imgUrl);
+
     }
 }

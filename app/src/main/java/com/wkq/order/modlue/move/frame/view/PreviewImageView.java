@@ -1,8 +1,11 @@
 package com.wkq.order.modlue.move.frame.view;
 
+import android.text.TextUtils;
+
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.modlue.move.ui.PreviewImageActivity;
+import com.wkq.order.modlue.move.ui.ProcessImgsActivity;
 import com.wkq.order.modlue.move.ui.adapter.PreviewImgsViewPagerAdapter;
 
 /**
@@ -34,6 +37,13 @@ public class PreviewImageView implements MvpView {
         mActivity.binding.vp.setAdapter(previewImgAdapter);
         mActivity.binding.vp.setOffscreenPageLimit(5);
         mActivity.binding.vp.setCurrentItem(mActivity.position);
+        previewImgAdapter.setOnLongClickerListener(new PreviewImgsViewPagerAdapter.OnPicItemClickListener() {
+            @Override
+            public void onItemLongClicker(String imgUrl) {
+                if (!TextUtils.isEmpty(imgUrl))
+                    ProcessImgsActivity.startActivity(mActivity, imgUrl);
+            }
+        });
 
 
     }
