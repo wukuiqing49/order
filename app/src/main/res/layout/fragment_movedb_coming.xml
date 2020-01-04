@@ -34,7 +34,7 @@
                     <com.youth.banner.Banner
                         android:id="@+id/banner_movies"
                         android:layout_width="match_parent"
-                        android:layout_height="245dp"
+                        android:layout_height="200dp"
                         app:image_scale_type="center_crop"
                         app:indicator_height="8dp"
                         app:indicator_margin="4dp"
@@ -46,7 +46,7 @@
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="80dp"
                         android:background="@color/transparent"
                         app:layout_collapseMode="pin">
 
@@ -97,12 +97,12 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/ll_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
 
-            android:clickable="true">
+            android:visibility="gone">
 
 
             <ImageView

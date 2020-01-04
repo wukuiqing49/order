@@ -137,7 +137,7 @@
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/ThemeCheckLine" />
+            android:theme="@style/ProcessHtmlDialogActivityTheme" />
         <activity
             android:name=".modlue.web.ui.WebDemoActivity"
             android:configChanges="keyboardHidden|screenSize|orientation|smallestScreenSize|screenLayout"

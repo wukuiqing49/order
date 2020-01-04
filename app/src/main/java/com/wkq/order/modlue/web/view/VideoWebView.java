@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.JsPromptResult;
 import android.webkit.WebResourceRequest;
@@ -34,35 +35,23 @@ import java.util.Random;
 public class VideoWebView implements MvpView {
 
     VideoWebviewActivity mActivity;
-
-
-
     private boolean isOclick = false;
 
-
-
-
     public VideoWebView(VideoWebviewActivity mActivity) {
-
         this.mActivity = mActivity;
     }
 
-
     public void initView() {
-
         initAd();
-
         StatusBarUtil.setTransparentForWindow(mActivity);
         StatusBarUtil.addTranslucentView(mActivity, 0);
         StatusBarUtil.setDarkMode(mActivity);
-
         initWaitingBg();
         initWebView();
     }
 
 
     private void initAd() {
-
 
 
     }
@@ -150,7 +139,7 @@ public class VideoWebView implements MvpView {
 
                 if (!TextUtils.isEmpty(message)) {
 
-
+                    Log.e("url:", url);
 //                    mActivity.mAgentWeb.getUrlLoader().loadUrl(message);
                     return true;
                 } else {
@@ -164,15 +153,15 @@ public class VideoWebView implements MvpView {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url == null) return false;
-                if (url.startsWith("http:") || url.startsWith("https:") ){
+                if (url.startsWith("http:") || url.startsWith("https:")) {
                     view.loadUrl(url);
                     return false;
-                }else{
-                    try{
+                } else {
+                    try {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(url));
                         mActivity.startActivity(intent);
-                    }catch (Exception e){
+                    } catch (Exception e) {
 //                    ToastUtils.showShort("暂无应用打开此链接");
                     }
                     return true;
@@ -197,14 +186,13 @@ public class VideoWebView implements MvpView {
                 mActivity.mAgentWeb.getJsAccessEntrace().callJs("var a=document.getElementById('player').parentNode;var b=a.children; for(var i =b.length-1; i>=0;i--){ if(b[i].id!='player'){a.removeChild(b[i]);}}");
                 mActivity.binding.ivLoading.setVisibility(View.GONE);
                 mActivity.binding.ivLoading.setVisibility(View.GONE);
+//                mActivity.mAgentWeb.getJsAccessEntrace().callJs("var src=document.getElementsByTagName(\"iframe\")[0].src;var result=prompt(src)");
+                mActivity.mAgentWeb.getJsAccessEntrace().callJs("var c=document.getElementsByTagName('div');  for(var i =c.length-1; i>=0;i--){if(c[i].id.match(/sjdb/gi)!=null){c[i].style.display='none';}  }");
             }
-
-
         };
 
 
         mActivity.mAgentWeb = AgentWeb.with(mActivity)
-
                 .setAgentWebParent(mActivity.binding.llRoot, new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator(mActivity.getResources().getColor(R.color.color_1aad19))
                 .closeWebViewClientHelper()
@@ -214,18 +202,11 @@ public class VideoWebView implements MvpView {
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .createAgentWeb()
                 .ready().go(mActivity.url);
-
-
         mActivity.mAgentWeb.getJsAccessEntrace().callJs("document.getElementsByTagName(\"iframe\")[0].src");
-
-
     }
 
     public void startTimer() {
-
         mActivity.mAgentWeb.getJsAccessEntrace().callJs("var src=document.getElementsByTagName(\"iframe\")[0].src;var result=prompt(src)");
-
-
     }
 
     public void showMessage(String message) {
