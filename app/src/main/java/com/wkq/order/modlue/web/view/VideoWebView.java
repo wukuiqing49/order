@@ -44,8 +44,11 @@ public class VideoWebView implements MvpView {
     public void initView() {
         initAd();
         StatusBarUtil.setTransparentForWindow(mActivity);
-        StatusBarUtil.addTranslucentView(mActivity, 0);
-        StatusBarUtil.setDarkMode(mActivity);
+//        StatusBarUtil.addTranslucentView(mActivity, 0);
+//        StatusBarUtil.setDarkMode(mActivity);
+
+        StatusBarUtil.hideFakeStatusBarView(mActivity);
+
         initWaitingBg();
         initWebView();
     }
@@ -183,6 +186,7 @@ public class VideoWebView implements MvpView {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+
                 mActivity.mAgentWeb.getJsAccessEntrace().callJs("var a=document.getElementById('player').parentNode;var b=a.children; for(var i =b.length-1; i>=0;i--){ if(b[i].id!='player'){a.removeChild(b[i]);}}");
                 mActivity.binding.ivLoading.setVisibility(View.GONE);
                 mActivity.binding.ivLoading.setVisibility(View.GONE);
