@@ -5,7 +5,7 @@
     <style name="BaseAppTheme" parent="AppTheme">
     <!-- Customize your theme here. -->
 
-        <item name="android:windowBackground">@mipmap/movie_4</item>
+<!--        <item name="android:windowBackground">@mipmap/movie_4</item>-->
 
     </style>
 

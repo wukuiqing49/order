@@ -2,7 +2,6 @@ package com.wkq.order.modlue.login;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
-import com.wkq.base.utlis.TimerHelper;
 import com.wkq.order.modlue.main.ui.activity.HomeActivity;
 import com.wkq.order.utils.MoveDbDataSaveUtlis;
 
