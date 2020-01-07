@@ -15,6 +15,7 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.squareup.picasso.Picasso;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.RandomUtil;
@@ -27,9 +28,13 @@ import com.wkq.net.model.MoveDataInfo;
 import com.wkq.net.model.MoveDbNowPlayingInfo;
 import com.wkq.order.R;
 import com.wkq.order.modlue.main.modle.BannerInfo;
+import com.wkq.order.modlue.main.modle.MovesTobWebInfo;
+import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
+import com.wkq.order.modlue.main.ui.adapter.MovesTopWebAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;
 import com.wkq.order.modlue.move.ui.MoveDetailActivity;
+import com.wkq.order.modlue.web.ui.VideoSiteActivity;
 import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.utils.BannerImageLoader;
 import com.wkq.order.utils.Constant;
@@ -39,6 +44,7 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.lang.reflect.Type;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,6 +81,8 @@ public class MoveDbComingView implements MvpView {
         moviesAdapter = new MoveDbComingAdapter(mFragment.getActivity());
 
         mFragment.binding.rvMovies.setLayoutManager(new LinearLayoutManager(mFragment.getActivity()));
+
+
         mFragment.binding.rvMovies.setAdapter(moviesAdapter);
 
         moviesAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
@@ -94,6 +102,55 @@ public class MoveDbComingView implements MvpView {
             moviesAdapter.addItems(historyData.getResults());
 
         }
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(mFragment.getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
+        //初始化网页点击的布局
+        mFragment.binding.rvWeb.setLayoutManager(layoutManager2);
+
+        MovesTopWebAdapter movesTopWebAdapter = new MovesTopWebAdapter(mFragment.getActivity());
+
+        mFragment.binding.rvWeb.setAdapter(movesTopWebAdapter);
+
+        List<Integer> pics = new ArrayList<>();
+        pics.add(R.mipmap.movie_1);
+        pics.add(R.mipmap.movie_2);
+        pics.add(R.mipmap.movie_3);
+        pics.add(R.mipmap.movie_4);
+        pics.add(R.mipmap.movie_5);
+        pics.add(R.mipmap.movie_6);
+        pics.add(R.mipmap.movie_7);
+        pics.add(R.mipmap.movie_8);
+        pics.add(R.mipmap.movie_9);
+        long seed1 = System.nanoTime();
+        //创建Random类对象
+        Random random = new Random(seed1);
+
+        int START = 0;   //定义范围开始数字
+
+        int END = pics.size() - 1;
+
+        SecureRandom sr = new SecureRandom();
+        List<MovesTobWebInfo> webInfos = new ArrayList<>();
+        webInfos.add(new MovesTobWebInfo("https://v.qq.com/", "腾讯视频", pics.get(sr.nextInt(END))));
+
+        webInfos.add(new MovesTobWebInfo("https://www.iqiyi.com/", "爱奇艺", pics.get(sr.nextInt(END))));
+        webInfos.add(new MovesTobWebInfo("https://www.youku.com/", "优酷视频", pics.get(sr.nextInt(END))));
+        webInfos.add(new MovesTobWebInfo("https://tv.sohu.com/", "搜狐视频", pics.get(sr.nextInt(END))));
+        webInfos.add(new MovesTobWebInfo("http://www.pptv.com/", "PPTV视频", pics.get(sr.nextInt(END))));
+        webInfos.add(new MovesTobWebInfo("http://www.le.com/", "乐视视频", pics.get(sr.nextInt(END))));
+
+        movesTopWebAdapter.addItems(webInfos);
+
+        movesTopWebAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
+            @Override
+            public void onViewClick(View v, Object program) {
+                if (program != null && program instanceof MovesTobWebInfo) {
+                    MovesTobWebInfo info = (MovesTobWebInfo) program;
+                    VideoSiteActivity.startActivity(mFragment.getActivity(), info.getWebUrl());
+                }
+
+            }
+        });
 
 
     }

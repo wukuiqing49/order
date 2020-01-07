@@ -30,7 +30,6 @@
 
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
                     <com.youth.banner.Banner
                         android:id="@+id/banner_movies"
                         android:layout_width="match_parent"
@@ -74,6 +73,12 @@
 
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_web"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
