@@ -11,6 +11,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.WebChromeClient;
@@ -22,6 +23,7 @@ import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
 import com.wkq.order.utils.CustomSettings;
+import com.wkq.order.utils.ImagesBgUtlis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,26 +62,8 @@ public class VideoWebView implements MvpView {
     }
 
     private void initWaitingBg() {
-        List<Integer> pics = new ArrayList<>();
-        pics.add(R.mipmap.movie_1);
-        pics.add(R.mipmap.movie_2);
-        pics.add(R.mipmap.movie_3);
-        pics.add(R.mipmap.movie_4);
-        pics.add(R.mipmap.movie_5);
-        pics.add(R.mipmap.movie_6);
-        pics.add(R.mipmap.movie_7);
-        pics.add(R.mipmap.movie_8);
-        pics.add(R.mipmap.movie_9);
 
-        //创建Random类对象
-        Random random = new Random();
-        int START = 0;   //定义范围开始数字
-
-        int END = pics.size() - 1;
-        //产生随机数
-        int number = random.nextInt(END - START + 1) + START;
-        Integer x = pics.get(number);
-        Picasso.with(mActivity).load(x).into(mActivity.binding.ivBg);
+        Glide.with(mActivity).load(ImagesBgUtlis.getImg()).into(mActivity.binding.ivBg);
 
     }
 

@@ -143,7 +143,7 @@
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="90dp"
+                        android:layout_height="80dp"
                         android:background="@color/transparent"
                         app:contentInsetStart="0dp"
                         app:layout_collapseMode="pin">
@@ -165,7 +165,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="20dp"
-                                    android:layout_marginTop="50dp"
+                                    android:layout_marginTop="40dp"
                                     android:src="@mipmap/ic_arrow_back_white_24dp" />
 
                             </RelativeLayout>
@@ -176,7 +176,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginTop="50dp"
+                                android:layout_marginTop="40dp"
                                 android:text="@{data.title}"
                                 android:textColor="@color/white"
                                 android:textSize="20dp"
@@ -398,6 +398,7 @@
 
 
             <ImageView
+                android:id="@+id/iv_icon_bg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
