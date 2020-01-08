@@ -112,11 +112,9 @@ public class MoveDbComingView implements MvpView {
         mFragment.binding.rvWeb.setAdapter(movesTopWebAdapter);
 
         List<Integer> pics = new ArrayList<>();
-        pics.add(R.mipmap.movie_1);
         pics.add(R.mipmap.movie_2);
         pics.add(R.mipmap.movie_3);
         pics.add(R.mipmap.movie_4);
-        pics.add(R.mipmap.movie_5);
         pics.add(R.mipmap.movie_6);
         pics.add(R.mipmap.movie_7);
         pics.add(R.mipmap.movie_8);
