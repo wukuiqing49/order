@@ -30,7 +30,6 @@
 
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
                     <com.youth.banner.Banner
                         android:id="@+id/banner_movies"
                         android:layout_width="match_parent"
@@ -61,7 +60,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentBottom="true"
                                 android:layout_centerInParent="true"
-                                android:layout_marginBottom="20dp"
+                                android:layout_marginBottom="10dp"
                                 android:text="首页"
                                 android:textColor="@color/white"
                                 android:textSize="19sp"
@@ -74,6 +73,12 @@
 
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_web"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
 
             </com.google.android.material.appbar.AppBarLayout>
 

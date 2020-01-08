@@ -82,6 +82,7 @@ public class MoveInformationView implements MvpView {
                 return simplePagerTitleView;
             }
 
+
             @Override
             public IPagerIndicator getIndicator(Context context) {
                 LinePagerIndicator indicator = new LinePagerIndicator(context);

@@ -28,7 +28,7 @@ public class SplashView implements MvpView {
 
         StatusBarUtil.setTransparentForWindow(mActivity);
         StatusBarUtil.addTranslucentView(mActivity, 0);
-        StatusBarUtil.setDarkMode(mActivity);
+        StatusBarUtil.setLightMode(mActivity);
         MoveDbDataSaveUtlis.putType(mActivity);
 
 
