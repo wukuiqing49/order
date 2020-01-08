@@ -33,42 +33,23 @@ public class MoveComingPresenter extends MvpBasePresenter<MoveComingView> {
     private Event event;
 
     public void getData(Context context, int page) {
-//        Map<String, String> requestMap = new HashMap<>();
-//        requestMap.put("page", page + "");
-//
-//        Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
-//            @Override
-//            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
-//                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getTopRated(data)).subscribe(context, callback);
-//            }
-//        }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
-//            if (getView() != null) getView().showMessage(message);
-//
-//        }).setSuccessCallback(data -> {
-//
-//            if (getView() != null) getView().setData(data);
-//
-//
-//        }).start();
-
 
         HashMap<String, String> requestMap = new HashMap<>();
-        requestMap.put("page", 1 + "");
+        requestMap.put("page", page + "");
         event = Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
-              @Override
-              public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
-                  return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getUpComing(data)).subscribe(context, callback);
-              }
-          }).<BaseInfo<MoveDataInfo>>event().setFailureCallback(new FailureCallback() {
-              @Override
-              public void onFailure(int state, String message) {
-                  Log.e("", "");
-              }
-          }).setSuccessCallback(data -> {
-              Log.e("", "");
-              if (getView() != null) getView().setData(data);
+            @Override
+            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
+                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getPopular(data)).subscribe(context, callback);
+            }
+        }).<BaseInfo<MoveDataInfo>>event().setFailureCallback(new FailureCallback() {
+            @Override
+            public void onFailure(int state, String message) {
+                if (getView() != null) getView().showMessage(message);
+            }
+        }).setSuccessCallback(data -> {
+            if (getView() != null) getView().setData(data);
 
-          }).start();
+        }).start();
 
     }
 
