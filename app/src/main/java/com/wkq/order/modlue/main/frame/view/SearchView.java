@@ -4,9 +4,13 @@ import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.DoublePressed;
 import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.base.widget.LoadingDialog;
 import com.wkq.database.dao.MoveSearchHistory;
 import com.wkq.database.utils.DataBaseUtils;
 import com.wkq.net.BaseInfo;
@@ -17,8 +21,13 @@ import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
 import com.wkq.order.modlue.main.ui.adapter.MoveSearchHistoryAdapter;
 import com.wkq.order.modlue.move.ui.MoveDetailActivity;
 import com.wkq.order.utils.DataBindingAdapter;
+import com.wkq.order.utils.DynamicTimeFormat;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 /**
  * 作者: 吴奎庆
@@ -34,6 +43,8 @@ public class SearchView implements MvpView {
     MoveSearchHistoryAdapter moveSearchHistoryAdapter;
 
     MoveDbComingAdapter moveDbComingAdapter;
+    private LoadingDialog loadingDialog;
+
 
     public SearchView(SearchActivity activity) {
         mActivity = activity;
@@ -44,18 +55,34 @@ public class SearchView implements MvpView {
         StatusBarUtil.setStatusBarWrite(mActivity);
         StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.color_2b2b2b), 0);
         StatusBarUtil.setDarkMode(mActivity);
-        mActivity.binding.rvSearch.setVisibility(View.GONE);
+
+        mActivity.binding.rvSf.setVisibility(View.GONE);
         mActivity.binding.rlSearchHisory.setVisibility(View.VISIBLE);
+
+        ClassicsHeader header = new ClassicsHeader(mActivity);
+        ClassicsFooter footer = new ClassicsFooter(mActivity);
+        header.setProgressDrawable(mActivity.getResources().getDrawable(R.drawable.ic_progress_puzzle));
+        header.setBackgroundColor(mActivity.getResources().getColor(R.color.color_f4f4f4));
+        header.setSpinnerStyle(SpinnerStyle.Translate);
+        int delta = new Random().nextInt(7 * 24 * 60 * 60 * 1000);
+
+        header.setLastUpdateTime(new Date(System.currentTimeMillis() - delta));
+        header.setTimeFormat(new SimpleDateFormat("更新于 MM-dd HH:mm", Locale.CHINA));
+        header.setTimeFormat(new DynamicTimeFormat("更新于 %s"));
+
+        mActivity.binding.rvSf.setEnableRefresh(false);
+        mActivity.binding.rvSf.setRefreshHeader(header);
+        mActivity.binding.rvSf.setRefreshFooter(footer);
+
         moveSearchHistoryAdapter = new MoveSearchHistoryAdapter(mActivity);
         mActivity.binding.rlBack.setOnClickListener(view -> mActivity.finish());
         mActivity.binding.rlSearch.setOnClickListener(view -> {
-
             if (mActivity != null && mActivity.getPresenter() != null) {
                 if (DoublePressed.onDoublePressed()) return;
                 if (mActivity.binding.etSearch.getText() != null) {
+                    showLoading();
                     DataBaseUtils.insertHistoryData(mActivity, mActivity.binding.etSearch.getText().toString());
                     mActivity.getPresenter().searchData(mActivity, mActivity.binding.etSearch.getText().toString());
-
                 }
             }
 
@@ -71,15 +98,11 @@ public class SearchView implements MvpView {
             mActivity.binding.rlEmpty.setVisibility(View.GONE);
             mActivity.binding.rvSearchHistory.setVisibility(View.VISIBLE);
             moveSearchHistoryAdapter.addItems(historyList);
-
         }
 
         mActivity.binding.rvSearch.setLayoutManager(new LinearLayoutManager(mActivity));
-
-
         moveDbComingAdapter = new MoveDbComingAdapter(mActivity);
         mActivity.binding.rvSearch.setAdapter(moveDbComingAdapter);
-
 
         moveDbComingAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
             @Override
@@ -101,16 +124,26 @@ public class SearchView implements MvpView {
                 }
             }
         });
-
-
     }
 
     public void setSearchData(BaseInfo<MoveDataInfo> data) {
         if (data != null && data.getData() != null) {
-            mActivity.binding.rvSearch.setVisibility(View.VISIBLE);
+            mActivity.binding.rvSf.setVisibility(View.VISIBLE);
             mActivity.binding.rlSearchHisory.setVisibility(View.GONE);
             moveDbComingAdapter.addItems(data.getData().getResults());
         }
 
+    }
+
+    public void showLoading() {
+        if (loadingDialog == null)
+            loadingDialog = new LoadingDialog(mActivity);
+        loadingDialog.show();
+    }
+
+    public void hindLoading() {
+        if (loadingDialog != null) {
+            loadingDialog.dismiss();
+        }
     }
 }

@@ -26,7 +26,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="15dp"
                     android:src="@mipmap/ic_arrow_back_white_24dp" />
 
 
@@ -35,20 +35,22 @@
 
             <EditText
                 android:id="@+id/et_search"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
                 android:layout_marginLeft="10dp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="15dp"
                 android:layout_toLeftOf="@+id/rl_search"
                 android:layout_toRightOf="@+id/rl_back"
                 android:background="@null"
+                android:gravity="left"
                 android:hint="请输入您要搜索的电影名字"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold" />
+
 
             <RelativeLayout
 
@@ -63,11 +65,8 @@
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-
                     android:layout_marginRight="20dp"
-                    android:layout_marginBottom="18dp"
-
-
+                    android:layout_marginBottom="13dp"
                     android:background="@mipmap/ic_search_white_48dp"
                     android:padding="10dp" />
 
@@ -80,6 +79,7 @@
             android:id="@+id/rl_search_hisory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/color_f4f4f4"
             android:orientation="vertical">
 
             <TextView
@@ -118,11 +118,22 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_search"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" />
+            android:id="@+id/rv_sf"
+            android:background="@color/color_f4f4f4"
+            android:visibility="gone"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+               />
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 
     </LinearLayout>
 </layout>
