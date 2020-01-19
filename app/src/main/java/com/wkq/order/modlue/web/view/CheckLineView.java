@@ -47,7 +47,7 @@ public class CheckLineView implements MvpView {
         checkLines.add(new CheckLineInfo("VIP无广告", "http://demo.hao0606.com/?url="));
         checkLines.add(new CheckLineInfo("VIP无广告2", "https://jiexi.bm6ig.cn/?url="));
         checkLines.add(new CheckLineInfo("VIP无广告3", "http://jx.1ff1.cn/?url="));
-        checkLines.add(new CheckLineInfo("vip无广告初心", "http://jx.bwcxy.com/?v="));
+//        checkLines.add(new CheckLineInfo("vip无广告初心", "http://jx.bwcxy.com/?v="));
         checkLines.add(new CheckLineInfo("Vip无广告116", "https://vip.116kan.com/?url="));
         checkLines.add(new CheckLineInfo("vip知网(搜索)", "http://www.xyyh.xyz/zwjx/?url=url="));
         checkLines.add(new CheckLineInfo("Vip一路发(无广告)", "https://www.cuan.la/?url="));
