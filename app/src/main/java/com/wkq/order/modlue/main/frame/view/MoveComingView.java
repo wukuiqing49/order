@@ -15,6 +15,7 @@ import com.wkq.base.utlis.AlertUtil;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDataInfo;
 import com.wkq.order.R;
+import com.wkq.order.modlue.main.ui.adapter.MoveComingAdapter;
 import com.wkq.order.modlue.main.ui.adapter.MoveTopAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveComingFragment;
 import com.wkq.order.modlue.move.ui.MoveDetailActivity;
@@ -38,7 +39,7 @@ import java.util.Random;
 public class MoveComingView  implements MvpView {
 
     MoveComingFragment mFragment;
-    private MoveTopAdapter moveTopAdapter;
+    private MoveComingAdapter moveTopAdapter;
 
     public MoveComingView(MoveComingFragment mFragment) {
         this.mFragment = mFragment;
@@ -63,7 +64,7 @@ public class MoveComingView  implements MvpView {
         mFragment.binding.rvSf.setRefreshFooter(footer);
 
 
-        moveTopAdapter = new MoveTopAdapter(mFragment.getActivity());
+        moveTopAdapter = new MoveComingAdapter(mFragment.getActivity());
         mFragment.binding.rvContent.setLayoutManager(new GridLayoutManager(mFragment.getActivity(), 3));
         mFragment.binding.rvContent.setAdapter(moveTopAdapter);
 

@@ -20,6 +20,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled true
+    }
+
 }
 
 dependencies {
@@ -35,4 +39,6 @@ dependencies {
     // 友盟统计
     api  'com.umeng.umsdk:analytics:8.0.0'
     api  'com.umeng.umsdk:common:2.0.0'
+    //状态
+    implementation 'com.tuyenmonkey:mkloader:1.4.0'
 }

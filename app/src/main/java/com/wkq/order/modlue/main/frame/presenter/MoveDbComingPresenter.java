@@ -43,7 +43,7 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
         eventData =   Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
             @Override
             public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
-                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getPopular(data)).subscribe(activity, callback);
+                return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getUpComing(data)).subscribe(activity, callback);
             }
         }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");

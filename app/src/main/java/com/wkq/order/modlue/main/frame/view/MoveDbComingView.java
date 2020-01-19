@@ -112,19 +112,16 @@ public class MoveDbComingView implements MvpView {
         mFragment.binding.rvWeb.setAdapter(movesTopWebAdapter);
 
         List<Integer> pics = new ArrayList<>();
+
         pics.add(R.mipmap.movie_2);
         pics.add(R.mipmap.movie_3);
         pics.add(R.mipmap.movie_4);
+
         pics.add(R.mipmap.movie_6);
         pics.add(R.mipmap.movie_7);
         pics.add(R.mipmap.movie_8);
         pics.add(R.mipmap.movie_9);
         long seed1 = System.nanoTime();
-        //创建Random类对象
-        Random random = new Random(seed1);
-
-        int START = 0;   //定义范围开始数字
-
         int END = pics.size() - 1;
 
         SecureRandom sr = new SecureRandom();

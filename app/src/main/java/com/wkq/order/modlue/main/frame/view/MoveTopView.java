@@ -4,6 +4,8 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
@@ -17,6 +19,7 @@ import com.wkq.net.model.MoveDataInfo;
 import com.wkq.order.R;
 import com.wkq.order.modlue.main.ui.adapter.MoveTopAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveTopFragment;
+import com.wkq.order.modlue.main.ui.widget.StaggeredDividerItemDecoration;
 import com.wkq.order.modlue.move.ui.MoveDetailActivity;
 import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.DynamicTimeFormat;
@@ -63,7 +66,29 @@ public class MoveTopView implements MvpView {
 
 
         moveTopAdapter = new MoveTopAdapter(mFragment.getActivity());
-        mFragment.binding.rvContent.setLayoutManager(new GridLayoutManager(mFragment.getActivity(), 3));
+
+        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+//防止Item切换
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+
+        final int spanCount = 2;
+        mFragment.binding.rvContent.addItemDecoration(new StaggeredDividerItemDecoration(mFragment.getActivity(),10,spanCount));
+
+        mFragment.binding.rvContent.setLayoutManager(layoutManager);
+
+
+        mFragment.binding.rvContent.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                int[] first = new int[spanCount];
+                layoutManager.findFirstCompletelyVisibleItemPositions(first);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && (first[0] == 1 || first[1] == 1)) {
+                    layoutManager.invalidateSpanAssignments();
+                }
+            }
+        });
+
+
         mFragment.binding.rvContent.setAdapter(moveTopAdapter);
 
         mFragment.binding.rvSf.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {

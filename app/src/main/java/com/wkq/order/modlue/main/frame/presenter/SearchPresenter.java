@@ -45,8 +45,10 @@ public class SearchPresenter extends MvpBasePresenter<SearchView> {
               }
           }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
               Log.e("", "");
+              if (getView()!=null)getView().hindLoading();
 
           }).setSuccessCallback(data -> {
+            if (getView()!=null)getView().hindLoading();
              if(getView()!=null)getView().setSearchData(data);
 
           }).start();

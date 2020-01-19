@@ -7,7 +7,10 @@ import android.widget.LinearLayout;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.base.widget.LoadingDialog;
 import com.wkq.order.R;
+import com.wkq.order.modlue.demo.ui.activity.CustomBehaviorActivity;
+import com.wkq.order.modlue.demo.ui.activity.DemoActivity;
 import com.wkq.order.modlue.main.ui.activity.SearchActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveFragmentPagerAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveInformationFragment;
@@ -44,7 +47,7 @@ public class MoveInformationView implements MvpView {
     public MoveInformationView(MoveInformationFragment mFragment) {
         this.mFragment = mFragment;
         titleTab.add("正在热播");
-        titleTab.add("即将上映");
+        titleTab.add("最受欢迎");
         titleTab.add("TOP排行榜");
     }
 
@@ -100,8 +103,10 @@ public class MoveInformationView implements MvpView {
         ViewPagerHelper.bind(magicIndicator, mFragment.binding.vpInformation);
 
         mFragment.binding.rlSearch.setOnClickListener(view -> {
-
             SearchActivity.startSearch(mFragment.getActivity());
+
+//            DemoActivity.startActivity(mFragment.getActivity());
+
         });
 
     }
