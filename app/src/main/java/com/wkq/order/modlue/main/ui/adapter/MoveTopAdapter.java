@@ -41,7 +41,8 @@ public class MoveTopAdapter extends DataBindingAdapter<MoveDataInfo.ResultsBean>
         if (binding != null) {
             //需要Item高度不同才能出现瀑布流的效果，此处简单粗暴地设置一下高度
             if (position % 2 == 0) {
-                binding.ivMovePoster.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400);
+                binding.ivMovePoster.setLayoutParams(layoutParams);
             } else {
                 binding.ivMovePoster.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 600));
             }
@@ -50,7 +51,7 @@ public class MoveTopAdapter extends DataBindingAdapter<MoveDataInfo.ResultsBean>
         GlideUtlis.loadMoveImg200Round(context, getItem(position).getPoster_path(), binding.ivMovePoster);
 
         binding.root.setOnClickListener(view -> {
-            viewClickListener.onViewClick(view,getItem(position));
+            viewClickListener.onViewClick(view, getItem(position));
         });
     }
 }

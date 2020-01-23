@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wkq.net.model.MoveDataInfo;
 import com.wkq.order.R;
+import com.wkq.order.databinding.ItemMoveHotBinding;
 import com.wkq.order.databinding.ItemMoveTopBinding;
 import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.DataBindingViewHolder;
@@ -26,7 +27,7 @@ public class MoveHotAdapter extends DataBindingAdapter<MoveDataInfo.ResultsBean>
     Context context;
 
     public MoveHotAdapter(Context context) {
-        super(context, R.layout.item_move_top, com.wkq.order.BR.data);
+        super(context, R.layout.item_move_hot, com.wkq.order.BR.data);
         this.context = context;
     }
 
@@ -35,7 +36,7 @@ public class MoveHotAdapter extends DataBindingAdapter<MoveDataInfo.ResultsBean>
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         DataBindingViewHolder bindingViewHolder = (DataBindingViewHolder) holder;
-        ItemMoveTopBinding binding = (ItemMoveTopBinding) bindingViewHolder.getBinding();
+        ItemMoveHotBinding binding = (ItemMoveHotBinding) bindingViewHolder.getBinding();
 
 //        if (binding != null) {
 //            //需要Item高度不同才能出现瀑布流的效果，此处简单粗暴地设置一下高度

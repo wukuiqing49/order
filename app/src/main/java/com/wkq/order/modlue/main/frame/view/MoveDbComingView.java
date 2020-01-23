@@ -289,11 +289,11 @@ public class MoveDbComingView implements MvpView {
         AlertUtil.showDeftToast(mFragment.getActivity(), message);
     }
 
-    public void setBanner(BaseInfo<MoveDbNowPlayingInfo> data) {
+    public void setBanner(BaseInfo<MoveDataInfo> data) {
 
         if (data != null && data.getData() != null && data.getData().getResults() != null && data.getData().getResults().size() > 0) {
             int size = data.getData().getResults().size();
-            List<MoveDbNowPlayingInfo.ResultsBean> list = data.getData().getResults();
+            List<MoveDataInfo.ResultsBean> list = data.getData().getResults();
             if (mBannerBeanList != null && mBannerBeanList.size() > 0) mBannerBeanList.clear();
 //            BannerInfo helpBanner = new BannerInfo();
 //            helpBanner.setTitle("免费看电影");
@@ -302,7 +302,7 @@ public class MoveDbComingView implements MvpView {
 //            mBannerBeanList.add(helpBanner);
             for (int i = 0; i < 5; i++) {
                 int one = RandomUtil.getRandomForIntegerBounded(0, size);
-                MoveDbNowPlayingInfo.ResultsBean info = list.get(one);
+                MoveDataInfo.ResultsBean info = list.get(one);
                 BannerInfo bannerBean = new BannerInfo(info.getTitle(), Constant.MOVE_DB_IMG_BASE_500.concat(info.getPoster_path()), info.getId() + "");
                 mBannerBeanList.add(bannerBean);
             }

@@ -61,12 +61,12 @@ public class MoveDbComingPresenter extends MvpBasePresenter<MoveDbComingView> {
         HashMap<String, String> requestMap = new HashMap<>();
         requestMap.put("page", 1 + "");
 
-        eventBanner = Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDbNowPlayingInfo>>() {
+        eventBanner = Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
             @Override
-            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDbNowPlayingInfo>> callback) {
+            public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
                 return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.nowPlaying(data)).subscribe(conetxt, callback);
             }
-        }).<BaseInfo<MoveDbNowPlayingInfo>>event().setFailureCallback(new FailureCallback() {
+        }).<BaseInfo<MoveDataInfo>>event().setFailureCallback(new FailureCallback() {
             @Override
             public void onFailure(int state, String message) {
 

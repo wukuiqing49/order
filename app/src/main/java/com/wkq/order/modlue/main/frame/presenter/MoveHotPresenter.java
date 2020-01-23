@@ -54,7 +54,7 @@ public class MoveHotPresenter extends MvpBasePresenter<MoveHotView> {
         event = Logic.create(requestMap).action(new Logic.Action<Map<String, String>, BaseInfo<MoveDataInfo>>() {
               @Override
               public Disposable action(Map<String, String> data, DataCallback<BaseInfo<MoveDataInfo>> callback) {
-                  return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.getPopular(data)).subscribe(context, callback);
+                  return ApiRequest.serviceMoveDb(ApiMoveDb.class, apiMoveDb -> apiMoveDb.nowPlaying(data)).subscribe(context, callback);
               }
           }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
               Log.e("", "");
