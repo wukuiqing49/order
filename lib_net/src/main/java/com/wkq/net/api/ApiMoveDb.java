@@ -49,7 +49,7 @@ public interface ApiMoveDb {
      */
 
     @GET("movie/now_playing")
-    Observable<Result<BaseInfo<MoveDbNowPlayingInfo>>> nowPlaying(@QueryMap Map<String, String> requestMap);
+    Observable<Result<BaseInfo<MoveDataInfo>>> nowPlaying(@QueryMap Map<String, String> requestMap);
 
     /**
      * 电影详细信息

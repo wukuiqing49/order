@@ -35,7 +35,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
     implementation 'androidx.cardview:cardview:1.0.0'
-    api 'com.qmuiteam:qmui:2.0.0-alpha02'
+    api 'com.qmuiteam:qmui:1.1.5'
     // 友盟统计
     api  'com.umeng.umsdk:analytics:8.0.0'
     api  'com.umeng.umsdk:common:2.0.0'

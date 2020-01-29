@@ -167,7 +167,7 @@ dependencies {
 
     //广点通sdk
     implementation (name:'GDTSDK.unionNormal.4.132.1002', ext:'aar')
-
+    implementation project(path: ':easybookmodule')
 
 
 }

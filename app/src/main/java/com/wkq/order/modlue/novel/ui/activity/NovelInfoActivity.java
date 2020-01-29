@@ -37,5 +37,12 @@ public class NovelInfoActivity extends MvpBindingActivity<NoveInfolView, NovelIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getMvpView()!=null)getMvpView().initView();
+        if (getPresenter()!=null)getPresenter().getNovelInfo(this,"ceotent");
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (getPresenter()!=null)getPresenter().cancel();
+        super.onDestroy();
     }
 }

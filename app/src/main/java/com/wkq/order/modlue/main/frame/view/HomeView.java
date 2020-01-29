@@ -3,14 +3,13 @@ package com.wkq.order.modlue.main.frame.view;
 import androidx.core.content.ContextCompat;
 
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
-import com.qmuiteam.qmui.widget.tab.QMUITab;
-import com.qmuiteam.qmui.widget.tab.QMUITabBuilder;
-import com.qmuiteam.qmui.widget.tab.QMUITabSegment;
+
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.main.ui.activity.HomeActivity;
 import com.wkq.order.modlue.main.ui.adapter.HomeFragmentPagerAdapter;
+import com.wkq.order.modlue.main.ui.widget.QMUITabSegment;
 import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 
 /**
@@ -33,38 +32,40 @@ public class HomeView implements MvpView {
     public void initView() {
         StatusBarUtil.setTransparentForWindow(mActivity);
         StatusBarUtil.addTranslucentView(mActivity, 0);
-//        StatusBarUtil.setDarkMode(mActivity);
-//        StatusBarUtil.setStatusBarWrite(mActivity);
-//        StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.white), 0);
+
         HomeFragmentPagerAdapter homeFragmentPagerAdapter = new HomeFragmentPagerAdapter(mActivity, mActivity.getSupportFragmentManager());
 
-        QMUITabBuilder builder = mActivity.binding.tabs.tabBuilder();
-        builder.setSelectedIconScale(1.2f)
-                .setTextSize(QMUIDisplayHelper.sp2px(mActivity, 13), QMUIDisplayHelper.sp2px(mActivity, 15))
-                .setDynamicChangeIconColor(false);
-        QMUITab component = builder
-                .setNormalDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_tabbar_component))
-                .setSelectedDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_tabbar_component_selected))
-                .setText("电影")
-                .build(mActivity);
-        QMUITab util = builder
-                .setNormalDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_tabbar_util))
-                .setSelectedDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_tabbar_util_selected))
-                .setText("资讯")
-                .build(mActivity);
-        QMUITab lab = builder
-                .setNormalDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_tabbar_lab))
-                .setSelectedDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.icon_tabbar_lab_selected))
-                .setText("开发者")
-                .build(mActivity);
+        QMUITabSegment.Tab component = new QMUITabSegment.Tab(
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_index_home_gray),
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_index_home),
+               "电影", false);
+
+      QMUITabSegment.Tab util = new QMUITabSegment.Tab(
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_index_dashboard_gray),
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_index_dashboard),
+               "资讯", false);
+      QMUITabSegment.Tab novel = new QMUITabSegment.Tab(
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_index_notifications_gray),
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_index_notifications),
+               "小说", false);
+      QMUITabSegment.Tab lab = new QMUITabSegment.Tab(
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_fly_refresh_developer_gray),
+                ContextCompat.getDrawable(mActivity, R.drawable.ic_fly_refresh_developer),
+               "开发者", false);
+
+
+//        mActivity.binding.tabs.setHasIndicator(false);
 
         mActivity.binding.tabs.addTab(component)
                 .addTab(util)
+                .addTab(novel)
                 .addTab(lab);
 
+        mActivity.binding.tabs.setDefaultNormalColor(mActivity.getResources().getColor(R.color.color_n));
+        mActivity.binding.tabs.setDefaultSelectedColor(mActivity.getResources().getColor(R.color.color_s));
         mActivity.binding.pager.setAdapter(homeFragmentPagerAdapter);
 
-        mActivity.binding.pager.setOffscreenPageLimit(3);
+        mActivity.binding.pager.setOffscreenPageLimit(4);
 
         mActivity.binding.tabs.setupWithViewPager(mActivity.binding.pager, false);
 
