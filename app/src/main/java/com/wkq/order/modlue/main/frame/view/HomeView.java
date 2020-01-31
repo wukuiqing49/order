@@ -1,8 +1,10 @@
 package com.wkq.order.modlue.main.frame.view;
 
-import androidx.core.content.ContextCompat;
+import android.view.View;
 
-import com.qmuiteam.qmui.util.QMUIDisplayHelper;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
@@ -38,20 +40,20 @@ public class HomeView implements MvpView {
         QMUITabSegment.Tab component = new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_index_home_gray),
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_index_home),
-               "电影", false);
+                "电影", false);
 
-      QMUITabSegment.Tab util = new QMUITabSegment.Tab(
+        QMUITabSegment.Tab util = new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_index_dashboard_gray),
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_index_dashboard),
-               "资讯", false);
-      QMUITabSegment.Tab novel = new QMUITabSegment.Tab(
+                "资讯", false);
+        QMUITabSegment.Tab novel = new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_index_notifications_gray),
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_index_notifications),
-               "小说", false);
-      QMUITabSegment.Tab lab = new QMUITabSegment.Tab(
+                "小说", false);
+        QMUITabSegment.Tab lab = new QMUITabSegment.Tab(
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_fly_refresh_developer_gray),
                 ContextCompat.getDrawable(mActivity, R.drawable.ic_fly_refresh_developer),
-               "开发者", false);
+                "开发者", false);
 
 
 //        mActivity.binding.tabs.setHasIndicator(false);
@@ -86,6 +88,28 @@ public class HomeView implements MvpView {
 
                         break;
                 }
+            }
+        });
+
+        mActivity.binding.pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0 || position == 1) {
+                    mActivity.binding.cdPlay.setVisibility(View.VISIBLE);
+
+                } else {
+                    mActivity.binding.cdPlay.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 

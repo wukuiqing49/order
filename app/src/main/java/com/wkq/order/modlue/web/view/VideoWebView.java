@@ -172,10 +172,14 @@ public class VideoWebView implements MvpView {
                 super.onPageFinished(view, url);
 
                 mActivity.mAgentWeb.getJsAccessEntrace().callJs("var a=document.getElementById('player').parentNode;var b=a.children; for(var i =b.length-1; i>=0;i--){ if(b[i].id!='player'){a.removeChild(b[i]);}}");
+                mActivity.mAgentWeb.getJsAccessEntrace().callJs("var elements = document.getElementsByClassName('bottom_fixed');\n" +
+                        "while(elements.length > 0){\n" +
+                        "elements[0].parentNode.removeChild(elements[0]);\n" +
+                        "}");
                 mActivity.binding.ivLoading.setVisibility(View.GONE);
                 mActivity.binding.ivLoading.setVisibility(View.GONE);
 //                mActivity.mAgentWeb.getJsAccessEntrace().callJs("var src=document.getElementsByTagName(\"iframe\")[0].src;var result=prompt(src)");
-                mActivity.mAgentWeb.getJsAccessEntrace().callJs("var c=document.getElementsByTagName('div');  for(var i =c.length-1; i>=0;i--){if(c[i].id.match(/sjdb/gi)!=null){c[i].style.display='none';}  }");
+//                mActivity.mAgentWeb.getJsAccessEntrace().callJs("var c=document.getElementsByTagName('div');  for(var i =c.length-1; i>=0;i--){if(c[i].id.match(/sjdb/gi)!=null){c[i].style.display='none';}  }");
             }
         };
 

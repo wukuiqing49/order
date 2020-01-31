@@ -9,6 +9,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.DoublePressed;
+import com.wkq.base.utlis.KeyboardUtils;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.base.widget.LoadingDialog;
 import com.wkq.database.dao.MoveSearchHistory;
@@ -78,6 +79,7 @@ public class SearchView implements MvpView {
         mActivity.binding.rlBack.setOnClickListener(view -> mActivity.finish());
         mActivity.binding.rlSearch.setOnClickListener(view -> {
             if (mActivity != null && mActivity.getPresenter() != null) {
+                KeyboardUtils.hideSoftInput(mActivity);
                 if (DoublePressed.onDoublePressed()) return;
                 if (mActivity.binding.etSearch.getText() != null) {
                     showLoading();

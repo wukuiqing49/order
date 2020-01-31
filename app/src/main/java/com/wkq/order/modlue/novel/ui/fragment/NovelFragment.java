@@ -9,6 +9,7 @@ import androidx.databinding.ViewDataBinding;
 
 import com.wkq.base.frame.fragment.MvpBindingFragment;
 import com.wkq.order.R;
+import com.wkq.order.databinding.FragmentNovelBinding;
 import com.wkq.order.modlue.novel.frame.presenter.NobelPresenter;
 import com.wkq.order.modlue.novel.frame.view.NovelView;
 
@@ -21,14 +22,13 @@ import com.wkq.order.modlue.novel.frame.view.NovelView;
  */
 
 
-public class NovelFragment extends MvpBindingFragment<NovelView, NobelPresenter, ViewDataBinding> {
+public class NovelFragment extends MvpBindingFragment<NovelView, NobelPresenter, FragmentNovelBinding> {
 
 
 
 
-    public static NovelFragment newInstance(Context context) {
+    public static NovelFragment newInstance() {
         Bundle args = new Bundle();
-//        args.putString("test", xx);
         NovelFragment moviesFragment = new NovelFragment();
         moviesFragment.setArguments(args);
         return moviesFragment;
@@ -42,6 +42,8 @@ public class NovelFragment extends MvpBindingFragment<NovelView, NobelPresenter,
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getMvpView()!=null)getMvpView().initView();
+        if (getPresenter()!=null)getPresenter().getData(this);
 
     }
 }

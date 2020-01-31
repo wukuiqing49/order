@@ -50,7 +50,7 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
 
                 break;
             case 2:
-                fragment = NovelFragment.newInstance(context);
+                fragment = NovelFragment.newInstance();
 
                 break;
 

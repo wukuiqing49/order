@@ -1,12 +1,14 @@
 package com.zia.easybookmodule.bean.rank;
 
+import androidx.databinding.BaseObservable;
+
 import java.io.Serializable;
 
 /**
  * Created by zia on 2019/4/16.
  * 排行榜的书籍简介
  */
-public class RankBook implements Serializable {
+public class RankBook extends BaseObservable implements Serializable {
     //书名
     private String bookName;
     private String data_eid;

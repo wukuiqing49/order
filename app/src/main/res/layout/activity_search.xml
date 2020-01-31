@@ -46,6 +46,7 @@
                 android:layout_toRightOf="@+id/rl_back"
                 android:background="@null"
                 android:gravity="left"
+                android:textColorHint="@color/white"
                 android:hint="请输入您要搜索的电影名字"
                 android:textColor="@color/white"
                 android:textSize="15sp"

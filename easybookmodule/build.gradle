@@ -29,6 +29,10 @@ android {
         rename ('classes.jar', 'easybook.jar')
     }
 
+    dataBinding {
+        enabled true
+    }
+
 }
 
 dependencies {

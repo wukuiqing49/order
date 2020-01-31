@@ -21,13 +21,15 @@ import com.wkq.order.modlue.novel.frame.view.NoveInfolView;
 
 public class NovelInfoActivity extends MvpBindingActivity<NoveInfolView, NovelInfoPresenter, ActivityNovelInfoBinding> {
 
-    public static void startActivity(Context context) {
+    public static void startActivity(Context context, String bookName) {
 
         Intent intent = new Intent();
+        intent.putExtra("bookName", bookName);
         intent.setClass(context, NovelInfoActivity.class);
         context.startActivity(intent);
 
     }
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_novel_info;
@@ -36,13 +38,14 @@ public class NovelInfoActivity extends MvpBindingActivity<NoveInfolView, NovelIn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getMvpView()!=null)getMvpView().initView();
-        if (getPresenter()!=null)getPresenter().getNovelInfo(this,"ceotent");
+        String bookName = getIntent().getStringExtra("bookName");
+        if (getMvpView() != null) getMvpView().initView();
+        if (getPresenter() != null) getPresenter().getNovelInfo(this, bookName);
     }
 
     @Override
     protected void onDestroy() {
-        if (getPresenter()!=null)getPresenter().cancel();
+        if (getPresenter() != null) getPresenter().cancel();
         super.onDestroy();
     }
 }
