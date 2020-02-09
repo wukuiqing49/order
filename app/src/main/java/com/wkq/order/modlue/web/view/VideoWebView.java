@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JsPromptResult;
+import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -68,7 +69,7 @@ public class VideoWebView implements MvpView {
     }
 
     public void initWebView() {
-        WebChromeClient mWebChromeClient = new WebChromeClient() {
+//        WebChromeClient mWebChromeClient = new WebChromeClient() {
 //
 //            @Override
 //            public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
@@ -120,20 +121,20 @@ public class VideoWebView implements MvpView {
 //
 //
 //            }
-
-            @Override
-            public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
-
-                if (!TextUtils.isEmpty(message)) {
-
-                    Log.e("url:", url);
-//                    mActivity.mAgentWeb.getUrlLoader().loadUrl(message);
-                    return true;
-                } else {
-                    return super.onJsPrompt(view, url, message, defaultValue, result);
-                }
-            }
-        };
+//
+//            @Override
+//            public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+//
+//                if (!TextUtils.isEmpty(message)) {
+//
+//                    Log.e("url:", url);
+////                    mActivity.mAgentWeb.getUrlLoader().loadUrl(message);
+//                    return true;
+//                } else {
+//                    return super.onJsPrompt(view, url, message, defaultValue, result);
+//                }
+//            }
+//        };
 
         WebViewClient webChromeClient = new WebViewClient() {
 
@@ -155,6 +156,14 @@ public class VideoWebView implements MvpView {
                 }
 
             }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                Log.e("", "");
+                mActivity.isErro = true;
+            }
+
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -189,7 +198,7 @@ public class VideoWebView implements MvpView {
                 .useDefaultIndicator(mActivity.getResources().getColor(R.color.color_1aad19))
                 .closeWebViewClientHelper()
                 .setAgentWebWebSettings(new CustomSettings())
-                .setWebChromeClient(mWebChromeClient)
+//                .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(webChromeClient)
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
                 .createAgentWeb()

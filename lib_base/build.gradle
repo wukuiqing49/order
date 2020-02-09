@@ -10,35 +10,30 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-        multiDexEnabled true
+
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
 
-    dataBinding {
-        enabled true
-    }
+
+//    dataBinding {
+//        enabled true
+//    }
 
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'com.google.android.material:material:1.0.0'
 
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
+//    api "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
+//    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
     implementation 'androidx.cardview:cardview:1.0.0'
     api 'com.qmuiteam:qmui:1.1.5'
     // 友盟统计
     api  'com.umeng.umsdk:analytics:8.0.0'
     api  'com.umeng.umsdk:common:2.0.0'
     //状态
-    implementation 'com.tuyenmonkey:mkloader:1.4.0'
+    api 'com.tuyenmonkey:mkloader:1.4.0'
 }

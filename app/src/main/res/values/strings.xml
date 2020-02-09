@@ -11,4 +11,40 @@
     <string name="string_RecyclerViewBehavior">com.wkq.order.modlue.demo.ui.widget.RecyclerViewBehavior</string>
 
 
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="join_qq">加入反馈qq群</string>
+    <string name="bookrack">书架</string>
+    <string name="bookstore">书城</string>
+    <string name="setting">设置</string>
+    <string name="blame_off">免责声明</string>
+    <string name="check_update">检查更新</string>
+    <string name="fix_easybook">解析修复</string>
+    <string name="join_qq_group">加入反馈QQ群</string>
+    <string name="search">搜索</string>
+    <string name="loading">加载中...</string>
+    <string name="cover">封面</string>
+    <string name="no_1">NO.1</string>
+    <string name="retry">点击重试</string>
+    <string name="recommend">猜你喜欢</string>
+    <string name="search_history">搜索历史</string>
+    <string name="shuffle">换一换</string>
+    <string name="delete_all">全部删除</string>
+    <string name="next_chapter">下一章</string>
+    <string name="download">下载</string>
+    <string name="continue_read">继续阅读</string>
+    <string name="insert_bookrack">加入书架</string>
+    <string name="anim_way">翻页方式：</string>
+    <string name="slide">滑动</string>
+    <string name="tocover">覆盖</string>
+    <string name="sim">模拟</string>
+    <string name="catalog">目录</string>
+    <string name="cache">缓存</string>
+    <string name="more">更多</string>
+    <string name="system">系统</string>
+    <string name="none">无</string>
+    <string name="font_style">字体</string>
+    <string name="custom_site">在线书源</string>
+    <string name="custom_switch_all">全部开启</string>
+    <string name="custom_siteManage">全部开/关</string>
 </resources>

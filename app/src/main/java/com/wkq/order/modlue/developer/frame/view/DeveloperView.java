@@ -11,7 +11,10 @@ import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.PixelsUtil;
 import com.wkq.order.modlue.developer.model.DeveloperInfo;
 import com.wkq.order.modlue.developer.ui.activity.ApiTestActivity;
+import com.wkq.order.modlue.developer.ui.activity.NovelDownLoadActivity;
+import com.wkq.order.modlue.developer.ui.activity.NovelSubscriptionActivity;
 import com.wkq.order.modlue.developer.ui.adapter.DeveloperAdapter;
+import com.wkq.order.modlue.developer.ui.adapter.DeveloperNovelDownLoadAdapter;
 import com.wkq.order.modlue.developer.ui.fragment.DeveloperFragment;
 import com.wkq.order.modlue.main.ui.activity.AboutActivity;
 import com.wkq.order.modlue.main.ui.activity.AdAboutActivity;
@@ -50,6 +53,9 @@ public class DeveloperView implements MvpView {
         mFragment.binding.rvDeveloper.setAdapter(moviesAdapter);
 
         List<DeveloperInfo> list = new ArrayList<>();
+        list.add(new DeveloperInfo(6, "小说下载"));
+        list.add(new DeveloperInfo(7, "小说订阅"));
+
         list.add(new DeveloperInfo(0, "播放视频"));
         list.add(new DeveloperInfo(1, "播放帮助"));
         list.add(new DeveloperInfo(2, "广告介绍"));
@@ -57,6 +63,7 @@ public class DeveloperView implements MvpView {
         list.add(new DeveloperInfo(3, "联系开发者"));
         list.add(new DeveloperInfo(4, "关于我们"));
         list.add(new DeveloperInfo(5, "Api测试"));
+
 
 
         moviesAdapter.addItems(list);
@@ -85,6 +92,12 @@ public class DeveloperView implements MvpView {
                         break;
                     case 5:
                         ApiTestActivity.startActivity(mFragment.getActivity());
+                        break;
+                    case 6:
+                        NovelSubscriptionActivity.startActivity(mFragment.getActivity());
+                        break;
+                        case 7:
+                        NovelDownLoadActivity.startActivity(mFragment.getActivity());
                         break;
 
                 }

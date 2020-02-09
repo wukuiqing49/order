@@ -1,22 +1,17 @@
 package com.wkq.order.modlue.move.ui.adapter;
 
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.cnlive.largeimage.CustomPreviewClickListener;
-import com.cnlive.largeimage.CustomPreviewImageView;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ItemPrevieImgBinding;
 import com.wkq.order.utils.Constant;
-import com.wkq.order.utils.GlideUtlis;
 
 import java.util.ArrayList;
 import java.util.List;

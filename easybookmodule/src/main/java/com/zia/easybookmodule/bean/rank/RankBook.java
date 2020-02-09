@@ -36,6 +36,7 @@ public class RankBook extends BaseObservable implements Serializable {
     //一些其它信息，如月票数，点击数，起点有加密
     private String viewInfo;
 
+
     public RankBook(String bookName, String data_eid, String data_bid, String href, String imgUrl, String author, String authorUrl, String classify, String classifyUrl, String status, String intro, String lastChapter, String lastUpdateTime, int rank, String viewInfo) {
         this.bookName = bookName;
         this.data_eid = data_eid;

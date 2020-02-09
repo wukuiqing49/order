@@ -1,5 +1,12 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+//apply from: 'aabresguard.gradle'
+//apply from: 'bytex.gradle'
+
 static def stringValue(def value) {
     return "\"${value}\""
 }
@@ -16,23 +23,21 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-
+        resConfigs "zh-rCN", "xxhdpi", "ldltr", "desk"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
 //        ndk {
 //            abiFilters "armeabi-v7a"  // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
 //        }
+
+        resConfigs "zh-rCN", "xxhdpi", "ldltr", "desk"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
+
 
     compileOptions {
         sourceCompatibility 1.8
@@ -84,17 +89,7 @@ android {
             buildConfigField("boolean", "VERSION_AS_DEBUG", "false")
             buildConfigField("String", "APP_ID", stringValue("wu199149"))
             buildConfigField("int", "APP_AD_COUNT", "3")
-//            manifestPlaceholders = [
-//                    TINGYUN_SCHEME   : "tingyun.33867",
-//                    APP_START_HOST   : "wjjh5.cnlive.com",
-//                    MAP_APPKEY       : "4b9aa4122d1d6f4d6beb6cb7701f2873",
-//                    BAIDU_APP_ID     : "14380860",
-//                    BAIDU_APP_KEY    : "4bX1eK7SiCL461QBnRKilowc",
-//                    BAIDU_MAP_APP_KEY: "Q7y9SGcZVs0tmhbNTiaz0jHm4S1xGzE2",
-//                    BAIDU_APP_SECRET : "BTzXLoPbUjlLeOM1nHnfOuTB9q18YZVq",
-//                    UMENG_APPKEY     : "5d647f890cafb21b6b000aee",
-//                    OPENINSTALL_KEY  : "vfkj9x"
-//            ]
+
         }
     }
 
@@ -112,25 +107,59 @@ android {
         }
     }
 
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+    packagingOptions {
+        exclude "**/kotlin/**"
+        exclude "**/okhttp3/**"
+    }
+    dexOptions {
+        javaMaxHeapSize '4g'
+    }
+
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+//    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+//    implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'com.github.wukuiqing49:wkq_mvvm_mvp_base:1.0.42'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //paging
+    implementation 'androidx.paging:paging-runtime:2.1.1'
+    //persistent
+    implementation 'androidx.room:room-runtime:2.2.3'
+    annotationProcessor 'androidx.room:room-compiler:2.2.3'
+    //stetho
+    debugImplementation 'com.facebook.stetho:stetho:1.5.0'
+    releaseImplementation "com.github.TangHuaiZhe:stetho-no-op:1.0"
+
+    //viewModel & lifeCycle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    //toast
+    implementation 'com.github.Zzzia:ToastEx:1.0.1'
+
 //    implementation 'com.github.wukuiqing49:LibMediaPicker:1.0.19'
 
     implementation project(path: ':lib_net')
-    implementation project(path: ':lib_qr')
+//    implementation project(path: ':lib_qr')
     implementation project(path: ':lib_base')
     implementation project(path: ':lib_database')
 
-
+//
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid"
 
@@ -156,7 +185,7 @@ dependencies {
     //轮播图
     implementation 'com.youth.banner:banner:1.4.10'
     //加载状态
-    implementation 'com.tuyenmonkey:mkloader:1.4.0'
+//    implementation 'com.tuyenmonkey:mkloader:1.4.0'
     //星星
     implementation 'com.xl.ratingbar:ratingbar:0.1.1'
     //指针
@@ -164,10 +193,15 @@ dependencies {
     // 图片展示
     implementation 'com.github.wukuiqing49:Large:1.0.92'
 
-
+    implementation 'com.google.code.gson:gson:2.8.5'
     //广点通sdk
     implementation (name:'GDTSDK.unionNormal.4.132.1002', ext:'aar')
-    implementation project(path: ':easybookmodule')
 
+    implementation 'com.github.Zzzia:EasyBook:2.57'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //LabelsView
+    implementation 'com.github.donkingliang:LabelsView:1.4.7'
 
 }

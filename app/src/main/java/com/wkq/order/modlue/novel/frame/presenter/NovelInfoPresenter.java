@@ -49,12 +49,12 @@ public class NovelInfoPresenter extends MvpBasePresenter<NoveInfolView> {
 
             @Override
             public void onError(@NonNull Exception e) {
-                Log.e("", "");
+                if (getView()!=null) getView().finish(e.getMessage());
             }
 
             @Override
             public void onMessage(@NonNull String message) {
-
+//                if (getView()!=null) getView().finish(message);
             }
 
             @Override
@@ -75,17 +75,20 @@ public class NovelInfoPresenter extends MvpBasePresenter<NoveInfolView> {
         catalog = EasyBook.getCatalog(book).subscribe(new Subscriber<List<Catalog>>() {
             @Override
             public void onFinish(@NonNull List<Catalog> catalogs) {
-                Log.e("", "");
+
+                if (getView() != null) getView().initNovelChapter(catalogs);
+                if (getView() != null) getView().hindLoading();
+
             }
 
             @Override
             public void onError(@NonNull Exception e) {
-                Log.e("", "");
+                if (getView() != null) getView().finish("数据异常");
             }
 
             @Override
             public void onMessage(@NonNull String message) {
-
+//                if (getView()!=null) getView().finish("数据异常");
             }
 
             @Override

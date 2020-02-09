@@ -57,7 +57,7 @@ public class CheckLineView implements MvpView {
 
         checkLines.add(new CheckLineInfo("大亨解析(全屏去广告)", "http://jx.cesms.cn/?url="));
         checkLines.add(new CheckLineInfo("vip星空(全屏去广告)", "https://play.fo97.cn/?url="));
-        checkLines.add(new CheckLineInfo("Vip8090(全屏去广告", "https://play.fo97.cn/?url="));
+//        checkLines.add(new CheckLineInfo("Vip8090(全屏去广告", "https://play.fo97.cn/?url="));
         checkLines.add(new CheckLineInfo("云解析(全屏去广告)", "http://jx.rdhk.net/?v="));
         checkLines.add(new CheckLineInfo("待定速度慢(全屏去广告)", "https://www.administratorw.com/admin.php?url="));
         checkLines.add(new CheckLineInfo("上滑动全屏去广告备用(有广告)", "http://jx.aeidu.cn/index.php?url="));

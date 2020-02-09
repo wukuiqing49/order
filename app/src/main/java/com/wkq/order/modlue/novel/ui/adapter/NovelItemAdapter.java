@@ -1,6 +1,7 @@
 package com.wkq.order.modlue.novel.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import com.wkq.order.R;
 import com.wkq.order.databinding.ItemItemNovelBinding;
 import com.wkq.order.databinding.ItemNovelBinding;
 import com.wkq.order.modlue.novel.ui.activity.NovelInfoActivity;
+import com.wkq.order.modlue.novel.ui.activity.preview.BookActivity;
 import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.DataBindingViewHolder;
+import com.zia.easybookmodule.bean.Book;
 import com.zia.easybookmodule.bean.rank.HottestRankClassify;
 import com.zia.easybookmodule.bean.rank.RankBook;
 
@@ -31,7 +34,7 @@ public class NovelItemAdapter extends DataBindingAdapter<RankBook> {
     Context context;
 
     public NovelItemAdapter(Context context) {
-        super(context, R.layout.item_item_novel, com.wkq.qr.BR.data);
+        super(context, R.layout.item_item_novel, com.wkq.order.BR.data);
         this.context = context;
     }
 
@@ -71,7 +74,7 @@ public class NovelItemAdapter extends DataBindingAdapter<RankBook> {
         }
 
         binding.root.setOnClickListener(view -> {
-            NovelInfoActivity.startActivity(context, getItem(position).getBookName());
+            viewClickListener.onViewClick(view,getItem(position));
         });
 
 

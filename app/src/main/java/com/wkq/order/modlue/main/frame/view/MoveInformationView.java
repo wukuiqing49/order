@@ -7,10 +7,9 @@ import android.widget.LinearLayout;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
-import com.wkq.base.widget.LoadingDialog;
+
 import com.wkq.order.R;
-import com.wkq.order.modlue.demo.ui.activity.CustomBehaviorActivity;
-import com.wkq.order.modlue.demo.ui.activity.DemoActivity;
+
 import com.wkq.order.modlue.main.ui.activity.SearchActivity;
 import com.wkq.order.modlue.main.ui.adapter.MoveFragmentPagerAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveInformationFragment;

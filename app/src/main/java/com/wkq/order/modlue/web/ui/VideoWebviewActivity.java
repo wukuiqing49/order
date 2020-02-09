@@ -16,12 +16,14 @@ import com.wkq.order.modlue.web.presenter.VideoWebPresenter;
 import com.wkq.order.modlue.web.view.VideoWebView;
 
 
-public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, VideoWebPresenter, ActivityVideoWebBinding>  {
+public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, VideoWebPresenter, ActivityVideoWebBinding> {
 
     public AgentWeb mAgentWeb;
 
     public String url;
 
+
+    public boolean isErro;
 
 
     public static void startActivity(Context context, String url) {
@@ -40,52 +42,56 @@ public class VideoWebviewActivity extends MvpBindingActivity<VideoWebView, Video
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         url = getIntent().getStringExtra("url");
-        if (getMvpView()!=null){
+        if (getMvpView() != null) {
             getMvpView().initView();
         }
 
     }
 
 
-
     @Override
     protected void onPause() {
-        if (mAgentWeb!=null)
-        mAgentWeb.getWebLifeCycle().onPause();
+        if (mAgentWeb != null)
+            mAgentWeb.getWebLifeCycle().onPause();
         super.onPause();
 
     }
 
     @Override
     protected void onResume() {
-        if (mAgentWeb!=null)
-        mAgentWeb.getWebLifeCycle().onResume();
+        if (mAgentWeb != null)
+            mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
         MobclickAgent.onResume(this);
 
-        if (getMvpView()!=null)getMvpView().onResume();
+        if (getMvpView() != null) getMvpView().onResume();
     }
 
     @Override
     protected void onDestroy() {
-        if (mAgentWeb!=null)
-        mAgentWeb.getWebLifeCycle().onDestroy();
+        if (mAgentWeb != null)
+            mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
         MobclickAgent.onPause(this);
-        if (getMvpView()!=null)getMvpView().cancelAd();
+        if (getMvpView() != null) getMvpView().cancelAd();
     }
 
 
     @Override
     public void onBackPressed() {
-        if (mAgentWeb!=null){
-            if (!mAgentWeb.back()){
+        if (mAgentWeb != null) {
+            if (!mAgentWeb.back()) {
                 this.finish();
-            }else {
-                mAgentWeb.getWebCreator().getWebView().goBack();
+            } else {
+                if (isErro) {
+                    this.finish();
+                } else {
+                    mAgentWeb.getWebCreator().getWebView().goBack();
+                }
+
             }
 
-        }else {
+        } else {
             finish();
         }
 

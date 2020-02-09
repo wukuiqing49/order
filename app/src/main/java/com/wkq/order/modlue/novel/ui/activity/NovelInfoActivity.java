@@ -21,6 +21,8 @@ import com.wkq.order.modlue.novel.frame.view.NoveInfolView;
 
 public class NovelInfoActivity extends MvpBindingActivity<NoveInfolView, NovelInfoPresenter, ActivityNovelInfoBinding> {
 
+    public String bookName;
+
     public static void startActivity(Context context, String bookName) {
 
         Intent intent = new Intent();
@@ -38,7 +40,7 @@ public class NovelInfoActivity extends MvpBindingActivity<NoveInfolView, NovelIn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String bookName = getIntent().getStringExtra("bookName");
+        bookName = getIntent().getStringExtra("bookName");
         if (getMvpView() != null) getMvpView().initView();
         if (getPresenter() != null) getPresenter().getNovelInfo(this, bookName);
     }

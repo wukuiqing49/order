@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.wkq.order.BR;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ItemPrevieImgBinding;
 import com.wkq.order.utils.DataBindingAdapter;
@@ -20,7 +21,7 @@ import com.wkq.order.utils.DataBindingViewHolder;
 
 public class PreviewImgAdapter extends DataBindingAdapter<String> {
     public PreviewImgAdapter(Context context) {
-        super(context, R.layout.item_previe_img, com.wkq.qr.BR.data);
+        super(context, R.layout.item_previe_img, com.wkq.order.BR.data);
     }
 
     @Override

@@ -6,10 +6,15 @@ import androidx.annotation.NonNull;
 
 import com.wkq.base.frame.mosby.MvpBasePresenter;
 import com.wkq.order.modlue.novel.frame.view.NovelView;
+import com.wkq.order.modlue.novel.ui.activity.NovelInfoActivity;
 import com.wkq.order.modlue.novel.ui.fragment.NovelFragment;
+import com.zia.easybookmodule.bean.Book;
 import com.zia.easybookmodule.bean.rank.HottestRank;
 import com.zia.easybookmodule.engine.EasyBook;
+import com.zia.easybookmodule.rx.Disposable;
 import com.zia.easybookmodule.rx.Subscriber;
+
+import java.util.List;
 
 /**
  * 作者:吴奎庆
@@ -21,6 +26,8 @@ import com.zia.easybookmodule.rx.Subscriber;
 
 
 public class NobelPresenter extends MvpBasePresenter<NovelView> {
+
+    private Disposable disposable;
 
     public void getData(NovelFragment novelFragment) {
 
@@ -49,6 +56,43 @@ public class NobelPresenter extends MvpBasePresenter<NovelView> {
         });
 
 
+    }
 
+
+    /**
+     * 搜索小说
+     *
+
+     * @param ceotent
+     */
+    public void getNovelInfo( String ceotent) {
+        disposable = EasyBook.search(ceotent).subscribe(new Subscriber<List<Book>>() {
+            @Override
+            public void onFinish(@NonNull List<Book> books) {
+                if (getView()!=null)getView().processData(books);
+            }
+
+            @Override
+            public void onError(@NonNull Exception e) {
+                if (getView()!=null) getView().showMessage(e.getMessage());
+            }
+
+            @Override
+            public void onMessage(@NonNull String message) {
+//                if (getView()!=null) getView().finish(message);
+            }
+
+            @Override
+            public void onProgress(int progress) {
+
+            }
+        });
+
+    }
+
+
+
+    public void cancel(){
+        if (disposable!=null)disposable.dispose();
     }
 }
