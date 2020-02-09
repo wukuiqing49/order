@@ -66,7 +66,7 @@ class SearchActivity : BaseActivity() {
         viewModel.loadBooks.observe(this, Observer<List<Book>> {
             if (it != null) {
 //                hideFragment(recommendFragment)
-                ToastUtil.onSuccess("搜索到${it.size}本书籍")
+//                ToastUtil.onSuccess("搜索到${it.size}本书籍")
 //                searchFragment.bookAdapter?.freshBooks(ArrayList(it))
 //                searchFragment.searchRv?.scrollToPosition(0)
 //                hideDialog()

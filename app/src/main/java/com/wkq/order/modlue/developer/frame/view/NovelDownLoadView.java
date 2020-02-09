@@ -1,5 +1,9 @@
 package com.wkq.order.modlue.developer.frame.view;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,13 +12,13 @@ import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.database.AppDatabase;
 import com.wkq.database.bean.LocalBook;
-import com.wkq.database.bean.NetBook;
 import com.wkq.order.R;
 import com.wkq.order.modlue.developer.ui.activity.NovelDownLoadActivity;
-import com.wkq.order.modlue.developer.ui.activity.NovelSubscriptionActivity;
 import com.wkq.order.modlue.developer.ui.adapter.DeveloperNovelDownLoadAdapter;
-import com.wkq.order.modlue.developer.ui.adapter.DeveloperNovelSubscribeAdapter;
+import com.wkq.order.modlue.novel.ui.activity.preview.ReaderUtil;
+import com.wkq.order.utils.DataBindingAdapter;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -40,6 +44,7 @@ public class NovelDownLoadView implements MvpView {
         StatusBarUtil.setColor(mActivity, mActivity.getResources().getColor(R.color.color_2b2b2b), 0);
         StatusBarUtil.setDarkMode(mActivity);
 
+        mActivity.binding.toolBar.findViewById(R.id.rl_back).setOnClickListener(view -> mActivity.finish());
 
         List<LocalBook> books = AppDatabase.getAppDatabase().localBookDao().getLocalBooks();
 
@@ -51,6 +56,30 @@ public class NovelDownLoadView implements MvpView {
         mActivity.binding.rvContent.setLayoutManager(new LinearLayoutManager(mActivity));
         mActivity.binding.rvContent.setAdapter(mAdapter);
         mAdapter.addItems(books);
+
+
+        mAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
+            @Override
+            public void onViewClick(View v, Object program) {
+                LocalBook bean = (LocalBook) program;
+                if (v.getId() == R.id.root) {
+                    int index = bean.getFilePath().indexOf("book");
+                    File file = new File(bean.getFilePath());
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    }
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setDataAndType(Uri.parse(file.getAbsolutePath()), ReaderUtil.getMIMEType(file));
+                    try {
+                        mActivity.startActivity(intent);
+                    } catch (Exception e){
+
+
+                    }
+                }
+            }
+        });
 
 
     }

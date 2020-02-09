@@ -47,4 +47,11 @@
     <string name="custom_site">在线书源</string>
     <string name="custom_switch_all">全部开启</string>
     <string name="custom_siteManage">全部开/关</string>
+
+
+    <string name="string_novel_name">名  字: %s</string>
+    <string name="string_novel_author">作  者: %s</string>
+    <string name="string_novel_chapter">最新章节: %s</string>
+    <string name="string_novel_site">网  站: %s</string>
+    <string name="string_novel_time">时  间: %s</string>
 </resources>

@@ -4,6 +4,9 @@ import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.wkq.database.bean.LocalBook;
 import com.wkq.database.bean.NetBook;
 import com.wkq.order.BR;
@@ -13,6 +16,7 @@ import com.wkq.order.databinding.ItemDeveloperNovelSubscribeBinding;
 import com.wkq.order.modlue.developer.model.DeveloperInfo;
 import com.wkq.order.utils.DataBindingAdapter;
 import com.wkq.order.utils.DataBindingViewHolder;
+import com.wkq.order.utils.GlideRoundedCornersTransform;
 
 /**
  * 作者:吴奎庆
@@ -46,8 +50,12 @@ public class DeveloperNovelSubscribeAdapter extends DataBindingAdapter<NetBook> 
             if (viewClickListener != null)
                 viewClickListener.onViewClick(binding.root, getItem(position));
         });
+        RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
+                .transform(new GlideRoundedCornersTransform(5,GlideRoundedCornersTransform.CornerType.ALL));
 
-//        Glide.with(mContext).load(getItem(position).getSrcInteger()).into(binding.ivStep);
+
+        Glide.with(mContext).load(getItem(position).getImageUrl()).apply(requestOptions).into(binding.ivNovelPoster);
 
 
     }

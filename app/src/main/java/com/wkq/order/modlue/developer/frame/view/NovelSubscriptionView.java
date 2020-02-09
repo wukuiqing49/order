@@ -1,5 +1,7 @@
 package com.wkq.order.modlue.developer.frame.view;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,11 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.database.AppDatabase;
-import com.wkq.database.bean.LocalBook;
 import com.wkq.database.bean.NetBook;
 import com.wkq.order.R;
 import com.wkq.order.modlue.developer.ui.activity.NovelSubscriptionActivity;
 import com.wkq.order.modlue.developer.ui.adapter.DeveloperNovelSubscribeAdapter;
+import com.wkq.order.modlue.novel.ui.activity.preview.PreviewActivity;
+import com.wkq.order.utils.DataBindingAdapter;
 
 import java.util.List;
 
@@ -42,12 +45,26 @@ public class NovelSubscriptionView implements MvpView {
 
         TextView tvTitle = mActivity.binding.toolBar.findViewById(R.id.tv_title);
         tvTitle.setText("小说订阅");
-
+        mActivity.binding.toolBar.findViewById(R.id.rl_back).setOnClickListener(view -> mActivity.finish());
         DeveloperNovelSubscribeAdapter mAdapter = new DeveloperNovelSubscribeAdapter(mActivity);
 
         mActivity.binding.rvContent.setLayoutManager(new LinearLayoutManager(mActivity));
         mActivity.binding.rvContent.setAdapter(mAdapter);
         mAdapter.addItems(books);
+
+        mAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
+            @Override
+            public void onViewClick(View v, Object program) {
+                if (v.getId() == R.id.root) {
+                    NetBook netBook = (NetBook) program;
+                    Intent intent = new Intent(mActivity, PreviewActivity.class);
+                    intent.putExtra("bookName", netBook.getBookName());
+                    intent.putExtra("siteName", netBook.getSiteName());
+                    mActivity.startActivity(intent);
+
+                }
+            }
+        });
 
 
     }

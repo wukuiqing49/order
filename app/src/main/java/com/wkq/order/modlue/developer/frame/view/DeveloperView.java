@@ -53,8 +53,8 @@ public class DeveloperView implements MvpView {
         mFragment.binding.rvDeveloper.setAdapter(moviesAdapter);
 
         List<DeveloperInfo> list = new ArrayList<>();
-        list.add(new DeveloperInfo(6, "小说下载"));
-        list.add(new DeveloperInfo(7, "小说订阅"));
+        list.add(new DeveloperInfo(6, "小说订阅"));
+        list.add(new DeveloperInfo(7, "小说下载"));
 
         list.add(new DeveloperInfo(0, "播放视频"));
         list.add(new DeveloperInfo(1, "播放帮助"));
