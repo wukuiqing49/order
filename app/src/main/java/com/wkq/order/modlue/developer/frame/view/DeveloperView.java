@@ -14,7 +14,6 @@ import com.wkq.order.modlue.developer.ui.activity.ApiTestActivity;
 import com.wkq.order.modlue.developer.ui.activity.NovelDownLoadActivity;
 import com.wkq.order.modlue.developer.ui.activity.NovelSubscriptionActivity;
 import com.wkq.order.modlue.developer.ui.adapter.DeveloperAdapter;
-import com.wkq.order.modlue.developer.ui.adapter.DeveloperNovelDownLoadAdapter;
 import com.wkq.order.modlue.developer.ui.fragment.DeveloperFragment;
 import com.wkq.order.modlue.main.ui.activity.AboutActivity;
 import com.wkq.order.modlue.main.ui.activity.AdAboutActivity;
@@ -62,7 +61,7 @@ public class DeveloperView implements MvpView {
 
         list.add(new DeveloperInfo(3, "联系开发者"));
         list.add(new DeveloperInfo(4, "关于我们"));
-        list.add(new DeveloperInfo(5, "Api测试"));
+//        list.add(new DeveloperInfo(5, "Api测试"));
 
 
 
@@ -87,7 +86,6 @@ public class DeveloperView implements MvpView {
                         ContactDeveloperActivity.startActivity(mFragment.getActivity());
                         break;
                     case 4:
-//                        showMessage("关于我们");
                         AboutActivity.startActivity(mFragment.getActivity());
                         break;
                     case 5:
