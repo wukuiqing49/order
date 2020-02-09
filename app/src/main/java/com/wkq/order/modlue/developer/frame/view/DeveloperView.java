@@ -64,7 +64,6 @@ public class DeveloperView implements MvpView {
 //        list.add(new DeveloperInfo(5, "Api测试"));
 
 
-
         moviesAdapter.addItems(list);
 
         moviesAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
@@ -94,7 +93,7 @@ public class DeveloperView implements MvpView {
                     case 6:
                         NovelSubscriptionActivity.startActivity(mFragment.getActivity());
                         break;
-                        case 7:
+                    case 7:
                         NovelDownLoadActivity.startActivity(mFragment.getActivity());
                         break;
 
