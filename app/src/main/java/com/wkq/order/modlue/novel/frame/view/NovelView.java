@@ -1,22 +1,26 @@
 package com.wkq.order.modlue.novel.frame.view;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.AlertUtil;
 import com.wkq.base.utlis.StatusBarUtil;
-import com.wkq.order.modlue.novel.ui.activity.preview.BookActivity;
+import com.wkq.order.R;
+import com.wkq.order.modlue.novel.ui.activity.rank.RankActivity;
 import com.wkq.order.modlue.novel.ui.activity.search.SearchActivity;
 import com.wkq.order.modlue.novel.ui.adapter.NovelAdapter;
+import com.wkq.order.modlue.novel.ui.adapter.NovelTopAdapter;
 import com.wkq.order.modlue.novel.ui.fragment.NovelFragment;
+import com.wkq.order.utils.DataBindingAdapter;
 import com.zia.easybookmodule.bean.Book;
 import com.zia.easybookmodule.bean.rank.HottestRank;
 import com.zia.easybookmodule.bean.rank.RankBook;
+import com.zia.easybookmodule.bean.rank.RankClassify;
+import com.zia.easybookmodule.bean.rank.RankInfo;
 
 import java.util.List;
 
@@ -32,6 +36,7 @@ import java.util.List;
 public class NovelView implements MvpView {
     NovelFragment mFragment;
     private NovelAdapter mAdapter;
+    private NovelTopAdapter mTopAdapter;
 
     public NovelView(NovelFragment mFragment) {
         this.mFragment = mFragment;
@@ -51,15 +56,32 @@ public class NovelView implements MvpView {
 //                    mFragment.getPresenter().getNovelInfo(book.getBookName());
 
                 Intent intent = new Intent(mFragment.getActivity(), SearchActivity.class);
-                intent.putExtra("searchKey",book.getBookName());
+                intent.putExtra("searchKey", book.getBookName());
                 mFragment.getActivity().startActivity(intent);
             }
         });
+        mTopAdapter = new NovelTopAdapter(mFragment.getActivity());
+        mFragment.binding.rvTop.setLayoutManager(new LinearLayoutManager(mFragment.getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mFragment.binding.rvTop.setAdapter(mTopAdapter);
 
+
+        mTopAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
+            @Override
+            public void onViewClick(View v, Object program) {
+                if (v.getId()== R.id.root){
+                    RankInfo bean= (RankInfo) program;
+                    Intent intent = new Intent(mFragment.getActivity(), RankActivity.class);
+
+                    intent.putExtra("rankInfo", bean);
+                    mFragment.getActivity().startActivity(intent);
+                }
+            }
+        });
     }
 
     public void setData(HottestRank hottestRank) {
         mAdapter.addItems(hottestRank.getHottestRankClassifies());
+        mTopAdapter.addItems(hottestRank.getRankInfos());
     }
 
     public void showMessage(String message) {
@@ -68,30 +90,11 @@ public class NovelView implements MvpView {
     }
 
     public void processData(List<Book> books) {
-
         if (books != null && books.size() > 1) {
-
             for (Book book : books) {
                 if (!TextUtils.isEmpty(book.getImageUrl())) {
-//
-//                    Intent intent = new Intent(mFragment.getActivity(), BookActivity.class);
-//                    intent.putExtra("book", book);
-//                    intent.putExtra("scroll", false);
-
-//                    mFragment.getActivity().startActivity(intent);
                     Intent intent = new Intent(mFragment.getActivity(), SearchActivity.class);
                     mFragment.getActivity().startActivity(intent);
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                        val p = arrayListOf<Pair<View, String>>(
-//                                Pair.create(bg_searchEt, "transition_search_bg"),
-//                                Pair.create(bookstore_search_icon, "transition_search")
-//                )
-//                        val options = ActivityOptions.makeSceneTransitionAnimation(activity, *Java2Kotlin.getPairs(p))
-//                        mFragment.getActivity().startActivity(intent, options.toBundle());
-//                    } else {
-//
-//                    }
-
                     return;
                 }
             }
