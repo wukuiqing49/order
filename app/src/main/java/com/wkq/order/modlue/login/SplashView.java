@@ -26,6 +26,7 @@ public class SplashView implements MvpView {
 
 
 
+
     public SplashView(SplashActivity mActivity) {
         this.mActivity = mActivity;
     }
