@@ -1,8 +1,15 @@
 package com.wkq.order.modlue.login;
 
+import android.util.Log;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.modlue.main.ui.activity.HomeActivity;
+import com.wkq.order.utils.Constant;
 import com.wkq.order.utils.MoveDbDataSaveUtlis;
 
 /**
@@ -31,25 +38,6 @@ public class SplashView implements MvpView {
         StatusBarUtil.setLightMode(mActivity);
         MoveDbDataSaveUtlis.putType(mActivity);
 
-
-//        mActivity.timerHelper = new TimerHelper();
-//        mActivity.timerHelper.startTiming();
-//        mActivity.timerHelper.setSchedule(0);
-//        mActivity.timerHelper.setOnTimerListener(new TimerHelper.OnTimerListener() {
-//            @Override
-//            public void onSchedule(int schedule) {
-//                if (schedule == 2) {
-//                    jumpHomeActivity();
-//                }
-//
-//            }
-//        });
-//        mActivity.timerHelper.startTiming();
-
-
-
-
-
     }
 
     private void initLoad() {
@@ -61,7 +49,29 @@ public class SplashView implements MvpView {
     }
 
 
+    public void initGoogleAd() {
+        MobileAds.initialize(mActivity, Constant.GOOGLE_APPID);
 
 
+        InterstitialAd mInterstitialAd = new InterstitialAd(mActivity);
+        mInterstitialAd.setAdUnitId(Constant.GOOGLE_AD_SPLASH);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.show();
 
+        mInterstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                Log.e("","");
+                mInterstitialAd.show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                Log.e("","");
+            }
+        });
+
+    }
 }

@@ -204,4 +204,6 @@ dependencies {
     //LabelsView
     implementation 'com.github.donkingliang:LabelsView:1.4.7'
 
+    implementation 'com.google.firebase:firebase-ads:18.0.0'
+
 }

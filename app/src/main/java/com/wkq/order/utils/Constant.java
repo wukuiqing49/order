@@ -29,4 +29,6 @@ public class Constant {
     //首页Banner数据 的key
     public static String MOVE_DB_HOME_BANNER_KEY = "HOMEBANNER";
     public static String MOVE_DB_HOME_DATA_KEY = "HOMEDATAKEY";
+    public static String GOOGLE_AD_SPLASH = "ca-app-pub-8050037871529439/5265577774";
+    public static String GOOGLE_APPID = "ca-app-pub-8050037871529439~1190246176";
 }
