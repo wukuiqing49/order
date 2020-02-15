@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.order.utils.StatusBarUtil;
 
 import com.wkq.order.R;
 

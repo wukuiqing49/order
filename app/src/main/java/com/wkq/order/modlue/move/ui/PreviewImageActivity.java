@@ -5,18 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.databinding.ViewDataBinding;
-
 import com.umeng.analytics.MobclickAgent;
 import com.wkq.base.frame.activity.MvpBindingActivity;
-import com.wkq.base.utlis.AlertUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityPreviewImgBinding;
 import com.wkq.order.modlue.move.frame.presenter.PreviewImagePresenter;
 import com.wkq.order.modlue.move.frame.view.PreviewImageView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

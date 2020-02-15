@@ -6,10 +6,9 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.wkq.base.utlis.SharedPreferencesHelper;
+import com.wkq.baseLib.utlis.SharedPreferencesHelper;
 import com.wkq.order.modlue.login.MoveDbMoveType;
 import com.wkq.order.modlue.main.modle.BannerInfo;
-import com.youth.banner.Banner;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -9,8 +9,8 @@ import android.os.Bundle
 
 import android.util.Log
 import android.view.View
-import com.wkq.base.utlis.DensityUtils
-import com.wkq.base.utlis.StatusBarUtil
+import com.wkq.baseLib.utlis.DensityUtils
+import com.wkq.order.utils.StatusBarUtil
 import com.wkq.order.R
 import com.wkq.order.application.OrderApplication
 import com.wkq.order.modlue.novel.ui.activity.preview.BaseActivity

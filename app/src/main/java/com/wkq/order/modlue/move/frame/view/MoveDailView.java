@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDbMoveDetailInfo;
 import com.wkq.order.modlue.move.ui.PreviewImageActivity;

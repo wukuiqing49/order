@@ -3,8 +3,8 @@ package com.wkq.order.modlue.novel.ui.activity.preview;
 import android.graphics.Paint;
 
 
-import com.wkq.base.utlis.IOUtils;
-import com.wkq.base.utlis.StringUtils;
+import com.wkq.baseLib.utlis.IOUtils;
+import com.wkq.baseLib.utlis.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

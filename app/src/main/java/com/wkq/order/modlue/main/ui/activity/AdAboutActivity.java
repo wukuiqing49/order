@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.umeng.analytics.MobclickAgent;
-import com.wkq.base.utlis.StatusBarUtil;
-import com.wkq.base.utlis.WebViewUtil;
+import com.wkq.order.utils.StatusBarUtil;
+import com.wkq.baseLib.utlis.WebViewUtil;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityAboutBinding;
 

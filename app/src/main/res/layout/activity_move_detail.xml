@@ -67,7 +67,6 @@
                             android:background="@color/transparent">
 
                             <ImageView
-
                                 android:id="@+id/iv_icon"
                                 android:layout_width="100dp"
                                 android:layout_height="130dp"

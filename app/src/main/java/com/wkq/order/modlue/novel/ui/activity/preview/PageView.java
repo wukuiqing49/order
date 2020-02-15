@@ -14,7 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import com.wkq.base.utlis.AlertUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
 import com.wkq.order.application.OrderApplication;
 
 

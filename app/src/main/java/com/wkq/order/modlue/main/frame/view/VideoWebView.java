@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 //import com.wkq.media.ImagePicker;
 //import com.wkq.media.PickerConfig;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.web.ui.VideoWebListActivity;
 import com.wkq.order.modlue.main.ui.adapter.VideoWebAddressAdapter;

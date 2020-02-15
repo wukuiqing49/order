@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.database.AppDatabase;
 import com.wkq.database.bean.LocalBook;
 import com.wkq.order.R;

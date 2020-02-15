@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.umeng.analytics.MobclickAgent;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityPlayHelpBinding;
 import com.wkq.order.modlue.main.modle.PlayHelpInfo;

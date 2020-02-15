@@ -17,8 +17,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import com.wkq.base.utlis.DensityUtils
-import com.wkq.base.utlis.StatusBarUtil
+import com.wkq.baseLib.utlis.DensityUtils
+import com.wkq.order.utils.StatusBarUtil
 import com.wkq.order.R
 import com.zia.easybookmodule.bean.Book
 import com.zia.easybookmodule.bean.Type

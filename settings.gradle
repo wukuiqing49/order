@@ -1,2 +1,2 @@
-include ':app', ':lib_base', ':lib_greendao', ':lib_database','lib_net'
+include ':app', ':lib_base', ':lib_greendao', ':lib_database', ':lib_bs','lib_net'
 rootProject.name='order'

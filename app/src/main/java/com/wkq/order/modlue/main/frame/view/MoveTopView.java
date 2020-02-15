@@ -3,7 +3,6 @@ package com.wkq.order.modlue.main.frame.view;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -13,7 +12,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDataInfo;
 import com.wkq.order.R;

@@ -6,12 +6,8 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.DateTimeUtil;
-import com.wkq.base.utlis.StatusBarUtil;
-import com.wkq.database.dao.AdTimeInfo;
-import com.wkq.database.utils.DataBaseUtils;
-import com.wkq.order.BuildConfig;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.model.CheckLineInfo;
 import com.wkq.order.modlue.web.ui.CheckLineActivity;

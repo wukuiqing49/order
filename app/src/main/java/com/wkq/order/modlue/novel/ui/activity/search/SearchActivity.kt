@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.donkingliang.labels.LabelsView
-import com.wkq.base.utlis.KeyboardUtils
-import com.wkq.base.utlis.StatusBarUtil
+import com.wkq.baseLib.utlis.KeyboardUtils
+import com.wkq.order.utils.StatusBarUtil
 import com.wkq.order.R
 import com.wkq.order.modlue.novel.ui.activity.preview.BaseActivity
 import com.wkq.order.modlue.novel.ui.activity.preview.ToastUtil

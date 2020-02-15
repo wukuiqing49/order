@@ -7,8 +7,8 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.PixelsUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.baseLib.utlis.PixelsUtil;
 import com.wkq.order.modlue.developer.model.DeveloperInfo;
 import com.wkq.order.modlue.developer.ui.activity.ApiTestActivity;
 import com.wkq.order.modlue.developer.ui.activity.NovelDownLoadActivity;

@@ -10,10 +10,10 @@ import com.bumptech.glide.Glide;
 import com.cnlive.largeimage.FileTypeUtil;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.base.utils.MD5Util;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.AndroidQUtil;
-import com.wkq.base.utlis.PermissionChecker;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.baseLib.utlis.AndroidQUtil;
+import com.wkq.baseLib.utlis.PermissionChecker;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.move.ui.ProcessImgsActivity;
 

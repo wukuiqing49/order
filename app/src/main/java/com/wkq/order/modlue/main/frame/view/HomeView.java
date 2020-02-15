@@ -7,7 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.main.ui.activity.HomeActivity;
 import com.wkq.order.modlue.main.ui.adapter.HomeFragmentPagerAdapter;

@@ -3,19 +3,16 @@ package com.wkq.order.modlue.novel.frame.view;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.squareup.picasso.Picasso;
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.novel.ui.activity.NovelInfoActivity;
 import com.wkq.order.modlue.novel.ui.activity.preview.BookActivity;
-import com.wkq.order.modlue.novel.ui.activity.preview.BookMarkUtil;
-import com.wkq.order.modlue.novel.ui.activity.preview.PreviewActivity;
 import com.wkq.order.modlue.novel.ui.adapter.NovelChapterAdapter;
 import com.wkq.order.utils.DataBindingAdapter;
 import com.zia.easybookmodule.bean.Book;

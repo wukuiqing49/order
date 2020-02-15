@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.wkq.base.utlis.TimerHelper;
+import com.wkq.baseLib.utlis.TimerHelper;
 import com.wkq.net.ApiRequest;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.api.ApiMoveDb;
@@ -22,7 +22,6 @@ import com.wkq.net.model.MoveDataInfo;
 import com.wkq.net.model.MoveDbMoveDetailInfo;
 import com.wkq.net.model.MoveDbMoveImagesInfo;
 import com.wkq.net.model.MoveDbPopularInfo;
-import com.wkq.net.model.MoveDbSearchInfo;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityApiTestBinding;
 

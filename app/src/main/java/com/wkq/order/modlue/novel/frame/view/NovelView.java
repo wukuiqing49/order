@@ -7,8 +7,8 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.novel.ui.activity.rank.RankActivity;
 import com.wkq.order.modlue.novel.ui.activity.search.SearchActivity;
@@ -19,7 +19,6 @@ import com.wkq.order.utils.DataBindingAdapter;
 import com.zia.easybookmodule.bean.Book;
 import com.zia.easybookmodule.bean.rank.HottestRank;
 import com.zia.easybookmodule.bean.rank.RankBook;
-import com.zia.easybookmodule.bean.rank.RankClassify;
 import com.zia.easybookmodule.bean.rank.RankInfo;
 
 import java.util.List;

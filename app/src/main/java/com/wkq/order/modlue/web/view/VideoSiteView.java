@@ -9,7 +9,7 @@ import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.utils.CustomSettings;
 import com.wkq.order.modlue.web.ui.VideoSiteActivity;

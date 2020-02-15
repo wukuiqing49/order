@@ -7,7 +7,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.wkq.base.frame.fragment.MvpBindingFragment;
-import com.wkq.base.utlis.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.databinding.FragmentMoviesBinding;
 import com.wkq.order.modlue.main.frame.presenter.MoviesPresenter;

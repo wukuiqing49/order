@@ -3,10 +3,8 @@ package com.wkq.order.modlue.web.view;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.webkit.JsPromptResult;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -15,20 +13,14 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
-import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
-import com.squareup.picasso.Picasso;
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.R;
 import com.wkq.order.modlue.web.ui.VideoWebviewActivity;
 import com.wkq.order.utils.CustomSettings;
 import com.wkq.order.utils.ImagesBgUtlis;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 
 /**

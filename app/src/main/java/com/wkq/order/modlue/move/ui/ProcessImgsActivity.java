@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 
 import com.wkq.base.frame.activity.MvpBindingActivity;
-import com.wkq.base.utlis.PermissionChecker;
+import com.wkq.baseLib.utlis.PermissionChecker;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityProcessImgsBinding;
 import com.wkq.order.modlue.move.frame.presenter.ProcessImgsPresenter;

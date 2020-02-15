@@ -1,8 +1,6 @@
 package com.wkq.order.modlue.main.frame.view;
 
-import android.view.TextureView;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,21 +13,18 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.squareup.picasso.Picasso;
 import com.wkq.base.frame.mosby.delegate.MvpView;
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.RandomUtil;
-import com.wkq.base.utlis.StatusBarUtil;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.baseLib.utlis.RandomUtil;
+import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.database.dao.HomeTopBannerInfo;
 import com.wkq.database.dao.MoveDbDataHitory;
 import com.wkq.database.utils.DataBaseUtils;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MoveDataInfo;
-import com.wkq.net.model.MoveDbNowPlayingInfo;
 import com.wkq.order.R;
 import com.wkq.order.modlue.main.modle.BannerInfo;
 import com.wkq.order.modlue.main.modle.MovesTobWebInfo;
-import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.main.ui.adapter.MoveDbComingAdapter;
 import com.wkq.order.modlue.main.ui.adapter.MovesTopWebAdapter;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;

@@ -5,7 +5,7 @@ import android.util.LruCache;
 import android.util.SparseArray;
 
 
-import com.wkq.base.utlis.StringUtils;
+import com.wkq.baseLib.utlis.StringUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

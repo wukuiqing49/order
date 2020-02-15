@@ -9,9 +9,9 @@ import android.graphics.RectF;
 import android.text.TextPaint;
 
 
-import com.wkq.base.utlis.AlertUtil;
-import com.wkq.base.utlis.ScreenUtils;
-import com.wkq.base.utlis.StringUtils;
+import com.wkq.baseLib.utlis.AlertUtil;
+import com.wkq.baseLib.utlis.ScreenUtils;
+import com.wkq.baseLib.utlis.StringUtils;
 import com.wkq.order.application.OrderApplication;
 
 import java.lang.ref.WeakReference;

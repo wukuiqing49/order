@@ -5,13 +5,11 @@ import android.content.Context;
 import androidx.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
-import com.google.android.gms.ads.MobileAds;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.umeng.commonsdk.UMConfigure;
 import com.wkq.order.R;
 import com.wkq.order.modlue.novel.ui.activity.preview.FileUtil;
-import com.wkq.order.utils.Constant;
 import com.zia.easybookmodule.bean.rule.XpathSiteRule;
 import com.zia.easybookmodule.engine.SiteCollection;
 import com.zia.easybookmodule.site.CustomXpathSite;

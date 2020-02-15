@@ -43,7 +43,7 @@
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-        <com.wkq.base.widget.UIEmptyView
+        <com.wkq.order.modlue.main.ui.widget.UIEmptyView
             android:id="@+id/emptyView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
