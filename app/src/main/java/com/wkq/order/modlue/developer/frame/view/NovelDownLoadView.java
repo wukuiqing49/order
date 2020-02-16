@@ -47,15 +47,19 @@ public class NovelDownLoadView implements MvpView {
         mActivity.binding.toolBar.findViewById(R.id.rl_back).setOnClickListener(view -> mActivity.finish());
 
         List<LocalBook> books = AppDatabase.getAppDatabase().localBookDao().getLocalBooks();
-
         TextView tvTitle = mActivity.binding.toolBar.findViewById(R.id.tv_title);
         tvTitle.setText("小说下载");
-
         DeveloperNovelDownLoadAdapter mAdapter = new DeveloperNovelDownLoadAdapter(mActivity);
-
         mActivity.binding.rvContent.setLayoutManager(new LinearLayoutManager(mActivity));
         mActivity.binding.rvContent.setAdapter(mAdapter);
         mAdapter.addItems(books);
+
+        if (books == null||books.size()==0) {
+            mActivity.binding.llEmpty.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            mActivity.binding.llEmpty.setVisibility(View.GONE);
+        }
 
 
         mAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
@@ -73,7 +77,7 @@ public class NovelDownLoadView implements MvpView {
                     intent.setDataAndType(Uri.parse(file.getAbsolutePath()), ReaderUtil.getMIMEType(file));
                     try {
                         mActivity.startActivity(intent);
-                    } catch (Exception e){
+                    } catch (Exception e) {
 
 
                     }

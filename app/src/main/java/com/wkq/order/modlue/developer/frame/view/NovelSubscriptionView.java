@@ -52,6 +52,13 @@ public class NovelSubscriptionView implements MvpView {
         mActivity.binding.rvContent.setAdapter(mAdapter);
         mAdapter.addItems(books);
 
+        if (books == null) {
+            mActivity.binding.llEmpty.setVisibility(View.VISIBLE);
+            return;
+        } else {
+            mActivity.binding.llEmpty.setVisibility(View.GONE);
+        }
+
         mAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
             @Override
             public void onViewClick(View v, Object program) {

@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.wkq.base.utils.FileUtils
 import com.wkq.database.AppDatabase
 import com.wkq.database.bean.BookCache
 import com.wkq.database.bean.BookCacheDao
@@ -159,6 +160,10 @@ class BookViewModel(private val book: Book) : ProgressViewModel() {
             context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)?.path + File.separator + "book"
         } else {
             Environment.getExternalStorageDirectory().path + File.separator + "book"
+        }
+
+        if (!FileUtils.isFileExists(path)){
+            FileUtils.createOrExistsDir(path);
         }
         downloadDisposable = EasyBook.download(book)
             .setType(type)

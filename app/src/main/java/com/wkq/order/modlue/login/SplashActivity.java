@@ -69,7 +69,7 @@ public class SplashActivity extends MvpBindingActivity<SplashView, SplashPresent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if (getMvpView() != null) getMvpView().initGoogleAd();
-        if (getMvpView()!=null)getMvpView().jumpHomeActivity();
+
         splashAD = new UnionSplashAD(this, Constant.DOMOB_APPID, Constant.DOMOB_SPLASH_AD, this, 5000);
 
         if (getMvpView() != null) getMvpView().initView();
@@ -78,7 +78,8 @@ public class SplashActivity extends MvpBindingActivity<SplashView, SplashPresent
         if (Build.VERSION.SDK_INT >= 23) {
             checkAndRequestPermission();
         } else {
-            splashAD.fetchAndShowIn(binding.splashContainer);
+            if (getMvpView()!=null)getMvpView().jumpHomeActivity();
+//            splashAD.fetchAndShowIn(binding.splashContainer);
         }
 
 
@@ -102,7 +103,8 @@ public class SplashActivity extends MvpBindingActivity<SplashView, SplashPresent
 
         // 权限都已经有了，那么直接调用SDK
         if (lackedPermission.size() == 0) {
-            splashAD.fetchAndShowIn(binding.splashContainer);
+//            splashAD.fetchAndShowIn(binding.splashContainer);
+            if (getMvpView()!=null)getMvpView().jumpHomeActivity();
         } else {
             // 请求所缺少的权限，在onRequestPermissionsResult中再看是否获得权限，如果获得权限就可以调用SDK，否则不要调用SDK。
             String[] requestPermissions = new String[lackedPermission.size()];
@@ -124,6 +126,7 @@ public class SplashActivity extends MvpBindingActivity<SplashView, SplashPresent
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1024 && hasAllPermissionsGranted(grantResults)) {
+            if (getMvpView()!=null)getMvpView().jumpHomeActivity();
 //            fetchSplashAD(this, container, skipView,  MOVE_GDT_APP_ID, MOVE_TT_GDT_AD_SPLASH_ID,this, 0);
         } else {
             // 如果用户没有授权，那么应该说明意图，引导用户去设置里面授权。

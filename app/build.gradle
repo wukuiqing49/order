@@ -208,5 +208,7 @@ dependencies {
     implementation	(name:'domob-unionads-1.0.0',ext:'aar')
     implementation(name: 'domob-ads-2.1.1',	ext:'aar')
     implementation(name: 'GDTSDK.union.4.90.960',ext: 'aar')
+    //侧滑删除
+    implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
 
 }

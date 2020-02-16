@@ -53,26 +53,9 @@ public class NoveInfolView implements MvpView {
             @Override
             public void onViewClick(View v, Object program) {
                 if (v.getId() == R.id.root) {
-                    Catalog catalog = (Catalog) program;
-                    int index = mAdapter.getList().indexOf(catalog);
-                    //更新书签
-//                    BookMarkUtil.insertOrUpdate(index, mActivity.bookName, catalog.getChapterName());
-//                    Intent intent = new Intent(mActivity, PreviewActivity.class);
-//                    intent.putExtra("bookName", mActivity.bookName);
-//                    intent.putExtra("siteName", catalog.getChapterName());
-//                    mActivity.startActivity(intent);
-
-
                     Intent intent = new Intent(mActivity, BookActivity.class);
                     intent.putExtra("book", mActivity.bookName);
                     intent.putExtra("scroll", false);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            val p = arrayListOf<Pair<View, String>>(Pair.create(itemView.item_book_image, "book_image"))
-//            val options = ActivityOptions.makeSceneTransitionAnimation(activity, *Java2Kotlin.getPairs(p))
-//            startActivity(intent, options.toBundle())
-//        } else {
-//            startActivity(intent)
-//        }
                     mActivity.startActivity(intent);
 
                 }

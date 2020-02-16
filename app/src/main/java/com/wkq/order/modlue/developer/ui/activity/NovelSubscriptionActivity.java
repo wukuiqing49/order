@@ -36,6 +36,6 @@ public class NovelSubscriptionActivity extends MvpBindingActivity<NovelSubscript
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getMvpView()!=null)getMvpView().initView();
+        if (getMvpView() != null) getMvpView().initView();
     }
 }
