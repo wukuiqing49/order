@@ -54,7 +54,7 @@ public class NovelDownLoadView implements MvpView {
         mActivity.binding.rvContent.setAdapter(mAdapter);
         mAdapter.addItems(books);
 
-        if (books == null||books.size()==0) {
+        if (books == null || books.size() == 0) {
             mActivity.binding.llEmpty.setVisibility(View.VISIBLE);
             return;
         } else {
@@ -66,8 +66,8 @@ public class NovelDownLoadView implements MvpView {
             @Override
             public void onViewClick(View v, Object program) {
                 LocalBook bean = (LocalBook) program;
+                if (bean == null) return;
                 if (v.getId() == R.id.root) {
-                    int index = bean.getFilePath().indexOf("book");
                     File file = new File(bean.getFilePath());
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -80,6 +80,13 @@ public class NovelDownLoadView implements MvpView {
                     } catch (Exception e) {
 
 
+                    }
+                } else if (v.getId() == R.id.bt_delete) {
+                    mAdapter.removeItem(mAdapter.getList().indexOf(bean));
+                    mAdapter.notifyDataSetChanged();
+                    AppDatabase.getAppDatabase().localBookDao().delete(bean.getBookName(), bean.getSiteName());
+                    if (mAdapter.getList() == null || mAdapter.getList().size() == 0) {
+                        mActivity.binding.llEmpty.setVisibility(View.VISIBLE);
                     }
                 }
             }

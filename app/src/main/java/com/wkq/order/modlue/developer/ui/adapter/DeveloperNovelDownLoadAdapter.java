@@ -49,11 +49,14 @@ public class DeveloperNovelDownLoadAdapter extends DataBindingAdapter<LocalBook>
             if (viewClickListener != null)
                 viewClickListener.onViewClick(binding.root, getItem(position));
         });
+        binding.btDelete.setOnClickListener(view -> {
+            if (viewClickListener != null)
+                viewClickListener.onViewClick(binding.btDelete, getItem(position));
+        });
 
 
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
-                .centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
-                .transform(new GlideRoundedCornersTransform(5, GlideRoundedCornersTransform.CornerType.ALL));
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true);
 
 
         Glide.with(mContext).load(getItem(position).getImageUrl()).apply(requestOptions).into(binding.ivNovelPoster);

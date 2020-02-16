@@ -50,9 +50,14 @@ public class DeveloperNovelSubscribeAdapter extends DataBindingAdapter<NetBook> 
             if (viewClickListener != null)
                 viewClickListener.onViewClick(binding.root, getItem(position));
         });
+
+        binding.btDelete.setOnClickListener(view -> {
+            if (viewClickListener != null)
+                viewClickListener.onViewClick(binding.btDelete, getItem(position));
+        });
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
-                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
-                .transform(new GlideRoundedCornersTransform(5,GlideRoundedCornersTransform.CornerType.ALL));
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL);
+
 
 
         Glide.with(mContext).load(getItem(position).getImageUrl()).apply(requestOptions).into(binding.ivNovelPoster);

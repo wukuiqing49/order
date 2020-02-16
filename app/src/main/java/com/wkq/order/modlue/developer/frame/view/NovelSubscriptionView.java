@@ -52,7 +52,7 @@ public class NovelSubscriptionView implements MvpView {
         mActivity.binding.rvContent.setAdapter(mAdapter);
         mAdapter.addItems(books);
 
-        if (books == null) {
+        if (books == null|| books.size() == 0) {
             mActivity.binding.llEmpty.setVisibility(View.VISIBLE);
             return;
         } else {
@@ -62,17 +62,24 @@ public class NovelSubscriptionView implements MvpView {
         mAdapter.setOnViewClickListener(new DataBindingAdapter.OnAdapterViewClickListener() {
             @Override
             public void onViewClick(View v, Object program) {
+                NetBook netBook = (NetBook) program;
                 if (v.getId() == R.id.root) {
-                    NetBook netBook = (NetBook) program;
                     Intent intent = new Intent(mActivity, PreviewActivity.class);
                     intent.putExtra("bookName", netBook.getBookName());
                     intent.putExtra("siteName", netBook.getSiteName());
                     mActivity.startActivity(intent);
+                } else if (v.getId() == R.id.bt_delete) {
+                    mAdapter.removeItem(mAdapter.getList().indexOf(netBook));
+                    mAdapter.notifyDataSetChanged();
+                    AppDatabase.getAppDatabase().netBookDao().delete(netBook);
+                    if (mAdapter.getList()==null||mAdapter.getList().size()==0){
+                        mActivity.binding.llEmpty.setVisibility(View.VISIBLE);
+                    }
 
                 }
             }
         });
 
-
     }
+
 }

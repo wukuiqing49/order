@@ -10,8 +10,8 @@
 
     <com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:id="@+id/root"
@@ -93,21 +93,13 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnUnRead"
+            android:id="@+id/bt_delete"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:background="#ecd50a"
+            android:background="@color/sourceColor"
             android:clickable="true"
-            android:text="标记未读"
-            android:textColor="@android:color/white"/>
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:background="@color/black"
             android:text="删除"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/white" />
 
     </com.mcxtzhang.swipemenulib.SwipeMenuLayout>
 
