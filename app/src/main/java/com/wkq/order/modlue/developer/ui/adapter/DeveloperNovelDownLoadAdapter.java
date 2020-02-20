@@ -56,7 +56,9 @@ public class DeveloperNovelDownLoadAdapter extends DataBindingAdapter<LocalBook>
 
 
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
-                .centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true);
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+                .transform(new GlideRoundedCornersTransform(5, GlideRoundedCornersTransform.CornerType.ALL));
+        ;
 
 
         Glide.with(mContext).load(getItem(position).getImageUrl()).apply(requestOptions).into(binding.ivNovelPoster);

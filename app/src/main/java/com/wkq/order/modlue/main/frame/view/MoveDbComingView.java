@@ -16,6 +16,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 import com.wkq.baseLib.utlis.AlertUtil;
 import com.wkq.baseLib.utlis.RandomUtil;
+import com.wkq.order.modlue.web.ui.EasyWebActivity;
 import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.database.dao.HomeTopBannerInfo;
 import com.wkq.database.dao.MoveDbDataHitory;
@@ -136,7 +137,7 @@ public class MoveDbComingView implements MvpView {
             public void onViewClick(View v, Object program) {
                 if (program != null && program instanceof MovesTobWebInfo) {
                     MovesTobWebInfo info = (MovesTobWebInfo) program;
-                    VideoSiteActivity.startActivity(mFragment.getActivity(), info.getWebUrl());
+                    EasyWebActivity.startActivity(mFragment.getActivity(), info.getWebUrl());
                 }
 
             }

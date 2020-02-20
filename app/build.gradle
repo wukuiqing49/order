@@ -211,4 +211,6 @@ dependencies {
     //侧滑删除
     implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
 
+    implementation(name: 'YoumiSdk_v8.3.0_2018-10-11', ext: 'aar')
+
 }

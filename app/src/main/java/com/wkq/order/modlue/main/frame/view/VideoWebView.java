@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.wkq.base.frame.mosby.delegate.MvpView;
 //import com.wkq.media.ImagePicker;
 //import com.wkq.media.PickerConfig;
+import com.wkq.order.modlue.web.ui.EasyWebActivity;
 import com.wkq.order.utils.StatusBarUtil;
 import com.wkq.order.modlue.main.modle.VideoWebInfo;
 import com.wkq.order.modlue.web.ui.VideoWebListActivity;
@@ -92,7 +93,7 @@ public class VideoWebView implements MvpView {
         myVideoAdapter.setItemClickListener(new VideoWebAddressAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(VideoWebInfo info) {
-                VideoSiteActivity.startActivity(mActivity, info.getVideoWebAddress());
+                EasyWebActivity.startActivity(mActivity, info.getVideoWebAddress());
             }
         });
 // 圆角

@@ -33,4 +33,6 @@ public class Constant {
     public static String GOOGLE_APPID = "ca-app-pub-8050037871529439~1190246176";
     public static String DOMOB_APPID = "96AgWH0Q0XOI8oOBUw";
     public static String DOMOB_SPLASH_AD = "A0501041089";
+    public static String AD_UMI_APPID = "6870c88c20ca17c0";
+    public static String AD_UMI_PASSWORLD = "4ac3cfc4f669e026";
 }

@@ -56,7 +56,9 @@ public class DeveloperNovelSubscribeAdapter extends DataBindingAdapter<NetBook> 
                 viewClickListener.onViewClick(binding.btDelete, getItem(position));
         });
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
-                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL);
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+                .transform(new GlideRoundedCornersTransform(5, GlideRoundedCornersTransform.CornerType.ALL));
+        ;
 
 
 
