@@ -84,7 +84,7 @@ public class OrderApplication extends MultiDexApplication {
     }
 
     private void initYm() {
-        UMConfigure.init(this, "5e0b1445cb23d211150005fc", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.init(this, "5e521df5895cca842f0001b4", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
     }
 
     /**

@@ -34,55 +34,14 @@ import static com.wkq.net.logic.Config.SUCCESS;
 public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo> {
 
     private static final int OKHTTP_KEEP_ALIVE_DURATION_SECONDS = 10;
-
-    //网++ 接口域名
-    public static final String BASE_URL = "https://douban-api.uieee.com/v2/movie/";
-    //网++ 测试环境 接口域名
-    public static final String DEBUG_URL = "https://douban-api.uieee.com/v2/movie/";
-
-    //The Move DB  的api
-    //文档地址 https://developers.themoviedb.org/3/movies/get-top-rated-movies
-
-//
-
-    //IM 接口域名
+    //The move Db 接口域名
     private static final String BASE_MOVE_DB = "https://api.themoviedb.org/3/";
-    //IM 接口域名
-    private static final String BASE_MOVE_DB_SEARCH = "https://api.themoviedb.org/3/search/";
 
-//    //IM 测试环境 接口域名
-//    public static final String IM_DEBUG_URL = "http://imtest.cnlive.com/";
-//    //OPEN API 接口域名
-//    private static final String OPEN_URL = "https://api.cnlive.com/";
-//    //WJJ JSON
-//    private static final String JSON_URL = "https://wjj.ys1.cnliveimg.com/";
-//
-//    private static final String DEBUG_CMS_URL = "http://cmstest.cnlive.com:8768/";
-//    // TODO: 2018/11/27 cms正式地址
-//    private static final String CMS_URL = "http://cms.cnlive.com:8768/";
-//
-////    测试数据
-// private  static final String  TESTHOST= "http://cmstest.cnlive.com/";
-
-
-    public static <T> String baseEndpoint() {
-        return true ? DEBUG_URL : BASE_URL;
-    }
-
-//    public static <T> String baseIMEndpoint() {
-//        return true ? IM_DEBUG_URL : IM_URL;
-//    }
-//
-//    public static <T> String baseCMSEndpoint() {
-//        return true ? DEBUG_CMS_URL : CMS_URL;
-//    }
 
     //动态配置BaseUrl
     private static <T> String serviceEndpoint(Class<T> clazz) {
         if (clazz == ApiMoveDb.class) return BASE_MOVE_DB;
-//        else if (clazz == ApiDemo.class) return baseIMEndpoint();
-//        else
-        return baseEndpoint();
+        return "";
     }
 
     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>

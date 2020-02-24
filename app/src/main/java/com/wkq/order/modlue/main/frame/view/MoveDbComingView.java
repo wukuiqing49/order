@@ -1,5 +1,6 @@
 package com.wkq.order.modlue.main.frame.view;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -265,6 +266,7 @@ public class MoveDbComingView implements MvpView {
 
                 Gson gson = new Gson();
                 String dataStr = gson.toJson(data.getData());
+                Log.e("banner欢迎:" ,dataStr);
                 DataBaseUtils.insertMoveDbHistoryData(mFragment.getActivity(), MOVE_DB_HOME_DATA_KEY, dataStr);
             } else {
                 moviesAdapter.addItems(data.getData().getResults());
@@ -291,11 +293,6 @@ public class MoveDbComingView implements MvpView {
             int size = data.getData().getResults().size();
             List<MoveDataInfo.ResultsBean> list = data.getData().getResults();
             if (mBannerBeanList != null && mBannerBeanList.size() > 0) mBannerBeanList.clear();
-//            BannerInfo helpBanner = new BannerInfo();
-//            helpBanner.setTitle("免费看电影");
-//            helpBanner.setImgUrl("https://b.bdstatic.com/boxlib/20180120/2018012017100383423448679.jpg");
-//            helpBanner.setUrlPath("1008611");
-//            mBannerBeanList.add(helpBanner);
             for (int i = 0; i < 5; i++) {
                 int one = RandomUtil.getRandomForIntegerBounded(0, size);
                 MoveDataInfo.ResultsBean info = list.get(one);
@@ -305,6 +302,8 @@ public class MoveDbComingView implements MvpView {
 
             Gson gson2 = new Gson();
             String bannerStr = gson2.toJson(mBannerBeanList);
+
+            Log.e("banner数据:" ,bannerStr);
             if (DataBaseUtils.getHomeTopData(mFragment.getActivity(), MOVE_DB_HOME_BANNER_KEY) == null) {
                 playBaner();
             }

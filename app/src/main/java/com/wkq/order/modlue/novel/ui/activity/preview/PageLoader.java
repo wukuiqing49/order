@@ -624,7 +624,7 @@ public class PageLoader {
             canvas.drawText(tip, pivotX, pivotY, mTextPaint);
         } else {
             int y = mMarginHeight + hairHeight + contentMarginTop;
-
+            if (mCurPage==null)return;
             if (mCurPage.getPosition() == 0) {
                 final float contentTextSize = mTextPaint.getTextSize();
                 final float titleTextSize = contentTextSize * PageProperty.titleRatio;
