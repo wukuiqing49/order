@@ -115,7 +115,8 @@ public class MoveComingView  implements MvpView {
 
 
     public void showMessage(String message) {
-
+        mFragment.binding.rvSf.finishLoadMore();
+        mFragment.binding.rvSf.finishRefresh();
         if (mFragment == null) return;
         AlertUtil.showDeftToast(mFragment.getActivity(), message);
     }

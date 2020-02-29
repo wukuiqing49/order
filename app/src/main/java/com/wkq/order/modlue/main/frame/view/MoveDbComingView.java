@@ -312,6 +312,8 @@ public class MoveDbComingView implements MvpView {
     }
 
     public void showFail(String message) {
+        mFragment.binding.rvSf.finishLoadMore();
+        mFragment.binding.rvSf.finishRefresh();
         if (mFragment.page == 1) {
             mFragment.binding.llEmpty.setVisibility(View.VISIBLE);
             mFragment.binding.rvSf.setVisibility(View.GONE);

@@ -33,8 +33,8 @@ public class ApiBuild<Service, Observable extends io.reactivex.Observable<Result
     private Class<Service> clazz;
     private String endpoint;
     private Api<Service, Observable, BaseData> api;
-    private long connectTimeout = 5_000;
-    private long readTimeout = 5_000;
+    private long connectTimeout = 10_000;
+    private long readTimeout = 10_000;
     private boolean logging = false;
     private List<Interceptor> interceptors;
     private Context context;

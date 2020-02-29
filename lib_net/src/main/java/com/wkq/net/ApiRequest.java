@@ -33,9 +33,9 @@ import static com.wkq.net.logic.Config.SUCCESS;
 
 public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo> {
 
-    private static final int OKHTTP_KEEP_ALIVE_DURATION_SECONDS = 10;
+    private static final int OKHTTP_KEEP_ALIVE_DURATION_SECONDS = 50;
     //The move Db 接口域名
-    private static final String BASE_MOVE_DB = "https://api.themoviedb.org/3/";
+    private static final String BASE_MOVE_DB = "http://api.themoviedb.org/3/";
 
 
     //动态配置BaseUrl

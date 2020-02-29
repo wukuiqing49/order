@@ -112,7 +112,8 @@ public class SearchView implements MvpView {
                 if (program != null && program instanceof MoveDataInfo.ResultsBean) {
                     if (DoublePressed.onDoublePressed()) return;
                     MoveDataInfo.ResultsBean bean = (MoveDataInfo.ResultsBean) program;
-                    MoveDetailActivity.startMoveDetail(mActivity, bean.getId() + "");
+                    if (bean != null)
+                        MoveDetailActivity.startMoveDetail(mActivity, bean.getId() + "");
                 }
             }
         });
@@ -122,7 +123,8 @@ public class SearchView implements MvpView {
                 if (program != null && program instanceof MoveSearchHistory) {
                     if (DoublePressed.onDoublePressed()) return;
                     MoveSearchHistory bean = (MoveSearchHistory) program;
-                    mActivity.getPresenter().searchData(mActivity, bean.getMoveName());
+                    if (bean != null && bean.getMoveName() != null)
+                        mActivity.getPresenter().searchData(mActivity, bean.getMoveName());
                 }
             }
         });
