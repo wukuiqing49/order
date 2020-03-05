@@ -1,15 +1,12 @@
 package wkq.com.lib_move.site;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.reactivex.Observable;
@@ -18,10 +15,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import wkq.com.lib_move.model.MoveTopInfo;
-import wkq.com.lib_move.utlis.MoveDataCallBack;
 import wkq.com.lib_move.model.MTimeHomeBean;
 import wkq.com.lib_move.model.MoveInfo;
+import wkq.com.lib_move.model.MoveTopInfo;
+import wkq.com.lib_move.utlis.MoveDataCallBack;
 import wkq.com.lib_move.utlis.MovieNetUtil;
 
 /**
@@ -41,6 +38,7 @@ public class MTimeSite extends Site {
     private static String moveName = null;
     private static String moveHref = null;
     private static String moveScore = null;
+    private static String moveTypeTitle = null;
 
     private static String moveImg = null;
     private static int pageNum = 0;
@@ -50,51 +48,72 @@ public class MTimeSite extends Site {
 
         Observable.create((ObservableOnSubscribe<List<MTimeHomeBean>>) emitter -> {
             String html = MovieNetUtil.getHtml(baseUrl, "UTF-8");
+            if (TextUtils.isEmpty(html)) return;
+            if (Jsoup.parse(html).select("._2dj0d") == null || Jsoup.parse(html).select("._2dj0d").first() == null) {
+                return;
+            }
             Element element = Jsoup.parse(html).select("._2dj0d").first();
+
+            if (element.children() == null) {
+                return;
+            }
             List<Element> elements = element.children();
             List<MTimeHomeBean> beans = new ArrayList<>();
 
             for (Element bean : elements) {
                 MTimeHomeBean mTimeHomeBean = new MTimeHomeBean();
-                String title = bean.select("._17I1g").first().text();
-                if (!TextUtils.isEmpty(title)) {
-                    if (title.startsWith("更多")) {
-                        title = title.replace("更多", "");
-
+                if (bean.select("._17I1g") != null && bean.select("._17I1g").first() != null) {
+                    moveTypeTitle = bean.select("._17I1g").first().text();
+                    if (!TextUtils.isEmpty(moveTypeTitle)) {
+                        if (moveTypeTitle.startsWith("更多")) {
+                            moveTypeTitle = moveTypeTitle.replace("更多", "");
+                        }
+                        mTimeHomeBean.setTitleName(moveTypeTitle);
                     }
-
-                    mTimeHomeBean.setTitleName(title);
                 }
 
                 List<Element> moves = bean.select("._1VCpH ._3umdT .d2fWI");
-                List<MoveInfo> moveInfos = new ArrayList<>();
-                for (Element move : moves) {
-                    MoveInfo info = new MoveInfo();
-                    String href = move.select("a").first().attr("href");
-                    if (!TextUtils.isEmpty(href)) {
-                        href = getMoveId(href);
+                if (moves != null) {
+                    List<MoveInfo> moveInfos = new ArrayList<>();
+                    for (Element move : moves) {
+                        MoveInfo info = new MoveInfo();
+                        if (move.select("a") != null && move.select("a").first() != null) {
+                            moveHref = move.select("a").first().attr("href");
+                            if (!TextUtils.isEmpty(moveHref)) {
+                                moveHref = getMoveId(moveHref);
+                            }
+                        }
+
+                        if (move.select("img") != null && move.select("img").first() != null) {
+
+                            moveName = move.select("img").first().attr("title");
+                            moveImg = move.select("img").first().attr("src");
+
+                        }
+                        if (move.select("._3_ru_") != null && move.select("._3_ru_").first() != null) {
+                            pngfen = move.select("._3_ru_").first().text();
+                        }
+                        info.setMoveName(moveName);
+                        info.setMoveCover(moveImg);
+                        info.setMoveHref(moveHref);
+                        info.setMoveScore(pngfen);
+                        moveInfos.add(info);
+                    }
+                    if (moveInfos.size() > 0) {
+                        mTimeHomeBean.setMoveInfos(moveInfos);
+                        beans.add(mTimeHomeBean);
                     }
 
-
-                    String name = move.select("img").first().attr("title");
-                    String img = move.select("img").first().attr("src");
-                    if (move.select("._3_ru_").first() != null) {
-                        pngfen = move.select("._3_ru_").first().text();
-                    }
-                    info.setMoveName(name);
-                    info.setMoveCover(img);
-                    info.setMoveHref(href);
-                    info.setMoveScore(pngfen);
-                    moveInfos.add(info);
-                }
-                if (moveInfos.size() > 0) {
-                    mTimeHomeBean.setMoveInfos(moveInfos);
-                    beans.add(mTimeHomeBean);
                 }
 
                 //首页的数据
             }
-            emitter.onNext(beans);
+            if (beans == null) {
+                emitter.onError(new Throwable("暂无数据"));
+            } else {
+                emitter.onNext(beans);
+            }
+
 
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -106,12 +125,11 @@ public class MTimeSite extends Site {
                     @Override
                     public void onNext(List<MTimeHomeBean> datas) {
                         callBack.onSuccess(datas);
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callBack.onFail("解析异常");
+                        callBack.onFail("暂无数据");
                     }
 
                     @Override

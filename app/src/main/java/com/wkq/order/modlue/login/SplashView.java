@@ -61,7 +61,7 @@ public class SplashView implements MvpView, SpotRequestListener {
         }
         //banner  MT  时光网的初始化数据
         if (DataBaseUtils.getMoveHtmlHome(mActivity, MOVE_DB_HOME_HTML_MTIME) == null) {
-            DataBaseUtils.insertMoveHtmlHome(mActivity, MOVE_DB_HOME_HTML_MTIME, Constant.MOVE_INIT_BANNER);
+            DataBaseUtils.insertMoveHtmlHome(mActivity, MOVE_DB_HOME_HTML_MTIME, Constant.MOVE_INIT_HOME_HTML);
         }
         //初始化欢迎页面
         if (DataBaseUtils.getMoveDbHistoryData(mActivity, MOVE_DB_HOME_DATA_KEY) == null) {
