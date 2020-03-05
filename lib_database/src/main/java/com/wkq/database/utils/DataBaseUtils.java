@@ -133,6 +133,40 @@ public class DataBaseUtils {
     }
 
     /**
+     * 插入获取首页时光html获取的数据
+     *
+     * @param context
+     * @param key
+     * @param data
+     */
+    public static void insertMoveHtmlHome(Context context, String key, String data) {
+
+        MoveDbDataHitoryDao dao = DaoHelper.getInstance(context).getMoveDbDataHistoryDao();
+        MoveDbDataHitory info = new MoveDbDataHitory();
+        info.setKey(key);
+        info.setData(data);
+
+        dao.insertOrReplace(info);
+
+    }
+
+
+    /**
+     * 获取首页列表数据
+     *
+     * @param context
+     * @param key
+     * @return
+     */
+    public static MoveDbDataHitory getMoveHtmlHome(Context context, String key) {
+        if (context == null || TextUtils.isEmpty(key)) return null;
+        MoveDbDataHitoryDao dao = DaoHelper.getInstance(context).getMoveDbDataHistoryDao();
+        MoveDbDataHitory info = dao.load(key);
+        return info;
+    }
+
+
+    /**
      * 获取首页列表数据
      *
      * @param context

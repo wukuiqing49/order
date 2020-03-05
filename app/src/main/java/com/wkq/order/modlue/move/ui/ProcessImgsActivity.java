@@ -49,7 +49,7 @@ public class ProcessImgsActivity extends MvpBindingActivity<ProcessImgsView, Pro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         imgUrl = getIntent().getStringExtra("imgUrl");
-        if (!TextUtils.isEmpty(imgUrl)) imgUrl = Constant.MOVE_DB_IMG_BASE_500.concat(imgUrl);
+        if (!TextUtils.isEmpty(imgUrl)&&!imgUrl.startsWith("http")) imgUrl = Constant.MOVE_DB_IMG_BASE_500.concat(imgUrl);
         if (getMvpView() != null) getMvpView().initView();
 
     }

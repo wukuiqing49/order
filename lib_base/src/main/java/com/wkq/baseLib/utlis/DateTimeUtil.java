@@ -797,4 +797,20 @@ public class DateTimeUtil {
         return hms;
     }
 
+
+    public static String getYearMouthDay(String time){
+
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyyMMdd").parse(time);
+            String dateStr = new SimpleDateFormat("yyyy-MM-dd").format(date);
+            return dateStr;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return "未知";
+
+    }
+
 }

@@ -3,16 +3,18 @@ package com.wkq.order.modlue.web.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.databinding.ViewDataBinding;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.wkq.base.frame.activity.MvpBindingActivity;
 import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityFullVideoBinding;
 import com.wkq.order.modlue.web.presenter.FullVideoPresenter;
 import com.wkq.order.modlue.web.view.FullVideoView;
+import com.wkq.order.utils.StatusBarUtil;
 
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+import cn.jzvd.JZVideoPlayerStandard;
+
 
 /**
  * 作者:吴奎庆
@@ -23,34 +25,32 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  */
 
 
-public class FullVideoActivity extends MvpBindingActivity<FullVideoView, FullVideoPresenter, ActivityFullVideoBinding> {
-    String s3 = "https://youku.cdn7-okzy.com/20191217/16233_aa3b7d73/index.m3u8";
+public class FullVideoActivity extends MvpBindingActivity<FullVideoView, FullVideoPresenter, ActivityFullVideoBinding> implements JZVideoPlayerStandard.OnClickListener {
+
     private String url;
-
-
-    public static void startActivity(Context context,String url){
-        Intent intent =new Intent(context, FullVideoActivity.class);
-        intent.putExtra("url",url);
+    private String title;
+    public static void startActivity(Context context, String url, String title) {
+        Intent intent = new Intent(context, FullVideoActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("title", title);
         context.startActivity(intent);
     }
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_full_video;
     }
 
-    private void getdata() {
-        binding.jiecaoPlayer.setUp(s3,binding.jiecaoPlayer.SCREEN_LAYOUT_NORMAL,"视频标题");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        StatusBarUtil.setStatusBarWrite(this);
+        StatusBarUtil.setColor(this, this.getResources().getColor(R.color.black), 0);
+        StatusBarUtil.setDarkMode(this);
         url = getIntent().getStringExtra("url");
-
-        getdata();
+        title = getIntent().getStringExtra("title");
     }
-
 
 
     @Override
@@ -61,26 +61,34 @@ public class FullVideoActivity extends MvpBindingActivity<FullVideoView, FullVid
     }
 
     @Override
-    public void onBackPressed() {
-        if (JCVideoPlayerStandard.backPress()){
-            return;
-        }
-        super.onBackPressed();
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
-        JCVideoPlayerStandard.releaseAllVideos();
+
+        JZVideoPlayerStandard.releaseAllVideos();
     }
+
+
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        try {
-            binding.jiecaoPlayer.releaseAllVideos();
-        } catch (Exception e) {
-        }
+
+        JZVideoPlayerStandard.releaseAllVideos();
     }
 
+
+
+    @Override
+    public void onClick(View view) {
+
+        if (view.getId()==cn.jzvd.R.id.back){
+            finish();
+
+        }else if (view.getId()==cn.jzvd.R.id.fullscreen){
+//            JZVideoPlayerStandard.f(this, JZVideoPlayerStandard.class, url, title);
+
+        }
+
+    }
 }

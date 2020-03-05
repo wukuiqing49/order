@@ -61,7 +61,7 @@ public class DeveloperView implements MvpView {
 
         list.add(new DeveloperInfo(3, "联系开发者"));
         list.add(new DeveloperInfo(4, "关于我们"));
-//        list.add(new DeveloperInfo(5, "Api测试"));
+        list.add(new DeveloperInfo(5, "Api测试"));
 
 
         moviesAdapter.addItems(list);

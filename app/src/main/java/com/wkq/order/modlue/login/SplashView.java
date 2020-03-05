@@ -22,6 +22,7 @@ import cdc.sed.yff.nm.sp.SpotRequestListener;
 
 import static com.wkq.order.utils.Constant.MOVE_DB_HOME_BANNER_KEY;
 import static com.wkq.order.utils.Constant.MOVE_DB_HOME_DATA_KEY;
+import static com.wkq.order.utils.Constant.MOVE_DB_HOME_HTML_MTIME;
 
 /**
  * 作者: 吴奎庆
@@ -57,6 +58,10 @@ public class SplashView implements MvpView, SpotRequestListener {
         //banner
         if (DataBaseUtils.getHomeTopData(mActivity, MOVE_DB_HOME_BANNER_KEY) == null) {
             DataBaseUtils.insertHomeTopData(mActivity, MOVE_DB_HOME_BANNER_KEY, Constant.MOVE_INIT_BANNER);
+        }
+        //banner  MT  时光网的初始化数据
+        if (DataBaseUtils.getMoveHtmlHome(mActivity, MOVE_DB_HOME_HTML_MTIME) == null) {
+            DataBaseUtils.insertMoveHtmlHome(mActivity, MOVE_DB_HOME_HTML_MTIME, Constant.MOVE_INIT_BANNER);
         }
         //初始化欢迎页面
         if (DataBaseUtils.getMoveDbHistoryData(mActivity, MOVE_DB_HOME_DATA_KEY) == null) {

@@ -8,6 +8,8 @@ import com.wkq.net.interceptor.OffLineInterceptor;
 import com.wkq.net.interceptor.OnLineInterceptor;
 import com.wkq.net.model.IBaseInfo;
 
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -104,7 +106,8 @@ public class ApiBuild<Service, Observable extends io.reactivex.Observable<Result
 
     public Service service(boolean decode, long keepAliveDuration) {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient().newBuilder();
-
+//        okHttpClientBuilder.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("99.86.33.92", 42122)));
+//        okHttpClientBuilder.
         if (connectTimeout > 0) {
             okHttpClientBuilder.connectTimeout(connectTimeout, TimeUnit.SECONDS);
         }

@@ -18,6 +18,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import wkq.com.lib_move.model.MTimeHomeBean;
+import wkq.com.lib_move.model.MoveInfo;
+
 /**
  * 作者: 吴奎庆
  * <p>
@@ -108,6 +111,63 @@ public class MoveDbDataSaveUtlis {
                 String value = object.getString("type");
                 int id = Integer.parseInt(key);
                 item = new MoveDbMoveType(id, value);
+                items.add(item);
+            }
+            return items;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return items;
+
+    }
+
+    /**
+     * 将string 转化为 list
+     *
+     * @param listJsons
+     * @return
+     */
+    public static List<MTimeHomeBean> mtJson2list(String listJsons) {
+
+        List<MTimeHomeBean> items = new ArrayList<>();
+        if (TextUtils.isEmpty(listJsons)) return null;
+
+        JSONArray array = null;
+        try {
+            array = new JSONArray(listJsons);
+
+
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject object = array.getJSONObject(i);
+                MTimeHomeBean item = new MTimeHomeBean();
+                String titleName = object.getString("titleName");
+                item.setTitleName(titleName);
+                JSONArray moveInfos = object.getJSONArray("moveInfos");
+                List<MoveInfo> mMoveLists=new ArrayList<>();
+                for (int j = 0; j < moveInfos.length(); j++) {
+                    MoveInfo moveInfo = new MoveInfo();
+                    JSONObject object2 = moveInfos.getJSONObject(j);
+                    String moveName = object2.getString("moveName");
+
+//                    String createTime = object2.getString("createTime");
+//                    String authorName = object2.getString("authorName");
+//                    String moveType = object2.getString("moveType");
+                    String moveCover = object2.getString("moveCover");
+                    String moveHref = object2.getString("moveHref");
+                    String moveScore = object2.getString("moveScore");
+
+                    moveInfo.setMoveScore(moveScore);
+                    moveInfo.setMoveHref(moveHref);
+                    moveInfo.setMoveCover(moveCover);
+//                    moveInfo.setMoveType(moveType);
+                    moveInfo.setMoveName(moveName);
+//                    moveInfo.setAuthorName(authorName);
+//                    moveInfo.setCreateTime(createTime);
+                    mMoveLists.add(moveInfo);
+
+                }
+
+                item.setMoveInfos(mMoveLists);
                 items.add(item);
             }
             return items;

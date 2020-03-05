@@ -26,9 +26,13 @@ import com.wkq.order.R;
 import com.wkq.order.databinding.ActivityApiTestBinding;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
+import wkq.com.lib_move.utlis.MoveDataCallBack;
+import wkq.com.lib_move.model.MTimeHomeBean;
+import wkq.com.lib_move.site.MTimeSite;
 
 /**
  * 作者: 吴奎庆
@@ -56,14 +60,6 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
 
         binding.setOnclick(this);
 
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//
-//            @Override
-//            public void run() {
-//                getMoveTop();
-//            }
-//        }, 3000,3000);
 
     }
 
@@ -89,8 +85,52 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.tv_popular:
                 getMoveDbPopularInfo();
                 break;
+            case R.id.tv_movie:
+                getMoveForHtml();
+                break;
 
         }
+
+    }
+
+    private void getMoveForHtml() {
+
+        MTimeSite.getMTimeTop(new MoveDataCallBack() {
+            @Override
+            public void onFail(String message) {
+
+            }
+
+            @Override
+            public void onSuccess(Object o) {
+
+            }
+
+            @Override
+            public void onLoading() {
+
+            }
+        });
+
+
+//        MTimeSite.getHomeContent(new MoveDataCallBack<List<MTimeHomeBean>>() {
+//            @Override
+//            public void onFail(String message) {
+//
+//            }
+//
+//            @Override
+//            public void onSuccess(List<MTimeHomeBean> lists) {
+//
+//                Log.e("", "");
+//
+//            }
+//
+//            @Override
+//            public void onLoading() {
+//
+//            }
+//        });
 
     }
 
@@ -129,13 +169,9 @@ public class ApiTestActivity extends AppCompatActivity implements View.OnClickLi
             }
         }).<BaseInfo<MoveDataInfo>>event().setFailureCallback((state, message) -> {
             Log.e("", "");
-            Log.e("数据请求失败:", "---------------------------------------------------------");
 
         }).setSuccessCallback(data -> {
             count += 1;
-            Log.e("数据请求成功:", data.getData().getTotal_results() + "请求次数:--------" + count);
-
-
         }).start();
 
     }

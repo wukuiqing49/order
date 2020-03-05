@@ -78,7 +78,16 @@ public class GlideUtlis {
         RequestOptions requestOptions = RequestOptions.placeholderOf(R.drawable.bg_image_loading).error(R.drawable.bg_image_loading)
                 .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL);
 
-        Glide.with(context).load(path).into(view);
+        Glide.with(context).load(path).apply(requestOptions).into(view);
+
+    }
+    public static void loadImg(Context context, String path, ImageView view) {
+        if (TextUtils.isEmpty(path))path="";
+
+        RequestOptions requestOptions = RequestOptions.placeholderOf(R.mipmap.bg_pro_comment).error(R.mipmap.bg_pro_comment)
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL);
+
+        Glide.with(context).load(path).apply(requestOptions).into(view);
 
     }
 

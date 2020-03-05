@@ -46,7 +46,7 @@ public class MoveInformationView implements MvpView {
     public MoveInformationView(MoveInformationFragment mFragment) {
         this.mFragment = mFragment;
         titleTab.add("正在热播");
-        titleTab.add("最受欢迎");
+        titleTab.add("最新电影");
         titleTab.add("TOP排行榜");
     }
 

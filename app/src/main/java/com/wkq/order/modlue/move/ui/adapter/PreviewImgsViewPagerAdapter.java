@@ -57,12 +57,19 @@ public class PreviewImgsViewPagerAdapter extends PagerAdapter {
 
         ItemPrevieImgBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_previe_img, container, false);
 
-        binding.largeView.setImageView(Constant.MOVE_DB_IMG_BASE_500.concat(imgs.get(position)), "");
+        if (imgs.get(position).startsWith("http")) {
+            binding.largeView.setImageView(imgs.get(position), "");
+
+        } else {
+            binding.largeView.setImageView(Constant.MOVE_DB_IMG_BASE_500.concat(imgs.get(position)), "");
+
+        }
+
 
         binding.largeView.setClickLisetner(new CustomPreviewClickListener() {
             @Override
             public void longClick(String file) {
-                if (listener!=null)listener.onItemLongClicker(imgs.get(position));
+                if (listener != null) listener.onItemLongClicker(imgs.get(position));
             }
 
             @Override

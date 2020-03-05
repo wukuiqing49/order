@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.wkq.order.modlue.developer.ui.fragment.DeveloperFragment;
+import com.wkq.order.modlue.htmlmove.ui.fragment.HomeHtmlMoveTopFragment;
 import com.wkq.order.modlue.main.ui.fragment.MoveComingFragment;
 import com.wkq.order.modlue.main.ui.fragment.MoveDbComingFragment;
 import com.wkq.order.modlue.main.ui.fragment.MoveHotFragment;
@@ -40,17 +41,32 @@ public class MoveFragmentPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
 
+//            case 0:
+//                fragment = MoveHotFragment.newInstance(context);
+//
+//
+//                break;
+//            case 1:
+//                fragment = MoveComingFragment.newInstance(context);
+//
+//                break;
+//            case 2:
+//                fragment = MoveTopFragment.newInstance(context);
+//
+//                break;
+
+
             case 0:
-                fragment = MoveHotFragment.newInstance(context);
+                fragment = HomeHtmlMoveTopFragment.newInstance("http://video.mtime.com/search/?h=movie&s=1&p=");
 
 
                 break;
             case 1:
-                fragment = MoveComingFragment.newInstance(context);
+                fragment = HomeHtmlMoveTopFragment.newInstance("http://video.mtime.com/search/?h=movie&s=2&p=");
 
                 break;
             case 2:
-                fragment = MoveTopFragment.newInstance(context);
+                fragment = HomeHtmlMoveTopFragment.newInstance("http://video.mtime.com/search/?h=movie&s=3&p=");
 
                 break;
 

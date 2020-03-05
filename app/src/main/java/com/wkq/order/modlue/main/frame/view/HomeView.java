@@ -103,7 +103,7 @@ public class HomeView implements MvpView {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 0 || position == 1) {
+                if (position == 1) {
                     mActivity.binding.cdPlay.setVisibility(View.VISIBLE);
 
                 } else {
