@@ -208,6 +208,14 @@
             android:theme="@style/ProcessHtmlDialogActivityTheme" />
 
         <activity
+            android:name=".modlue.htmlmove.ui.activity.ProcessVideoActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ProcessHtmlDialogActivityTheme" />
+
+        <activity
             android:name=".modlue.novel.ui.activity.NovelInfoActivity"
             android:configChanges="keyboardHidden|screenSize|orientation|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true"

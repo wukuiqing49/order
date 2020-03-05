@@ -1,5 +1,8 @@
 package com.wkq.net.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -755,7 +758,7 @@ public class MTimeMoveDetailInfo {
             }
         }
 
-        public static class VideoBean {
+        public static class VideoBean  {
             /**
              * count : 2
              * hightUrl : https://vfx.mtime.cn/Video/2014/03/06/mp4/140306102651231568.mp4
@@ -954,7 +957,7 @@ public class MTimeMoveDetailInfo {
         }
     }
 
-    public static class PlaylistBean {
+    public static class PlaylistBean implements Parcelable {
         /**
          * isOpenByBrowser : true
          * payRule : VIP免费
@@ -974,6 +977,29 @@ public class MTimeMoveDetailInfo {
         private String playUrlH5;
         private String playUrlPC;
         private String sourceId;
+
+        protected PlaylistBean(Parcel in) {
+            isOpenByBrowser = in.readByte() != 0;
+            payRule = in.readString();
+            picUrl = in.readString();
+            playSourceName = in.readString();
+            playUrl = in.readString();
+            playUrlH5 = in.readString();
+            playUrlPC = in.readString();
+            sourceId = in.readString();
+        }
+
+        public static final Creator<PlaylistBean> CREATOR = new Creator<PlaylistBean>() {
+            @Override
+            public PlaylistBean createFromParcel(Parcel in) {
+                return new PlaylistBean(in);
+            }
+
+            @Override
+            public PlaylistBean[] newArray(int size) {
+                return new PlaylistBean[size];
+            }
+        };
 
         public boolean isIsOpenByBrowser() {
             return isOpenByBrowser;
@@ -1037,6 +1063,23 @@ public class MTimeMoveDetailInfo {
 
         public void setSourceId(String sourceId) {
             this.sourceId = sourceId;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeByte((byte) (isOpenByBrowser ? 1 : 0));
+            parcel.writeString(payRule);
+            parcel.writeString(picUrl);
+            parcel.writeString(playSourceName);
+            parcel.writeString(playUrl);
+            parcel.writeString(playUrlH5);
+            parcel.writeString(playUrlPC);
+            parcel.writeString(sourceId);
         }
     }
     /**

@@ -13,6 +13,7 @@ import com.wkq.baseLib.utlis.DateTimeUtil;
 import com.wkq.net.BaseInfo;
 import com.wkq.net.model.MTimeMoveDetailInfo;
 import com.wkq.order.modlue.htmlmove.ui.activity.MoveHtmlActivity;
+import com.wkq.order.modlue.htmlmove.ui.activity.ProcessVideoActivity;
 import com.wkq.order.modlue.htmlmove.ui.adapter.MoveHtmlCreditsAdapter;
 import com.wkq.order.modlue.htmlmove.ui.adapter.MoveHtmlImgsAdapter;
 import com.wkq.order.modlue.htmlmove.ui.adapter.MoveStringAdapter;
@@ -195,6 +196,18 @@ public class MoveHtmlView implements MvpView {
         float star = b.floatValue();
         float starf = star / 10 * 5;
         mActivity.binding.raStar.setStar(starf);
+
+        if (data.getData().getPlaylist() != null && data.getData().getPlaylist().size() > 0) {
+            mActivity.binding.cdPlay.setVisibility(View.VISIBLE);
+
+            mActivity.binding.cdPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ProcessVideoActivity.startActivity(mActivity, (ArrayList<MTimeMoveDetailInfo.PlaylistBean>) data.getData().getPlaylist());
+                }
+            });
+        }
+
 
     }
 

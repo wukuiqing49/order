@@ -32,34 +32,6 @@ public class VideoSiteActivity extends MvpBindingActivity<VideoSiteView, VideoSi
 
     public AgentWeb mAgentWeb;
 
-    //String baseUrl= "http://jx.aeidu.cn/index.php?url=";
-    //待确认
-//    String baseUrl = "http://jx.618ge.com/?url=";
-
-//    String baseUrl = "http://jx.drgxj.com/?url=";
-
-
-    //处理广告(广告)  能看
-//    String baseUrl = "http://jx.du2.cc/?url=";
-//    String baseUrl = "http://jx.598110.com/?url=url=";
-//    String baseUrl = "http://jx.drgxj.com/?url=";
-//    String baseUrl = "http://jx.618ge.com/?url=";
-
-    //成功去除
-//String baseUrl = "http://demo.hao0606.com/?url=";
-    //流畅
-    String baseUrl = "http://jx.jx.jx1jx1.drgxj.com/jxjxjx1jx1/598ASJoihjUY1_d256F15.php?url=url=";
-//String baseUrl = "https://jiexi.bm6ig.cn/?url=";
-
-
-//
-//     	<option value="http://jx.du2.cc/?url=" selected="">⑤号通用vip引擎系统【全网解析】</option>
-//      	<option value="http://jx.drgxj.com/?url=" selected="">④号通用vip引擎系统【超级稳定通用】</option>
-//	  <option value="http://jx.618ge.com/?url=" selected="">③号通用vip引擎系统【稳定通用】</option>
-//    <option value="http://vip.jlsprh.com/?url=" selected="">②号通用vip引擎系统【稳定通用】</option>
-//	<option value="" selected=""><span style="color:red;">无广告超速解析</span>【通用】</option>
-//      <option value="http://jx.598110.com/?url=" selected="">①号通用vip引擎系统【稳定通用】</option>
-
     public String url;
 
     public static void startActivity(Context context, String url) {
