@@ -31,6 +31,7 @@ import java.util.Random;
 
 import wkq.com.lib_move.model.MoveInfo;
 import wkq.com.lib_move.model.MoveTopInfo;
+import wkq.com.lib_move.site.MTimeSite;
 
 /**
  * 作者:吴奎庆
@@ -61,7 +62,7 @@ public class HomeHtmlMoveTopView implements MvpView {
             @Override
             public void onViewClick(View v, Object program) {
                 MoveTopInfo info = (MoveTopInfo) program;
-                MoveHtmlActivity.startActivity(mFragment.getActivity(), info.getMoveHref(),info.getMoveCover());
+                MoveHtmlActivity.startActivity(mFragment.getActivity(), MTimeSite.getMoveId(info.getMoveHref()),info.getMoveCover());
             }
         });
         ClassicsHeader header = new ClassicsHeader(mFragment.getActivity());

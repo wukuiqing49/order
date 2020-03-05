@@ -1,7 +1,6 @@
 package com.wkq.order.modlue.htmlmove.frame.presenter;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.wkq.base.frame.mosby.MvpBasePresenter;
 import com.wkq.net.ApiRequest;
@@ -19,9 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
-import wkq.com.lib_move.model.MoveDetailInfo;
-import wkq.com.lib_move.utlis.MoveDataCallBack;
-import wkq.com.lib_move.utlis.MoveHtmlUtlis;
 
 /**
  * 作者:吴奎庆

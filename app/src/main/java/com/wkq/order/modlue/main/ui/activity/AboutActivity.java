@@ -47,12 +47,11 @@ public class AboutActivity extends AppCompatActivity {
 
 
         WebViewUtil.setPtoHtmlData(this,
-                "<p>本软件不做破解，只是代码的搬运工</p>\n" +
-                        "<p>　支持各大网站vip视频免费观看</p>\n" +
-                        "<p>　本软件所有数据均来源于互联网</p>\n" +
-                        "<p>　本软件有部分广告</p>\n" +
-                        "<p>　本软件仅供学习参考，切勿商业使用。接口数据均</p>\n" +
-                        "<p>　　　来源于互联网。如有侵权，请联系删除</p>", binding.web);
+                "<p>本软件只用于学习</p>\n" +
+                        "<p>本软件所有数据均来源于互联网</p>\n" +
+                        "<p>本软件有部分广告</p>\n" +
+                        "<p>本软件仅供学习参考，切勿商业使用。接口数据均</p>\n" +
+                        "<p>来源于互联网。如有侵权，请联系删除</p>", binding.web);
     }
 
     @Override
@@ -60,6 +59,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onResume();
         MobclickAgent.onResume(this);
     }
+
     @Override
     public void onPause() {
         super.onPause();

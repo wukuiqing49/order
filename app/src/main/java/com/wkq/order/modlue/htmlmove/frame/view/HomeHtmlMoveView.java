@@ -47,6 +47,7 @@ import java.util.Random;
 
 import wkq.com.lib_move.model.MTimeHomeBean;
 import wkq.com.lib_move.model.MoveInfo;
+import wkq.com.lib_move.site.MTimeSite;
 
 import static com.wkq.order.utils.Constant.MOVE_DB_HOME_HTML_MTIME;
 
@@ -88,7 +89,7 @@ public class HomeHtmlMoveView implements MvpView {
             @Override
             public void onItemClick(MoveInfo info) {
 
-                MoveHtmlActivity.startActivity(mFragment.getActivity(), info.getMoveHref(), info.getMoveCover());
+                MoveHtmlActivity.startActivity(mFragment.getActivity(), MTimeSite.getMoveId(info.getMoveHref()), info.getMoveCover());
 
             }
         });
@@ -195,12 +196,12 @@ public class HomeHtmlMoveView implements MvpView {
             @Override
             public void OnBannerClick(int position) {
 
-                MoveHtmlActivity.startActivity(mFragment.getActivity(), mTopList.get(position).getMoveHref(), mTopList.get(position).getMoveCover());
-//                BannerInfo bannerInfo = mBannerBeanList.get(position);
-//                if (bannerInfo.getUrlPath().equals("1008611"))
-//                    startVideoPlay();
-//                else
-//                    MoveDetailActivity.startMoveDetail(mFragment.getActivity(), mBannerBeanList.get(position).getUrlPath());
+                MoveHtmlActivity.startActivity(mFragment.getActivity(),
+
+                        MTimeSite.getMoveId(mTopList.get(position).getMoveHref())
+
+                        , mTopList.get(position).getMoveCover());
+
             }
         });
 

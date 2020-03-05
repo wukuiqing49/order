@@ -32,21 +32,17 @@ import wkq.com.lib_move.utlis.MovieNetUtil;
 
 public class MTimeSite extends Site {
     public static String baseUrl = "http://video.mtime.com/";
-    private static String pngfen;
 
-    private static String moveStarring = null;
-    private static String moveName = null;
-    private static String moveHref = null;
-    private static String moveScore = null;
-    private static String moveTypeTitle = null;
-
-    private static String moveImg = null;
-    private static int pageNum = 0;
 
     public static void getHomeContent(MoveDataCallBack callBack) {
 
 
         Observable.create((ObservableOnSubscribe<List<MTimeHomeBean>>) emitter -> {
+
+
+            String moveTypeTitle = null;
+
+
             String html = MovieNetUtil.getHtml(baseUrl, "UTF-8");
             if (TextUtils.isEmpty(html)) return;
             if (Jsoup.parse(html).select("._2dj0d") == null || Jsoup.parse(html).select("._2dj0d").first() == null) {
@@ -76,6 +72,10 @@ public class MTimeSite extends Site {
                 if (moves != null) {
                     List<MoveInfo> moveInfos = new ArrayList<>();
                     for (Element move : moves) {
+                        String moveImg = null;
+                        String pngfen = null;
+                        String moveName = null;
+                        String moveHref = null;
                         MoveInfo info = new MoveInfo();
                         if (move.select("a") != null && move.select("a").first() != null) {
                             moveHref = move.select("a").first().attr("href");
@@ -175,6 +175,10 @@ public class MTimeSite extends Site {
     public static <T> void getMoveDetail(String moveUrl, MoveDataCallBack<T> moveDataCallBack) {
 
         Observable.create((ObservableOnSubscribe<T>) emitter -> {
+
+
+            int pageNum = 0;
+
             String html = MovieNetUtil.getHtml(moveUrl, "UTF-8");
             if (TextUtils.isEmpty(html) || Jsoup.parse(html).select(".xXnBC") == null || Jsoup.parse(html).select(".xXnBC").first() == null) {
                 emitter.onError(new Throwable("暂无数据"));
@@ -201,6 +205,13 @@ public class MTimeSite extends Site {
 
             for (Element bean : elements) {
                 MoveTopInfo info = new MoveTopInfo();
+                String moveStarring = null;
+                String moveName = null;
+                String moveHref = null;
+                String moveScore = null;
+
+
+                String moveImg = null;
 
                 if (bean.select("._18_7o").select("img") != null && bean.select("._18_7o").select("img").first() != null)
                     moveName = bean.select("._18_7o").select("img").first().attr("alt");
