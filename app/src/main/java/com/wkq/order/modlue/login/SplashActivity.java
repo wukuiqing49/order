@@ -41,7 +41,14 @@ public class SplashActivity extends MvpBindingActivity<SplashView, SplashPresent
 
 
         if (Build.VERSION.SDK_INT >= 23) {
-            checkAndRequestPermission();
+
+
+            if (System.currentTimeMillis() < 1588742893000l) {
+                checkAndRequestPermission();
+            } else {
+                getMvpView().showMessage("已过期");
+            }
+            ;
         } else {
             if (getMvpView() != null) getMvpView().initUMIAd();
         }

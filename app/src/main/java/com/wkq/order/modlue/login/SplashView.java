@@ -51,6 +51,8 @@ public class SplashView implements MvpView, SpotRequestListener {
         initData();
 
 
+
+
     }
 
     private void initData() {
