@@ -249,6 +249,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".modlue.move.ui.SearchMTimeActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".modlue.developer.ui.activity.NovelDownLoadActivity"
             android:configChanges="keyboardHidden|screenSize|orientation|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true"

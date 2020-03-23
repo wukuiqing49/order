@@ -213,7 +213,7 @@ public class DataBaseUtils {
 
         MoveSearchHistoryDao dao = DaoHelper.getInstance(context).getMoveSearchHistoryDao();
 
-        return dao == null ? null : dao.loadAll();
+        return dao == null ? null : dao.queryBuilder().limit(10).list();
 
     }
 }

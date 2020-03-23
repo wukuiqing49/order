@@ -5,11 +5,13 @@ import android.util.Log;
 
 import com.wkq.net.api.ApiDemo;
 import com.wkq.net.api.ApiMTime;
+import com.wkq.net.api.ApiMTimeSearch;
 import com.wkq.net.api.ApiMoveDb;
 import com.wkq.net.interceptor.DESEncryptInterceptor;
 import com.wkq.net.interceptor.DefaultEncryptInterceptor;
 import com.wkq.net.interceptor.HandleLoginInterceptor;
 import com.wkq.net.interceptor.MTimeInterceptor;
+import com.wkq.net.interceptor.MTimeSearchInterceptor;
 import com.wkq.net.interceptor.MoveDbInterceptor;
 import com.wkq.net.interceptor.NetPPEncryptInterceptor;
 import com.wkq.net.interceptor.NetPPPayEncryptInterceptor;
@@ -39,12 +41,15 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
     //The move Db 接口域名
     private static final String BASE_MOVE_DB = "http://api.themoviedb.org/3/";
     private static final String BASE_MOVE_MTIME = "https://ticket-api-m.mtime.cn/";
+    private static final String BASE_MOVE_MTIME_SEARCH = "http://service.channel.mtime.com/";
+
 
 
     //动态配置BaseUrl
     private static <T> String serviceEndpoint(Class<T> clazz) {
         if (clazz == ApiMoveDb.class) return BASE_MOVE_DB;
         if (clazz == ApiMTime.class) return BASE_MOVE_MTIME;
+        if (clazz == ApiMTimeSearch.class) return BASE_MOVE_MTIME_SEARCH;
         return "";
     }
 
@@ -110,9 +115,10 @@ public class ApiRequest<Observable extends io.reactivex.Observable<Result<BaseDa
         return service(clazz, api, new HandleLoginInterceptor());
     }
    public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
-    ApiRequest<Observable, BaseData> serviceMTime(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
-        return service(clazz, api, new MTimeInterceptor());
+    ApiRequest<Observable, BaseData> serviceMTimeSearch(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {
+        return service(clazz, api, new MTimeSearchInterceptor());
     }
+
 
     public static <Service, Observable extends io.reactivex.Observable<Result<BaseData>>, BaseData extends BaseInfo>
     ApiRequest<Observable, BaseData> serviceDefult(Class<Service> clazz, ApiBuild.Api<Service, Observable, BaseData> api) {

@@ -90,6 +90,14 @@ android {
             buildConfigField("String", "APP_ID", stringValue("wu199149"))
             buildConfigField("int", "APP_AD_COUNT", "3")
 
+//            // true - 打开混淆
+//            minifyEnabled false
+//            // true - 打开资源压缩
+//            shrinkResources false
+//            // 用于设置Proguard的规划路径；
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro',
+//                    '../libModule/proguard-rules.pro'
+
         }
     }
 

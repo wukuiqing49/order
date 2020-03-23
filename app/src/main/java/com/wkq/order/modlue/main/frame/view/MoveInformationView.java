@@ -2,10 +2,12 @@ package com.wkq.order.modlue.main.frame.view;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.wkq.base.frame.mosby.delegate.MvpView;
+import com.wkq.order.modlue.move.ui.SearchMTimeActivity;
 import com.wkq.order.utils.StatusBarUtil;
 
 import com.wkq.order.R;
@@ -27,6 +29,10 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 
 import java.util.ArrayList;
 import java.util.List;
+
+import wkq.com.lib_move.site.MTimeSite;
+import wkq.com.lib_move.utlis.MoveDataCallBack;
+import wkq.com.lib_move.utlis.MoveHtmlUtlis;
 
 /**
  * 作者:吴奎庆
@@ -102,9 +108,25 @@ public class MoveInformationView implements MvpView {
         ViewPagerHelper.bind(magicIndicator, mFragment.binding.vpInformation);
 
         mFragment.binding.rlSearch.setOnClickListener(view -> {
-            SearchActivity.startSearch(mFragment.getActivity());
+            SearchMTimeActivity.startSearch(mFragment.getActivity());
 
 //            DemoActivity.startActivity(mFragment.getActivity());
+            MTimeSite.searchMovie("当幸福来敲门", new MoveDataCallBack<Object>() {
+                @Override
+                public void onFail(String message) {
+                    Log.e("","");
+                }
+
+                @Override
+                public void onSuccess(Object o) {
+                    Log.e("","");
+                }
+
+                @Override
+                public void onLoading() {
+
+                }
+            });
 
         });
 
