@@ -108,8 +108,6 @@ class RankAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.r
                 holder.itemView.setOnClickListener {
                     val intent = Intent(holder.itemView.context, SearchActivity::class.java)
                     intent.putExtra("searchKey", rankBook.bookName)
-
-
                     holder.itemView.context.startActivity(intent)
                 }
             }

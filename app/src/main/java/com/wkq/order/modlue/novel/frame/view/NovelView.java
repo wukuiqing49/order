@@ -76,6 +76,14 @@ public class NovelView implements MvpView {
                 }
             }
         });
+
+        mFragment.binding.cdSearch.setOnClickListener(view -> {
+          Intent intent =new Intent(mFragment.getActivity(),SearchActivity.class);
+            intent.putExtra("searchKey", "");
+
+
+          mFragment.getActivity().startActivity(intent);
+        });
     }
 
     public void setData(HottestRank hottestRank) {

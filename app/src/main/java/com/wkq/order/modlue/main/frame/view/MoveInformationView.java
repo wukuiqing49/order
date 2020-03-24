@@ -109,25 +109,6 @@ public class MoveInformationView implements MvpView {
 
         mFragment.binding.rlSearch.setOnClickListener(view -> {
             SearchMTimeActivity.startSearch(mFragment.getActivity());
-
-//            DemoActivity.startActivity(mFragment.getActivity());
-            MTimeSite.searchMovie("当幸福来敲门", new MoveDataCallBack<Object>() {
-                @Override
-                public void onFail(String message) {
-                    Log.e("","");
-                }
-
-                @Override
-                public void onSuccess(Object o) {
-                    Log.e("","");
-                }
-
-                @Override
-                public void onLoading() {
-
-                }
-            });
-
         });
 
     }

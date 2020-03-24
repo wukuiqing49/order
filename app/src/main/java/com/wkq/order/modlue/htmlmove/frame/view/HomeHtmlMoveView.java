@@ -226,8 +226,8 @@ public class HomeHtmlMoveView implements MvpView {
         if (moveInfoList != null && moveInfoList.size() > 0) {
             String dataStr = gson.toJson(moveInfoList);
             DataBaseUtils.insertMoveHtmlHome(mFragment.getActivity(), MOVE_DB_HOME_HTML_MTIME, dataStr);
-            moveInfoList.remove(0);
-            moviesAdapter.addItems(moveInfoList);
+//            moveInfoList.remove(0);
+//            moviesAdapter.addItems(moveInfoList);
         } else {
             MoveDbDataHitory resultsBeans = DataBaseUtils.getMoveHtmlHome(mFragment.getActivity(), MOVE_DB_HOME_HTML_MTIME);
             if (MoveDbDataSaveUtlis.mtJson2list(resultsBeans.getData()) != null && MoveDbDataSaveUtlis.mtJson2list(resultsBeans.getData()).size() > 0) {
